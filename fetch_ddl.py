@@ -63,19 +63,16 @@ def fetch_table_ddl(connection, schema_name, table_name, relation_type):
             """
             cursor.execute(query)
             ddl = cursor.fetchone()
-            print(f"type of ddl is type:{type(ddl)}")
+            
             if ddl:
                 ddl = ddl[0].strip()  # Remove leading/trailing whitespace
-                # Ensure the DDL starts with 'CREATE OR REPLACE VIEW'
-                if not ddl.lower().startswith("create or replace view"):
-                    print("Inside not create or replace view")
-                    print(ddl.lower())
-                    if ddl.lower().startswith("create  view"):
-                        print("Inside create view")
-                        ddl = ddl.replace("CREATE  VIEW", "CREATE OR REPLACE VIEW", 1)
-                    else:
-                        print("Inside else")
-                        ddl = f"CREATE OR REPLACE VIEW {schema_name}.{table_name} AS \n" + ddl
+                # Ensure the DDL contains 'CREATE OR REPLACE VIEW' or 'CREATE VIEW'
+                if "create or replace view" not in ddl.lower() and "create view" not in ddl.lower():
+                    
+                    ddl = f"CREATE OR REPLACE VIEW {schema_name}.{table_name} AS \n" + ddl
+                elif "create view" in ddl.lower():
+                    
+                    ddl = re.sub(r"(?i)create view", "CREATE OR REPLACE VIEW", ddl, count=1)  # Replace first occurrence of 'CREATE VIEW'
 
                 # Check if 'WITH NO SCHEMA BINDING' is already present
                 if "with no schema binding" not in ddl.lower():
