@@ -67,12 +67,12 @@ def fetch_table_ddl(connection, schema_name, table_name, relation_type):
             if ddl:
                 ddl = ddl[0].strip()  # Remove leading/trailing whitespace
                 # Ensure the DDL contains 'CREATE OR REPLACE VIEW' or 'CREATE VIEW'
-                if "create or replace view" not in ddl.lower() and "create view" not in ddl.lower():
-                    
+                if "create or replace view" not in ddl.lower() and "create  view" not in ddl.lower():
+                    print("DDL does not contain 'CREATE OR REPLACE VIEW' or 'CREATE VIEW'")
                     ddl = f"CREATE OR REPLACE VIEW {schema_name}.{table_name} AS \n" + ddl
-                elif "create view" in ddl.lower():
-                    
-                    ddl = re.sub(r"(?i)create view", "CREATE OR REPLACE VIEW", ddl, count=1)  # Replace first occurrence of 'CREATE VIEW'
+                elif "create  view" in ddl.lower():
+                    print("DDL contains 'CREATE VIEW', replacing with 'CREATE OR REPLACE VIEW'")
+                    ddl = re.sub(r"(?i)create  view", "CREATE OR REPLACE VIEW", ddl, count=1)  # Replace first occurrence of 'CREATE VIEW'
 
                 # Check if 'WITH NO SCHEMA BINDING' is already present
                 if "with no schema binding" not in ddl.lower():
@@ -127,7 +127,7 @@ def save_ddl_to_file(base_path, schema_name, table_name, ddl):
         file_path = os.path.join(schema_path, f"{table_name}.sql")
         with open(file_path, "w") as file:
             file.write(ddl)
-        #print(f"Saved DDL for table {table_name} to {file_path}")
+        print(f"Saved DDL for table {table_name} to {file_path}")
         
     except Exception as e:
         print(f"Error saving DDL to file for table {table_name}: {e}")
