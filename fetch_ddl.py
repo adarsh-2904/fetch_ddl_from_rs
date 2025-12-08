@@ -107,16 +107,55 @@ def fetch_table_ddl(connection, schema_name, table_name, relation_type):
                 return ddl
 
             return None
-        else:
+        elif relation_type == "table":
             query = f"""
                 show {relation_type} {schema_name}.{table_name};
             """
             cursor.execute(query)
             ddl = cursor.fetchone()
             return ddl[0] if ddl else None
+        
     except Exception as e:
         print(f"Error fetching DDL for {relation_type} {table_name}: {e}")
         logging.error(f"Error fetching DDL for {relation_type} {table_name}: {e}")
+        return None
+
+# Function to fetch stored procedure names from a specific schema
+def fetch_stored_procedure_names(connection, schema_name):
+    try:
+        cursor = connection.cursor()
+        query = f"""
+            SELECT routine_name
+            FROM information_schema.routines
+            WHERE routine_schema = '{schema_name}'
+            AND routine_type = 'PROCEDURE';
+        """
+        cursor.execute(query)
+        procedures = cursor.fetchall()
+        logging.info(f"Fetched {len(procedures)} stored procedures from schema {schema_name}")
+        return [procedure[0] for procedure in procedures]
+    except Exception as e:
+        print(f"Error fetching stored procedure names: {e}")
+        logging.error(f"Error fetching stored procedure names: {e}")
+        return []
+
+# Function to fetch DDL for a specific stored procedure
+def fetch_stored_procedure_ddl(connection, schema_name, procedure_name):
+    try:
+        cursor = connection.cursor()
+        query = f"""
+            SELECT pg_get_functiondef(p.oid)
+            FROM pg_proc p
+            JOIN pg_namespace n ON p.pronamespace = n.oid
+            WHERE n.nspname = '{schema_name}'
+            AND p.proname = '{procedure_name}';
+        """
+        cursor.execute(query)
+        ddl = cursor.fetchone()
+        return ddl[0] if ddl else None
+    except Exception as e:
+        print(f"Error fetching DDL for stored procedure {procedure_name}: {e}")
+        logging.error(f"Error fetching DDL for stored procedure {procedure_name}: {e}")
         return None
 
 # Function to save DDL to a file
@@ -133,7 +172,7 @@ def save_ddl_to_file(base_path, schema_name, table_name, ddl):
         print(f"Error saving DDL to file for table {table_name}: {e}")
         logging.error(f"Error saving DDL to file for table {table_name}: {e}")
 
-# Main function
+# Updated main function to fetch all DDLs for a specific relation type (views, tables, or procedures)
 def main():
     # Redshift connection details
     host = os.getenv("REDSHIFT_HOST")
@@ -143,13 +182,13 @@ def main():
     password = os.getenv("REDSHIFT_PASSWORD")
 
     # Schema name to fetch DDLs for
-    schema_name = "mktg_ops_vws"
+    schema_name = "mktg_ops_tbls"
 
-    # Relation type e.g., table/view
-    relation_type = "view"
+    # Relation type e.g., tables/views/procedures
+    relation_type = "procedure"  
 
     # Base path to save DDL files
-    base_path = "C:/Users/Exavalu/OneDrive - exavalu/ARC/ddl"
+    base_path = f"C:/Users/Exavalu/OneDrive - exavalu/ARC/ddl/{relation_type}"
 
     # Connect to Redshift
     connection = connect_to_redshift(host, port, dbname, user, password)
@@ -157,26 +196,32 @@ def main():
         return
 
     try:
-        # For testing a single table
-        # table_name = "prodct_distrbtn_bdgt"
-        # ddl = fetch_table_ddl(connection, schema_name, table_name, relation_type)
-        # if ddl:
-        #     save_ddl_to_file(base_path, schema_name, table_name, ddl)
-        # else:
-        #     print(f"No DDL found for table {table_name}.")
+        if relation_type == "view" or relation_type == "table":
+            tables = fetch_table_names(connection, schema_name)
+            if not tables:
+                print(f"No {relation_type} found in the schema.")
+                return
 
-        # Uncomment the following block to fetch all tables
-        tables = fetch_table_names(connection, schema_name)
-        if not tables:
-            print("No tables found in the schema.")
-            return
+            for table_name in tables:
+                ddl = fetch_table_ddl(connection, schema_name, table_name, relation_type)
+                if ddl:
+                    save_ddl_to_file(base_path, schema_name, table_name, ddl)
+                else:
+                    print(f"No DDL found for {relation_type[:-1]} {table_name}.")
+        elif relation_type == "procedure":
+            procedures = fetch_stored_procedure_names(connection, schema_name)
+            if not procedures:
+                print("No procedures found in the schema.")
+                return
 
-        for table_name in tables:
-            ddl = fetch_table_ddl(connection, schema_name, table_name, relation_type)
-            if ddl:
-                save_ddl_to_file(base_path, schema_name, table_name, ddl)
-            else:
-                print(f"No DDL found for table {table_name}.")
+            for procedure_name in procedures:
+                ddl = fetch_stored_procedure_ddl(connection, schema_name, procedure_name)
+                if ddl:
+                    save_ddl_to_file(base_path, schema_name, procedure_name, ddl)
+                else:
+                    print(f"No DDL found for procedure {procedure_name}.")
+        else:
+            print("Invalid relation type. Please enter 'views', 'tables', or 'procedures'.")
     finally:
         connection.close()
 
