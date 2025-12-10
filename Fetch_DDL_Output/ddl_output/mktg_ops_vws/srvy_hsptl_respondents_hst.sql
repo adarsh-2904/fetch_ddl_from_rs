@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.srvy_hsptl_respondents_hst AS 
+SELECT srvy_hsptl_respondents_hst.respondent_id, srvy_hsptl_respondents_hst.respondent_nm, srvy_hsptl_respondents_hst.respondent_email, srvy_hsptl_respondents_hst.respondent_role, srvy_hsptl_respondents_hst.hopital_id FROM mktg_ops_tbls.srvy_hsptl_respondents_hst WITH NO SCHEMA BINDING;

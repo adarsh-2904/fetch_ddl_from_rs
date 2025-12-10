@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.bz_dim_dm_src_treatmnt_xref AS 
+SELECT dim_dm_src_treatmnt_xref.src_key, dim_dm_src_treatmnt_xref.src_cd, dim_dm_src_treatmnt_xref.pg_src_cd, dim_dm_src_treatmnt_xref.nk_treatmnt_id, dim_dm_src_treatmnt_xref.treatmnt_cd, dim_dm_src_treatmnt_xref.treatmnt_dsc, dim_dm_src_treatmnt_xref.dw_trans_ts, dim_dm_src_treatmnt_xref.row_stat_cd, dim_dm_src_treatmnt_xref.appl_src_cd, dim_dm_src_treatmnt_xref.load_id FROM mktg_ops_tbls.dim_dm_src_treatmnt_xref WHERE (dim_dm_src_treatmnt_xref.nk_treatmnt_id IS NOT NULL) WITH NO SCHEMA BINDING;

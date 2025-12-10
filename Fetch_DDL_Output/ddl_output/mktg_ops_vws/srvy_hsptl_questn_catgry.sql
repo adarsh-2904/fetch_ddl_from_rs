@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.srvy_hsptl_questn_catgry AS 
+SELECT srvy_hsptl_questn_catgry.catgry_id, srvy_hsptl_questn_catgry.catgry_dsc, srvy_hsptl_questn_catgry.catgry_sort FROM mktg_ops_tbls.srvy_hsptl_questn_catgry WITH NO SCHEMA BINDING;

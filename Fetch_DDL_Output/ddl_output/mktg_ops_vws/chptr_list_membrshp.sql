@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.chptr_list_membrshp AS 
+SELECT chptr_list_membrshp.list_typ_key, chptr_list_membrshp.cnst_mstr_id, chptr_list_membrshp.dw_trans_ts FROM mktg_ops_tbls.chptr_list_membrshp WITH NO SCHEMA BINDING;

@@ -1,0 +1,32 @@
+CREATE TABLE mktg_ops_tbls.cnst_cdi_s_f_p_fr_dmail (
+    cnst_mstr_id bigint ENCODE az64 distkey,
+    cnst_hsld_id character varying(36) ENCODE lzo,
+    cnst_dsp_deceased_cd character(2) ENCODE lzo,
+    cnst_data_src_cd character varying(25) ENCODE lzo,
+    locator_prsn_nm_key bigint ENCODE az64,
+    cnst_prsn_nm_assessmnt_ctg character varying(128) ENCODE lzo,
+    cnst_prsn_prfx_nm character varying(150) ENCODE lzo,
+    cnst_prsn_f_nm character varying(150) ENCODE lzo,
+    cnst_prsn_m_nm character varying(150) ENCODE lzo,
+    cnst_prsn_l_nm character varying(150) ENCODE lzo,
+    cnst_prsn_sfx_nm character varying(150) ENCODE lzo,
+    cnst_prsn_full_nm character varying(255) ENCODE lzo,
+    cnst_alias_in_saltn_nm character varying(255) ENCODE lzo,
+    cnst_alias_out_saltn_nm character varying(255) ENCODE lzo,
+    locator_addr_key bigint ENCODE az64,
+    cnst_addr_assessmnt_ctg character varying(128) ENCODE lzo,
+    dpv_cd character varying(5) ENCODE lzo,
+    addr_typ_cd character varying(15) ENCODE lzo,
+    cnst_line_1_addr character varying(786) ENCODE lzo,
+    cnst_line_2_addr character varying(512) ENCODE lzo,
+    cnst_city_nm character varying(255) ENCODE lzo,
+    cnst_st_cd character varying(100) ENCODE lzo,
+    cnst_zip_5_cd character varying(50) ENCODE lzo,
+    cnst_zip_4_cd character varying(50) ENCODE lzo,
+    cnst_addr_county_nm character varying(400) ENCODE lzo,
+    cnst_email character varying(255) ENCODE lzo,
+    cnst_org_nm character varying(512) ENCODE lzo,
+    cnst_typ_dsc character varying(50) ENCODE lzo
+)
+DISTSTYLE KEY
+SORTKEY ( cnst_mstr_id );

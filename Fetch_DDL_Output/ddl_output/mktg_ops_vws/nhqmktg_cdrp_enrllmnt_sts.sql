@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.nhqmktg_cdrp_enrllmnt_sts AS 
+SELECT sts.chapter_cd, sts.cdrp_enrollment_sts, ref.cdrp_enrollment_sts_desc, sts.chapter_supp_flg FROM (mktg_ops_tbls.nhqmktg_cdrp_enrllmnt_sts sts LEFT JOIN mktg_ops_tbls.nhqmktg_cdrp_enrllmnt_ref ref ON ((sts.cdrp_enrollment_sts = ref.cdrp_enrollment_sts))) WITH NO SCHEMA BINDING;

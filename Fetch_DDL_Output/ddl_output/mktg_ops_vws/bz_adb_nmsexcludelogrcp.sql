@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.bz_adb_nmsexcludelogrcp AS 
+SELECT adb_nmsexcludelogrcp.ibroadlogid, adb_nmsexcludelogrcp.ideliveryid, adb_nmsexcludelogrcp.iflags, adb_nmsexcludelogrcp.imsgid, adb_nmsexcludelogrcp.irecipientid, adb_nmsexcludelogrcp.istatus, adb_nmsexcludelogrcp.saddress, adb_nmsexcludelogrcp.tsevent, adb_nmsexcludelogrcp.tslastmodified, adb_nmsexcludelogrcp.dw_trans_ts, adb_nmsexcludelogrcp.row_stat_cd, adb_nmsexcludelogrcp.appl_src_cd, adb_nmsexcludelogrcp.load_id FROM mktg_ops_tbls.adb_nmsexcludelogrcp WITH NO SCHEMA BINDING;

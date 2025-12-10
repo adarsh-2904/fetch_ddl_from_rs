@@ -1,0 +1,26 @@
+CREATE TABLE mktg_ops_tbls.adb_arckaleyradeactivation (
+    icreatedbyid integer NOT NULL ENCODE az64,
+    ideactivation_flg smallint NOT NULL ENCODE az64,
+    ikaleyradeactivationid integer NOT NULL ENCODE az64,
+    imodifiedbyid integer NOT NULL ENCODE az64,
+    scarrier character varying(255) ENCODE lzo,
+    sconsecutive_em_del_failed character varying(255) ENCODE lzo,
+    sconsecutive_sms_del_failed character varying(255) ENCODE lzo,
+    sdeact_file_record_status character varying(255) ENCODE lzo,
+    semail_address character varying(255) ENCODE lzo,
+    smobile_num character varying(255) ENCODE lzo,
+    snew_mdn character varying(255) ENCODE lzo,
+    srow_wid character varying(255) ENCODE lzo,
+    tscreated timestamp without time zone ENCODE az64,
+    tsdeact_file_record_ timestamp without time zone ENCODE az64,
+    tsdeact_specific_created_ timestamp without time zone ENCODE az64,
+    tsdeact_specific_updated_ timestamp without time zone ENCODE az64,
+    tslastmodified timestamp without time zone ENCODE az64,
+    tsnext_try_period_email timestamp without time zone ENCODE az64,
+    tsnext_try_period_sms timestamp without time zone ENCODE az64,
+    dw_trans_ts timestamp without time zone NOT NULL ENCODE az64,
+    row_stat_cd character(1) NOT NULL ENCODE lzo,
+    appl_src_cd character varying(4) NOT NULL ENCODE lzo,
+    load_id integer NOT NULL ENCODE az64
+)
+DISTSTYLE ALL;

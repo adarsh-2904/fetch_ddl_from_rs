@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.srvy_anvrsry_vlntr_questions AS 
+SELECT srvy_anvrsry_vlntr_questions.question_id, srvy_anvrsry_vlntr_questions.question_dsc, srvy_anvrsry_vlntr_questions.question_sort, srvy_anvrsry_vlntr_questions.category_id, srvy_anvrsry_vlntr_questions.srcsys_trans_ts, srvy_anvrsry_vlntr_questions.dw_trans_ts, srvy_anvrsry_vlntr_questions.row_stat_cd, srvy_anvrsry_vlntr_questions.appl_src_cd, srvy_anvrsry_vlntr_questions.load_id FROM mktg_ops_tbls.srvy_anvrsry_vlntr_questions WITH NO SCHEMA BINDING;

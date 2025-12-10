@@ -1,0 +1,27 @@
+CREATE TABLE mktg_ops_tbls.dm_campaign_pg_hist (
+    cnst_mstr_id bigint NOT NULL ENCODE az64 distkey,
+    orig_cnst_mstr_id bigint ENCODE az64,
+    fr_last_ta_acct_id bigint NOT NULL ENCODE az64,
+    cell_src_cd character varying(20) ENCODE lzo,
+    cell_subsrc_cd character varying(40) ENCODE lzo,
+    cell_id integer ENCODE az64,
+    activity_id integer ENCODE az64,
+    comnictn_dsc character varying(80) ENCODE lzo,
+    segmntn_id integer ENCODE az64,
+    segmnt_id integer ENCODE az64,
+    treatment_id integer ENCODE az64,
+    treatment_cd character(2) ENCODE lzo,
+    treatment_dsc character varying(100) ENCODE lzo,
+    offer_id integer ENCODE az64,
+    drop_date_src character varying(8) ENCODE lzo,
+    drop_dt date ENCODE az64,
+    motivtn_cd character varying(20) ENCODE lzo,
+    trans_typ_cd character varying(4) ENCODE lzo,
+    vendor_src_cd character varying(4) ENCODE lzo,
+    curr_prcsd_file_nm character varying(256) ENCODE lzo,
+    dw_trans_ts timestamp without time zone NOT NULL ENCODE az64,
+    row_stat_cd character(1) NOT NULL ENCODE lzo,
+    appl_src_cd character varying(4) NOT NULL ENCODE lzo,
+    load_id integer NOT NULL ENCODE az64
+)
+DISTSTYLE KEY;

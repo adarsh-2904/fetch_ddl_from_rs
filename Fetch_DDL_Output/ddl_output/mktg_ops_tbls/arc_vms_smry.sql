@@ -1,0 +1,32 @@
+CREATE TABLE mktg_ops_tbls.arc_vms_smry (
+    cnst_mstr_id bigint NOT NULL ENCODE raw distkey,
+    cnst_hsld_id character varying(18) ENCODE lzo,
+    vol_status character varying(255) ENCODE bytedict,
+    status_typ character varying(255) ENCODE bytedict,
+    empl_ind smallint ENCODE az64,
+    active_ind smallint ENCODE az64,
+    last_vol_dt date ENCODE az64,
+    first_vol_dt date ENCODE az64,
+    last_member_num character varying(20) ENCODE lzo,
+    lftm_hrs_vol_cnt integer ENCODE az64,
+    lftm_vol_cnt integer ENCODE az64,
+    lftm_loc_cnt integer ENCODE az64,
+    cfym0_hrs_vol_cnt integer ENCODE az64,
+    cfym0_vol_cnt integer ENCODE az64,
+    cfym0_loc_cnt integer ENCODE az64,
+    ry0_hrs_vol_cnt integer ENCODE az64,
+    ry0_vol_cnt integer ENCODE az64,
+    ry0_loc_cnt integer ENCODE az64,
+    ry1_hrs_vol_cnt integer ENCODE az64,
+    ry1_vol_cnt integer ENCODE az64,
+    ry1_loc_cnt integer ENCODE az64,
+    account_create_dt date ENCODE az64,
+    biomed_placement_cnt integer ENCODE az64,
+    other_placement_cnt integer ENCODE az64,
+    initial_vol_dt date ENCODE az64,
+    srcsys_trans_ts timestamp without time zone ENCODE az64,
+    appl_src_cd character varying(4) NOT NULL ENCODE lzo,
+    load_id integer NOT NULL ENCODE az64
+)
+DISTSTYLE KEY
+SORTKEY ( cnst_mstr_id );

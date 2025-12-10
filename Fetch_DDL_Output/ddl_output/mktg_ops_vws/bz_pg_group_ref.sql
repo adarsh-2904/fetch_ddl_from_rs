@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.bz_pg_group_ref AS 
+SELECT pg_group_ref.pg_group_key AS "List Type Key", pg_group_ref.pg_group_cd AS "PG Group Code", pg_group_ref.pg_group_nm AS "PG Group Name", pg_group_ref.pg_group_dsc AS "PG Group Description", pg_group_ref.pg_group_typ AS "PG Group Type", pg_group_ref.active_flg AS "Active Flag", pg_group_ref.active_start_dt AS "Group Active Start Date", pg_group_ref.active_end_dt AS "Group Active End Date", pg_group_ref.dw_trans_ts AS "DW Transaction Timestamp" FROM mktg_ops_tbls.pg_group_ref WITH NO SCHEMA BINDING;

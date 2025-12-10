@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.bz_fund AS 
+SELECT bz_fund.fund_key, bz_fund.fund_cd, bz_fund.fund_dsc, bz_fund.fund_group_typ_cd, bz_fund.fund_group_typ_dsc, bz_fund.srcsys_trans_ts, bz_fund.row_stat_cd, bz_fund.appl_src_cd, bz_fund.load_id, bz_fund.dw_trans_ts, bz_fund.non_bdgt_relvng_ind, bz_fund.ddp_user_nm FROM ddcoe_vws.bz_fund WITH NO SCHEMA BINDING;

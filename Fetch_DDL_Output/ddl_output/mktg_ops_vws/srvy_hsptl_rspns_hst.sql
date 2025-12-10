@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.srvy_hsptl_rspns_hst AS 
+SELECT srvy_hsptl_rspns_hst.rspns_id, srvy_hsptl_rspns_hst.respondent_id, srvy_hsptl_rspns_hst.srvy_id, srvy_hsptl_rspns_hst.question_id, srvy_hsptl_rspns_hst.value_id FROM mktg_ops_tbls.srvy_hsptl_rspns_hst WITH NO SCHEMA BINDING;

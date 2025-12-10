@@ -1,0 +1,31 @@
+CREATE TABLE mktg_ops_tbls.pbi_entrprs_campgn_non_adb (
+    email_launch_dt date ENCODE raw distkey,
+    lob character varying(20) ENCODE lzo,
+    audience_target character varying(12) ENCODE lzo,
+    channel character varying(30) ENCODE lzo,
+    target_cnt bigint ENCODE az64,
+    delivery_label character varying(60) ENCODE lzo,
+    target_method character varying(300) ENCODE lzo,
+    approval character varying(8) ENCODE lzo,
+    final_qty bigint ENCODE az64,
+    notes character varying(73) ENCODE lzo,
+    opens bigint ENCODE az64,
+    clicks integer ENCODE az64,
+    unsubs integer ENCODE az64,
+    resp integer ENCODE az64,
+    rev numeric(18,2) ENCODE az64,
+    cost_per_piece numeric(18,2) ENCODE az64,
+    dials integer ENCODE az64,
+    connects integer ENCODE az64,
+    appts integer ENCODE az64,
+    cost_per_dial numeric(18,2) ENCODE az64,
+    source_sys character varying(50) ENCODE lzo,
+    src_cd character varying(50) ENCODE lzo,
+    subsrc_cd character varying(50) ENCODE lzo,
+    creative character varying(40) ENCODE lzo,
+    load_id integer ENCODE az64,
+    load_dt date ENCODE az64,
+    xpromo_ind integer DEFAULT 1 ENCODE az64
+)
+DISTSTYLE KEY
+SORTKEY ( email_launch_dt );

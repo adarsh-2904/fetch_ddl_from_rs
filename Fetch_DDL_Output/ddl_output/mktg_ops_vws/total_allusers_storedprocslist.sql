@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.total_allusers_storedprocslist AS 
+SELECT n.nspname AS schema_name, p.proname AS procedure_name, u.usename AS "owner", p.prosrc FROM ((pg_proc p JOIN pg_namespace n ON ((p.pronamespace = n.oid))) JOIN pg_user u ON ((p.proowner = u.usesysid))) WHERE (n.nspname = 'mktg_ops_tbls'::name) ORDER BY u.usename, n.nspname, p.proname WITH NO SCHEMA BINDING;

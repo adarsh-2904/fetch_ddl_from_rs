@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.bz_dim_treatmnt AS 
+SELECT bz_dim_treatmnt.treatmnt_key, bz_dim_treatmnt.nk_treatmnt_id, bz_dim_treatmnt.treatmnt_cd, bz_dim_treatmnt.treatmnt_dsc, bz_dim_treatmnt.treatmnt_typ, bz_dim_treatmnt.treatmnt_status, bz_dim_treatmnt.active_ind, bz_dim_treatmnt.channel, bz_dim_treatmnt.actvty_specific, bz_dim_treatmnt.snapshot_ts, bz_dim_treatmnt.srcsys_ts, bz_dim_treatmnt.dw_updt_ts, bz_dim_treatmnt.row_stat_cd, bz_dim_treatmnt.appl_src_cd, bz_dim_treatmnt.load_id FROM mktg_ops_tbls.bz_dim_treatmnt WITH NO SCHEMA BINDING;

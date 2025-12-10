@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.arc_glossary AS 
+SELECT arc_glossary.attr_id, arc_glossary.src_db, arc_glossary.src_tbl, arc_glossary.var_nm, arc_glossary.var_dsc, arc_glossary.var_val_cd, arc_glossary.var_val_dsc, arc_glossary.eff_start_dt, arc_glossary.eff_end_dt, arc_glossary.src_sys_id, arc_glossary.src_sys_nm, arc_glossary.term_own_cd, arc_glossary.term_own_nm FROM mktg_ops_tbls.arc_glossary WITH NO SCHEMA BINDING;

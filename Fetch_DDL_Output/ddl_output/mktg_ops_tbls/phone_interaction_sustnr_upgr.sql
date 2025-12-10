@@ -1,0 +1,30 @@
+CREATE TABLE mktg_ops_tbls.phone_interaction_sustnr_upgr (
+    cnst_mstr_id bigint NOT NULL ENCODE az64 distkey,
+    orig_cnst_mstr_id bigint ENCODE az64,
+    cmpgn_cd character varying(20) ENCODE lzo,
+    first_nm character varying(20) ENCODE lzo,
+    last_nm character varying(20) ENCODE lzo,
+    addr_ln1 character varying(50) ENCODE lzo,
+    addr_ln2 character varying(50) ENCODE lzo,
+    city character varying(30) ENCODE lzo,
+    state character(2) ENCODE lzo,
+    zip_cd character varying(5) ENCODE lzo,
+    phn_num character varying(20) ENCODE lzo,
+    email_addr character varying(50) ENCODE lzo,
+    last_sstnr_dt date ENCODE az64,
+    last_sstnr_amt numeric(13,2) ENCODE az64,
+    upgrd_amt numeric(13,2) ENCODE az64,
+    new_tot_amt numeric(13,2) ENCODE az64,
+    dsgntn character varying(30) ENCODE lzo,
+    subscrptn_id character varying(20) ENCODE lzo,
+    rco_subscrptn_id character varying(20) ENCODE lzo,
+    pmt_typ character varying(20) ENCODE lzo,
+    sustnr_match_ind smallint ENCODE az64,
+    curr_prcsd_file_nm character varying(100) ENCODE lzo,
+    dw_trans_ts timestamp without time zone NOT NULL ENCODE raw,
+    row_stat_cd character(1) NOT NULL ENCODE lzo,
+    appl_src_cd character varying(4) NOT NULL ENCODE lzo,
+    load_id integer NOT NULL ENCODE az64
+)
+DISTSTYLE KEY
+SORTKEY ( dw_trans_ts );

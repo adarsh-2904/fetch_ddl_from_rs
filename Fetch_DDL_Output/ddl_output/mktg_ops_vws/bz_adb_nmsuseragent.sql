@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.bz_adb_nmsuseragent AS 
+SELECT adb_nmsuseragent.ihashkey, adb_nmsuseragent.sbrowserimage, adb_nmsuseragent.sbrowsername, adb_nmsuseragent.sbrowserversion, adb_nmsuseragent.sdevice, adb_nmsuseragent.sosfamilly, adb_nmsuseragent.sosimage, adb_nmsuseragent.sosname, adb_nmsuseragent.dw_trans_ts, adb_nmsuseragent.row_stat_cd, adb_nmsuseragent.appl_src_cd, adb_nmsuseragent.load_id FROM mktg_ops_tbls.adb_nmsuseragent WITH NO SCHEMA BINDING;

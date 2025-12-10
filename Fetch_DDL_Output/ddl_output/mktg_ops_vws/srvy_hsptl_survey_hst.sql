@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.srvy_hsptl_survey_hst AS 
+SELECT srvy_hsptl_survey.srvy_id, srvy_hsptl_survey.iwebappid, srvy_hsptl_survey.srvy_nm, srvy_hsptl_survey.audience, srvy_hsptl_survey.yr_mth, srvy_hsptl_survey.calendar_mth, srvy_hsptl_survey.calendar_yr, srvy_hsptl_survey.fiscal_yr, srvy_hsptl_survey.season, srvy_hsptl_survey.srvy_cnt, srvy_hsptl_survey.respondent_cnt FROM mktg_ops_tbls.srvy_hsptl_survey WITH NO SCHEMA BINDING;

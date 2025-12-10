@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.bz_dim_edrtl_response_period AS 
+SELECT dim_edrtl_response_period.edrtl_respns_period_key, dim_edrtl_response_period.edrtl_respns_yr, dim_edrtl_response_period.edrtl_respns_mth, dim_edrtl_response_period.edrtl_respns_period, pg_catalog.dense_rank() OVER(  ORDER BY dim_edrtl_response_period.edrtl_respns_period DESC) AS period_rank FROM mktg_ops_tbls.dim_edrtl_response_period WITH NO SCHEMA BINDING;

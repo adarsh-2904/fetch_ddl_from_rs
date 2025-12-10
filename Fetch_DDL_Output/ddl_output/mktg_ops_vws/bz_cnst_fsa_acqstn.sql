@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.bz_cnst_fsa_acqstn AS 
+SELECT bz_cnst_fsa_acqstn.cnst_fsa_key, bz_cnst_fsa_acqstn.nk_ta_acct_id, bz_cnst_fsa_acqstn.acqstn_id, bz_cnst_fsa_acqstn.orig_comnictn_src_key, bz_cnst_fsa_acqstn.srcsys_trans_ts, bz_cnst_fsa_acqstn.row_stat_cd, bz_cnst_fsa_acqstn.appl_src_cd, bz_cnst_fsa_acqstn.load_id, bz_cnst_fsa_acqstn.dw_trans_ts FROM ddcoe_vws.bz_cnst_fsa_acqstn WITH NO SCHEMA BINDING;

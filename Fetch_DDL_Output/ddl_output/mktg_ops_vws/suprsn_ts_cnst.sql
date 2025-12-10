@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.suprsn_ts_cnst AS 
+SELECT suprsn_ts_cnst.cnst_mstr_id, suprsn_ts_cnst.ts_cnst_match_ind, suprsn_ts_cnst.ts_email_match_ind, suprsn_ts_cnst.ts_addr_match_ind FROM mktg_ops_tbls.suprsn_ts_cnst WITH NO SCHEMA BINDING;

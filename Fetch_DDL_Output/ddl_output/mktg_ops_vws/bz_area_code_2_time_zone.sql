@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.bz_area_code_2_time_zone AS 
+SELECT area_code_2_time_zone.area_cd_num, area_code_2_time_zone.time_zone_dsc FROM mktg_ops_tbls.area_code_2_time_zone WITH NO SCHEMA BINDING;

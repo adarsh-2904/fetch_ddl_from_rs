@@ -1,0 +1,180 @@
+object_name,schema_name,object_type,error_type,error_message,timestamp
+adb_accistbl_contacts,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_accistbl_contacts"" already exists",2025-12-09 20:00:04
+adb_arcbitlyreturn,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_arcbitlyreturn"" already exists",2025-12-09 20:00:14
+adb_arcgms_broadlog,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_arcgms_broadlog"" already exists",2025-12-09 20:00:15
+adb_arckaleyradeactivation,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_arckaleyradeactivation"" already exists",2025-12-09 20:00:18
+adb_arcprefchangefr,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_arcprefchangefr"" already exists",2025-12-09 20:00:19
+adb_arcreportcellcode,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_arcreportcellcode"" already exists",2025-12-09 20:00:22
+adb_arctreatmentcode,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_arctreatmentcode"" already exists",2025-12-09 20:00:23
+adb_nmsaddress,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_nmsaddress"" already exists",2025-12-09 20:00:28
+adb_nmsbroadlogmsg,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_nmsbroadlogmsg"" already exists",2025-12-09 20:00:29
+adb_nmsbroadlogrcp,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_nmsbroadlogrcp"" already exists",2025-12-09 20:00:30
+adb_nmsdelivery,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_nmsdelivery"" already exists",2025-12-09 20:00:31
+adb_nmsexcludelogrcp,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_nmsexcludelogrcp"" already exists",2025-12-09 20:00:33
+adb_nmsinsms,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_nmsinsms"" already exists",2025-12-09 20:00:34
+adb_nmsoperation,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_nmsoperation"" already exists",2025-12-09 20:00:35
+adb_nmsrecipient,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_nmsrecipient"" already exists",2025-12-09 20:00:38
+adb_nmsservice,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_nmsservice"" already exists",2025-12-09 20:00:39
+adb_nmssubscription,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_nmssubscription"" already exists",2025-12-09 20:00:41
+adb_nmstrackinglogrcp,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_nmstrackinglogrcp"" already exists",2025-12-09 20:00:42
+adb_nmstrackingurl,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_nmstrackingurl"" already exists",2025-12-09 20:00:43
+adb_nmsuseragent,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_nmsuseragent"" already exists",2025-12-09 20:00:44
+adb_nmswebapp,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_nmswebapp"" already exists",2025-12-09 20:00:46
+adb_nmswebapplogrcp,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_nmswebapplogrcp"" already exists",2025-12-09 20:00:47
+adb_nmswebapplogrcpdata,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_nmswebapplogrcpdata"" already exists",2025-12-09 20:00:48
+adb_xtkfolder,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_xtkfolder"" already exists",2025-12-09 20:00:54
+adb_xtkworkflow,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_xtkworkflow"" already exists",2025-12-09 20:00:55
+aprm_arc_comm_log,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_arc_comm_log"" already exists",2025-12-09 20:01:15
+aprm_audmem_map,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_audmem_map"" already exists",2025-12-09 20:01:16
+aprm_bncd_eml_img,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_bncd_eml_img"" already exists",2025-12-09 20:01:17
+aprm_dim_activity,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_dim_activity"" already exists",2025-12-09 20:01:19
+aprm_email_bncd,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_email_bncd"" already exists",2025-12-09 20:01:20
+aprm_email_lnk_clkd,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_email_lnk_clkd"" already exists",2025-12-09 20:01:21
+aprm_email_lnk_clkd_img,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_email_lnk_clkd_img"" already exists",2025-12-09 20:01:22
+aprm_email_opened,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_email_opened"" already exists",2025-12-09 20:01:23
+aprm_email_opened_img,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_email_opened_img"" already exists",2025-12-09 20:01:25
+aprm_email_remove,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_email_remove"" already exists",2025-12-09 20:01:26
+aprm_email_remove_img,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_email_remove_img"" already exists",2025-12-09 20:01:28
+aprm_email_sent,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_email_sent"" already exists",2025-12-09 20:01:29
+aprm_email_sent_img,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_email_sent_img"" already exists",2025-12-09 20:01:30
+aprm_msg_cnt_blk_img,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_msg_cnt_blk_img"" already exists",2025-12-09 20:01:32
+aprm_msg_content_block,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_msg_content_block"" already exists",2025-12-09 20:01:33
+aprm_wb_apnd_bio_dnr_stsfctn_srvy,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_wb_apnd_bio_dnr_stsfctn_srvy"" already exists",2025-12-09 20:01:35
+aprm_wb_apnd_bncd_eml,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_wb_apnd_bncd_eml"" already exists",2025-12-09 20:01:36
+aprm_wb_apnd_cell_cds,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_wb_apnd_cell_cds"" already exists",2025-12-09 20:01:37
+aprm_wb_apnd_cm_segmnt,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_wb_apnd_cm_segmnt"" already exists",2025-12-09 20:01:40
+aprm_wb_apnd_email,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_wb_apnd_email"" already exists",2025-12-09 20:01:41
+aprm_wb_apnd_eml_trckng,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_wb_apnd_eml_trckng"" already exists",2025-12-09 20:01:43
+aprm_wb_apnd_inbnd_frm_cmpltd,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_wb_apnd_inbnd_frm_cmpltd"" already exists",2025-12-09 20:01:46
+aprm_wb_apnd_mcrst_mtrcs,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_wb_apnd_mcrst_mtrcs"" already exists",2025-12-09 20:01:47
+aprm_wb_apnd_outbnd_msgs,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_wb_apnd_outbnd_msgs"" already exists",2025-12-09 20:01:48
+aprm_wb_apnd_outbnd_msg_snt,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_wb_apnd_outbnd_msg_snt"" already exists",2025-12-09 20:01:50
+aprm_wb_apnd_prfrnc_cntr,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_wb_apnd_prfrnc_cntr"" already exists",2025-12-09 20:01:51
+aprm_wb_apnd_rmv_frm_lst,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_wb_apnd_rmv_frm_lst"" already exists",2025-12-09 20:01:54
+aprm_wb_apnd_segmntn,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_wb_apnd_segmntn"" already exists",2025-12-09 20:01:55
+aprm_wb_apnd_treatmnts,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_wb_apnd_treatmnts"" already exists",2025-12-09 20:01:57
+aprm_wb_apnd_unsubs_rplc,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_wb_apnd_unsubs_rplc"" already exists",2025-12-09 20:01:58
+aprm_wb_replc_activities,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_wb_replc_activities"" already exists",2025-12-09 20:01:59
+aprm_wb_replc_act_cells,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_wb_replc_act_cells"" already exists",2025-12-09 20:02:00
+aprm_wb_replc_act_offrs,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_wb_replc_act_offrs"" already exists",2025-12-09 20:02:02
+aprm_wb_replc_act_trtmts,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_wb_replc_act_trtmts"" already exists",2025-12-09 20:02:03
+aprm_wb_replc_offrs,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_wb_replc_offrs"" already exists",2025-12-09 20:02:05
+aprm_wb_rplc_fr_prf_cntr_lt,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_wb_rplc_fr_prf_cntr_lt"" already exists",2025-12-09 20:02:07
+aprm_wb_rplc_outbnd_msg_snt,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_wb_rplc_outbnd_msg_snt"" already exists",2025-12-09 20:02:08
+arc_biomed_smry,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""arc_biomed_smry"" already exists",2025-12-09 20:02:14
+arc_biomed_txn,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""arc_biomed_txn"" already exists",2025-12-09 20:02:17
+audit_log,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""audit_log"" already exists",2025-12-09 20:03:24
+bio_dnr_srvy_donat_key_map,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""bio_dnr_srvy_donat_key_map"" already exists",2025-12-09 20:03:34
+bzfc_fact_dmail_intrctn_norm,mktg_ops_tbls,table,OTHER_ERROR,"Cannot specify DISTKEY for column ""cnst_mstr_id"" of table ""bzfc_fact_dmail_intrctn_norm"" when DISTSTYLE is NONE or EVEN",2025-12-09 20:03:51
+bzfc_fact_surv_resp,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""bzfc_fact_surv_resp"" already exists",2025-12-09 20:04:03
+bzf_cnst_cdi_sltn_id,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""bzf_cnst_cdi_sltn_id"" already exists",2025-12-09 20:04:19
+bzf_cnst_chrctrstc_simio,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""bzf_cnst_chrctrstc_simio"" already exists",2025-12-09 20:04:32
+bzf_cnst_scr_simio,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""bzf_cnst_scr_simio"" already exists",2025-12-09 20:04:35
+bzl_cnst_fsa_acqstn,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""bzl_cnst_fsa_acqstn"" already exists",2025-12-09 20:04:37
+bzl_cnst_mstr_fsa_in_primary,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""bzl_cnst_mstr_fsa_in_primary"" already exists",2025-12-09 20:04:38
+campgn_yr_end_dow_projctn,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""campgn_yr_end_dow_projctn"" already exists",2025-12-09 20:05:15
+cnst_cdi_bio_preferred_dmail,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""cnst_cdi_bio_preferred_dmail"" already exists",2025-12-09 20:05:21
+cnst_cdi_bio_preferred_email,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""cnst_cdi_bio_preferred_email"" already exists",2025-12-09 20:05:22
+cnst_cdi_phss_preferred_dmail,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""cnst_cdi_phss_preferred_dmail"" already exists",2025-12-09 20:05:24
+cnst_cdi_phss_preferred_email,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""cnst_cdi_phss_preferred_email"" already exists",2025-12-09 20:05:25
+cnst_cdi_smry_bio_prfr,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""cnst_cdi_smry_bio_prfr"" already exists",2025-12-09 20:05:26
+cnst_cdi_s_f_p_fr_dmail,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""cnst_cdi_s_f_p_fr_dmail"" already exists",2025-12-09 20:05:35
+cnst_cdi_s_f_p_fr_email,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""cnst_cdi_s_f_p_fr_email"" already exists",2025-12-09 20:05:37
+dim_bio_mstr_cust_appnd,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""dim_bio_mstr_cust_appnd"" already exists",2025-12-09 20:05:46
+dim_bio_product,mktg_ops_tbls,table,SYNTAX_ERROR,"syntax error at or near ""Transaction"" in context "",
+    Data Warehouse Transaction"", at line 4, column 20
+LINE 4:     Data Warehouse Transaction Timestamp character varying(5...
+                           ^",2025-12-09 20:05:47
+dim_campgn,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""dim_campgn"" already exists",2025-12-09 20:05:48
+dim_delivery,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""dim_delivery"" already exists",2025-12-09 20:05:50
+dim_phone_campgn,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""dim_phone_campgn"" already exists",2025-12-09 20:06:02
+dim_phone_campgn_bkp,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""dim_phone_campgn_bkp"" already exists",2025-12-09 20:06:03
+dim_phone_script,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""dim_phone_script"" already exists",2025-12-09 20:06:06
+dim_recipient,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""dim_recipient"" already exists",2025-12-09 20:06:08
+dim_treatmnt,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""dim_treatmnt"" already exists",2025-12-09 20:06:12
+dim_unit_military_station_zips,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""dim_unit_military_station_zips"" already exists",2025-12-09 20:06:13
+dim_vol_inactvtn_rsn_cd,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""dim_vol_inactvtn_rsn_cd"" already exists",2025-12-09 20:06:15
+dv_channel_accessibility,mktg_ops_tbls,table,OTHER_ERROR,"Cannot specify DISTKEY for column ""cnst_mstr_id"" of table ""dv_channel_accessibility"" when DISTSTYLE is NONE or EVEN",2025-12-09 20:06:31
+dv_de_accessblty_overall,mktg_ops_tbls,table,OTHER_ERROR,"Cannot specify DISTKEY for column ""run_dt"" of table ""dv_de_accessblty_overall"" when DISTSTYLE is NONE or EVEN",2025-12-09 20:06:37
+fact_dmail_interaction,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""fact_dmail_interaction"" already exists",2025-12-09 20:06:47
+fact_dmail_interaction_bkp,mktg_ops_tbls,table,OTHER_ERROR,"Cannot specify DISTKEY for column ""orig_cnst_mstr_id"" of table ""fact_dmail_interaction_bkp"" when DISTSTYLE is NONE or EVEN",2025-12-09 20:06:48
+fact_email_interaction,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""fact_email_interaction"" already exists",2025-12-09 20:06:49
+fact_interaction_aprm,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""fact_interaction_aprm"" already exists",2025-12-09 20:06:51
+fact_interaction_ff,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""fact_interaction_ff"" already exists",2025-12-09 20:06:54
+fresh_address_email_append,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""fresh_address_email_append"" already exists",2025-12-09 20:07:05
+fundraising_profiles_20240507_unsubscribe_trimmed,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""fundraising_profiles_20240507_unsubscribe_trimmed"" already exists",2025-12-09 20:07:06
+gms_arc_fr_smry,mktg_ops_tbls,table,OTHER_ERROR,"Cannot specify DISTKEY for column ""cnst_mstr_id"" of table ""gms_arc_fr_smry"" when DISTSTYLE is NONE or EVEN",2025-12-09 20:07:13
+gms_arc_fr_smry_cbg,mktg_ops_tbls,table,OTHER_ERROR,"Cannot specify DISTKEY for column ""cnst_mstr_id"" of table ""gms_arc_fr_smry_cbg"" when DISTSTYLE is NONE or EVEN",2025-12-09 20:07:14
+gms_bzfc_cdi_fr_prfr_email_profile,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""gms_bzfc_cdi_fr_prfr_email_profile"" already exists",2025-12-09 20:07:20
+gms_bzfc_cnst_fr_prfr_em_prfl,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""gms_bzfc_cnst_fr_prfr_em_prfl"" already exists",2025-12-09 20:07:22
+gms_bzfc_fact_email_intrctn_smry,mktg_ops_tbls,table,OTHER_ERROR,"Cannot specify DISTKEY for column ""cnst_mstr_id"" of table ""gms_bzfc_fact_email_intrctn_smry"" when DISTSTYLE is NONE or EVEN",2025-12-09 20:07:26
+gms_cnst_cdi_smry_fr_prfr,mktg_ops_tbls,table,OTHER_ERROR,"Cannot specify DISTKEY for column ""em_email_key"" of table ""gms_cnst_cdi_smry_fr_prfr"" when DISTSTYLE is NONE or EVEN",2025-12-09 20:07:35
+load_control_table,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""load_control_table"" already exists",2025-12-09 20:07:43
+mktg_load_cntl,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""mktg_load_cntl"" already exists",2025-12-09 20:07:44
+mktg_sky_dates,mktg_ops_tbls,table,SYNTAX_ERROR,"syntax error at or near ""sky_typ"" in context "",
+    calendar_key	calendar_dt	sky_typ"", at line 15, column 30
+LINE 15:     calendar_key calendar_dt sky_typ disastr1_nm disastr1_ty...
+                                      ^",2025-12-09 20:07:46
+mobile_commons_20240507_active,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""mobile_commons_20240507_active"" already exists",2025-12-09 20:07:48
+nhqmktg_cdrp_enrllmnt_ref,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""nhqmktg_cdrp_enrllmnt_ref"" already exists",2025-12-09 20:07:53
+nhqmktg_cdrp_enrllmnt_sts,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""nhqmktg_cdrp_enrllmnt_sts"" already exists",2025-12-09 20:07:54
+pacific_east_email_append,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""pacific_east_email_append"" already exists",2025-12-09 20:07:55
+pacific_east_phone_append,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""pacific_east_phone_append"" already exists",2025-12-09 20:07:57
+pbi_sales_pricing_budget,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""pbi_sales_pricing_budget"" already exists",2025-12-09 20:08:19
+pg_calc_stuart_upld_lkp,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""pg_calc_stuart_upld_lkp"" already exists",2025-12-09 20:08:21
+pg_src_convrsn,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""pg_src_convrsn"" already exists",2025-12-09 20:08:25
+prodct_distrbtn_bdgt,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""prodct_distrbtn_bdgt"" already exists",2025-12-09 20:08:33
+replication_adb_xtkworkflow,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""replication_adb_xtkworkflow"" already exists",2025-12-09 20:08:38
+replication_aprm_email_remove,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""replication_aprm_email_remove"" already exists",2025-12-09 20:08:39
+srvy_anvrsry_vlntr_load_cntl,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_anvrsry_vlntr_load_cntl"" already exists",2025-12-09 20:08:52
+srvy_anvrsry_vlntr_questions,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_anvrsry_vlntr_questions"" already exists",2025-12-09 20:08:53
+srvy_anvrsry_vlntr_questn_2_srvy_xref,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_anvrsry_vlntr_questn_2_srvy_xref"" already exists",2025-12-09 20:08:55
+srvy_anvrsry_vlntr_rspns_norm,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_anvrsry_vlntr_rspns_norm"" already exists",2025-12-09 20:08:56
+srvy_anvrsry_vlntr_rspns_txt_norm,mktg_ops_tbls,table,OTHER_ERROR,"Cannot specify DISTKEY for column ""rspns_id"" of table ""srvy_anvrsry_vlntr_rspns_txt_norm"" when DISTSTYLE is NONE or EVEN",2025-12-09 20:08:57
+srvy_anvrsy_vlntr_rspns,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_anvrsy_vlntr_rspns"" already exists",2025-12-09 20:08:59
+srvy_anvrsy_vlntr_rspns_all,mktg_ops_tbls,table,OTHER_ERROR,"Cannot specify DISTKEY for column ""adnc_mbr_id"" of table ""srvy_anvrsy_vlntr_rspns_all"" when DISTSTYLE is NONE or EVEN",2025-12-09 20:09:00
+srvy_anvrsy_vlntr_rspns_cmnt,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_anvrsy_vlntr_rspns_cmnt"" already exists",2025-12-09 20:09:01
+srvy_anvrsy_vlntr_rspns_cmnt_curnt,mktg_ops_tbls,table,OTHER_ERROR,"Cannot specify DISTKEY for column ""cnst_mstr_id"" of table ""srvy_anvrsy_vlntr_rspns_cmnt_curnt"" when DISTSTYLE is NONE or EVEN",2025-12-09 20:09:02
+srvy_anvrsy_vlntr_rspns_fy21,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_anvrsy_vlntr_rspns_fy21"" already exists",2025-12-09 20:09:04
+srvy_anvrsy_vlntr_rspns_load_cntl,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_anvrsy_vlntr_rspns_load_cntl"" already exists",2025-12-09 20:09:07
+srvy_blood_sponsor_load_cntl,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_blood_sponsor_load_cntl"" already exists",2025-12-09 20:09:08
+srvy_blood_sponsor_questions,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_blood_sponsor_questions"" already exists",2025-12-09 20:09:09
+srvy_blood_sponsor_questn_2_srvy_xref,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_blood_sponsor_questn_2_srvy_xref"" already exists",2025-12-09 20:09:10
+srvy_blood_sponsor_respondents,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_blood_sponsor_respondents"" already exists",2025-12-09 20:09:11
+srvy_blood_sponsor_rspns,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_blood_sponsor_rspns"" already exists",2025-12-09 20:09:13
+srvy_dim_survey,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_dim_survey"" already exists",2025-12-09 20:09:14
+srvy_dim_values,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_dim_values"" already exists",2025-12-09 20:09:15
+srvy_gplg_rspns_ss,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_gplg_rspns_ss"" already exists",2025-12-09 20:09:18
+srvy_hsptl_customer_contact,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_hsptl_customer_contact"" already exists",2025-12-09 20:09:19
+srvy_hsptl_load_cntl,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_hsptl_load_cntl"" already exists",2025-12-09 20:09:21
+srvy_hsptl_periods_hst,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_hsptl_periods_hst"" already exists",2025-12-09 20:09:22
+srvy_hsptl_questions,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_hsptl_questions"" already exists",2025-12-09 20:09:23
+srvy_hsptl_questions_hst,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_hsptl_questions_hst"" already exists",2025-12-09 20:09:24
+srvy_hsptl_questn_2_srvy_xref,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_hsptl_questn_2_srvy_xref"" already exists",2025-12-09 20:09:25
+srvy_hsptl_questn_catgry,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_hsptl_questn_catgry"" already exists",2025-12-09 20:09:27
+srvy_hsptl_respondents,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_hsptl_respondents"" already exists",2025-12-09 20:09:28
+srvy_hsptl_respondents_hst,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_hsptl_respondents_hst"" already exists",2025-12-09 20:09:29
+srvy_hsptl_rspns,mktg_ops_tbls,table,OTHER_ERROR,"Cannot specify DISTKEY for column ""rspns_id"" of table ""srvy_hsptl_rspns"" when DISTSTYLE is NONE or EVEN",2025-12-09 20:09:32
+srvy_hsptl_rspns_hst,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_hsptl_rspns_hst"" already exists",2025-12-09 20:09:33
+srvy_hsptl_rspns_txt,mktg_ops_tbls,table,OTHER_ERROR,"Cannot specify DISTKEY for column ""rspns_id"" of table ""srvy_hsptl_rspns_txt"" when DISTSTYLE is NONE or EVEN",2025-12-09 20:09:35
+srvy_hsptl_sf_contact,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_hsptl_sf_contact"" already exists",2025-12-09 20:09:36
+srvy_hsptl_survey,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_hsptl_survey"" already exists",2025-12-09 20:09:38
+srvy_hsptl_survey_hst,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_hsptl_survey_hst"" already exists",2025-12-09 20:09:39
+srvy_hsptl_values,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_hsptl_values"" already exists",2025-12-09 20:09:41
+srvy_hsptl_values_hst,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_hsptl_values_hst"" already exists",2025-12-09 20:09:42
+srvy_new_vlntr_load_cntl,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_new_vlntr_load_cntl"" already exists",2025-12-09 20:09:44
+srvy_new_vlntr_questions,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_new_vlntr_questions"" already exists",2025-12-09 20:09:45
+srvy_new_vlntr_questn_2_srvy_xref,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_new_vlntr_questn_2_srvy_xref"" already exists",2025-12-09 20:09:46
+srvy_new_vlntr_rspns,mktg_ops_tbls,table,OTHER_ERROR,"Cannot specify DISTKEY for column ""adnc_mbr_id"" of table ""srvy_new_vlntr_rspns"" when DISTSTYLE is NONE or EVEN",2025-12-09 20:09:48
+srvy_new_vlntr_rspns_cmnt_curnt,mktg_ops_tbls,table,OTHER_ERROR,"Cannot specify DISTKEY for column ""cnst_mstr_id"" of table ""srvy_new_vlntr_rspns_cmnt_curnt"" when DISTSTYLE is NONE or EVEN",2025-12-09 20:09:49
+srvy_new_vlntr_rspns_load_cntl,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_new_vlntr_rspns_load_cntl"" already exists",2025-12-09 20:09:54
+srvy_new_vlntr_rspns_norm,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_new_vlntr_rspns_norm"" already exists",2025-12-09 20:09:56
+srvy_new_vlntr_rspns_txt_norm,mktg_ops_tbls,table,OTHER_ERROR,"Cannot specify DISTKEY for column ""rspns_id"" of table ""srvy_new_vlntr_rspns_txt_norm"" when DISTSTYLE is NONE or EVEN",2025-12-09 20:09:57
+srvy_rgnl_ldrshp,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_rgnl_ldrshp"" already exists",2025-12-09 20:10:00
+srvy_rgnl_ldrshp_hst,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_rgnl_ldrshp_hst"" already exists",2025-12-09 20:10:03
+srvy_rgnl_ldrshp_sent,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_rgnl_ldrshp_sent"" already exists",2025-12-09 20:10:04
+srvy_vlntr_dim_values,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_vlntr_dim_values"" already exists",2025-12-09 20:10:05
+srvy_vlntr_p2p_rfrl,mktg_ops_tbls,table,OTHER_ERROR,"Cannot specify DISTKEY for column ""adnc_mbr_id"" of table ""srvy_vlntr_p2p_rfrl"" when DISTSTYLE is NONE or EVEN",2025-12-09 20:10:06
+suspect_domains,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""suspect_domains"" already exists",2025-12-09 20:10:11
+vaidity_email_valdtn,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""vaidity_email_valdtn"" already exists",2025-12-09 20:10:23
+_zeroetl_watermark,mktg_ops_tbls,table,OTHER_ERROR,"Cannot specify DISTKEY for column ""obj_name"" of table ""_zeroetl_watermark"" when DISTSTYLE is NONE or EVEN",2025-12-09 20:10:30

@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.mktg_sky_dates AS 
+SELECT mktg_sky_dates.calendar_key, mktg_sky_dates.calendar_dt, mktg_sky_dates.sky_typ, mktg_sky_dates.disastr1_nm, mktg_sky_dates.disastr1_typ, mktg_sky_dates.disastr2_nm, mktg_sky_dates.disastr3_nm, mktg_sky_dates.disastr4_nm, mktg_sky_dates.disastr5_nm, mktg_sky_dates.dw_trans_ts, mktg_sky_dates.row_stat_cd, mktg_sky_dates.appl_src_cd, mktg_sky_dates.load_id FROM mktg_ops_tbls.mktg_sky_dates WITH NO SCHEMA BINDING;

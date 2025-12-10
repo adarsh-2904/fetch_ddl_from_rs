@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.bz_adb_nmswebapplogrcp AS 
+SELECT adb_nmswebapplogrcp.iwebapplogrcpid, adb_nmswebapplogrcp.iwebappid, adb_nmswebapplogrcp.irecipientid, adb_nmswebapplogrcp.ideliveryid, adb_nmswebapplogrcp.dscore, adb_nmswebapplogrcp.icreation, adb_nmswebapplogrcp.slanguage, adb_nmswebapplogrcp.sorigin, adb_nmswebapplogrcp.tslog, adb_nmswebapplogrcp.dw_trans_ts, adb_nmswebapplogrcp.row_stat_cd, adb_nmswebapplogrcp.appl_src_cd, adb_nmswebapplogrcp.load_id FROM mktg_ops_tbls.adb_nmswebapplogrcp WITH NO SCHEMA BINDING;

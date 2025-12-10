@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.srvy_hsptl_rspns_txt AS 
+SELECT srvy_hsptl_rspns_txt.rspns_id, srvy_hsptl_rspns_txt.respondent_id, srvy_hsptl_rspns_txt.srvy_id, srvy_hsptl_rspns_txt.question_id, srvy_hsptl_rspns_txt.rspns_txt, srvy_hsptl_rspns_txt.srcsys_trans_ts, srvy_hsptl_rspns_txt.dw_trans_ts, srvy_hsptl_rspns_txt.row_stat_cd, srvy_hsptl_rspns_txt.appl_src_cd, srvy_hsptl_rspns_txt.load_id FROM mktg_ops_tbls.srvy_hsptl_rspns_txt WHERE (srvy_hsptl_rspns_txt.row_stat_cd <> 'L'::bpchar) WITH NO SCHEMA BINDING;

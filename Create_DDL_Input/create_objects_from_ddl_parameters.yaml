@@ -1,0 +1,42 @@
+# Redshift DEV Environment Configuration
+redshift:
+  host: "redshift.dev.datahub.redcross.net"
+  port: 5439
+  dbname: "mods_bi"
+  user: "hritik_singhania"
+  password: "Test446446474784"
+
+# Paths Configuration (using relative paths from project root)
+paths:
+  ddl_base_path: "Fetch_DDL_Output/ddl_output"           # Where DDL files are stored
+  log_directory: "Create_DDL_Output/ddl_logs"            # Where log files will be created
+  output_directory: "Create_DDL_Output/ddl_output"       # Where CSV files will be created
+
+# Object Configuration - EDIT THIS SECTION FOR DIFFERENT RUNS
+object_config:
+  schema_name: "mktg_ops_tbls"           # Schema folder to read DDL files from
+  object_type: "table"                    # Options: "view", "table", "procedure"
+  run_identifier: "mktg_ops_tbls_tables"  # Used for naming log and output files
+
+# Execution Configuration
+execution:
+  retry_failed_objects: true    # Retry objects that failed due to dependency issues
+  max_retries: 3                # Maximum number of retry attempts for dependency errors
+  batch_size: 50                # Number of objects to process before logging progress
+
+# Example configurations for different runs:
+#
+# FOR VIEWS (mktg_ops_vws):
+#   schema_name: "mktg_ops_vws"
+#   object_type: "view"
+#   run_identifier: "mktg_ops_vws_views"
+#
+# FOR TABLES (mktg_ops_tbls):
+#   schema_name: "mktg_ops_tbls"
+#   object_type: "table"
+#   run_identifier: "mktg_ops_tbls_tables"
+#
+# FOR STORED PROCEDURES:
+#   schema_name: "my_procedures_schema"
+#   object_type: "procedure"
+#   run_identifier: "my_schema_procedures"

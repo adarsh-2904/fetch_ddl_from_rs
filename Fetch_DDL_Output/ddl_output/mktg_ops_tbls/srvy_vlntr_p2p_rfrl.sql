@@ -1,0 +1,31 @@
+CREATE TABLE mktg_ops_tbls.srvy_vlntr_p2p_rfrl (
+    snapshot_ts timestamp without time zone ENCODE az64,
+    history_record_ts timestamp without time zone ENCODE az64,
+    history_record_id integer ENCODE az64,
+    adnc_mbr_id integer ENCODE az64 distkey,
+    cnst_mstr_id bigint ENCODE az64,
+    orig_cnst_mstr_id bigint ENCODE az64,
+    first_nm character varying(255) ENCODE lzo,
+    last_nm character varying(255) ENCODE lzo,
+    email character varying(255) ENCODE lzo,
+    survey_nm character varying(255) ENCODE lzo,
+    region_nm character varying(40) ENCODE lzo,
+    phone_num character varying(14) ENCODE lzo,
+    vlntr_rltnshp character varying(15) ENCODE lzo,
+    pv_first_nm character varying(255) ENCODE lzo,
+    pv_last_nm character varying(255) ENCODE lzo,
+    pv_email character varying(255) ENCODE lzo,
+    pv_phone_num character varying(255) ENCODE lzo,
+    prev_vlntr smallint ENCODE az64,
+    intrst_area character varying(255) ENCODE lzo,
+    intrst_area_oth character varying(255) ENCODE lzo,
+    spcfc_pstn character varying(255) ENCODE lzo,
+    email_prsn smallint ENCODE az64,
+    dw_create_ts timestamp without time zone ENCODE az64,
+    dw_updt_ts timestamp without time zone ENCODE az64,
+    row_stat_cd character(1) ENCODE lzo,
+    appl_src_cd character(4) ENCODE lzo,
+    load_id integer ENCODE az64
+)
+DISTSTYLE AUTO
+SORTKEY ( snapshot_ts );

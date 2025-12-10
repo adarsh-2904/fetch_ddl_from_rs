@@ -1,0 +1,4 @@
+2025-12-08 12:10:12,573 - ERROR - Error connecting to Redshift: could not translate host name "redshift.test.datahub.redcross.net" to address: Name or service not known
+
+2025-12-08 12:12:46,236 - INFO - Successfully connected to Redshift
+2025-12-08 12:12:46,991 - INFO - Fetched 317 relations from schema mktg_ops_vws
