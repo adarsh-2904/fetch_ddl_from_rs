@@ -32,6 +32,60 @@ def load_config(config_file="create_objects_from_ddl_parameters.yaml"):
         return None
 
 
+# Fetch exclusion list from control table
+def fetch_exclusion_list(connection, schema_name, object_type):
+    """
+    Fetch list of objects to exclude from create_object_control table
+    Only fetches exclusions for TABLE object type
+    """
+    try:
+        # Only fetch exclusions if object_type is TABLE
+        if object_type.upper() != 'TABLE':
+            logging.info(
+                f"Object type is {object_type.upper()} - skipping control table lookup (only applicable for TABLEs)")
+            return set()
+
+        cursor = connection.cursor()
+
+        # Query to fetch excluded objects
+        query = """
+            SELECT object_name
+            FROM mods_bi.etl_config.create_object_control
+            WHERE schema_name = %s
+              AND object_type = 'TABLE'
+              AND exclude_from_create = TRUE
+        """
+
+        cursor.execute(query, (schema_name,))
+        excluded_objects = cursor.fetchall()
+        cursor.close()
+
+        # Convert to set of object names (without .sql extension)
+        exclusion_set = {row[0] for row in excluded_objects}
+
+        if exclusion_set:
+            logging.info("=" * 80)
+            logging.info(f"EXCLUSION LIST LOADED FROM CONTROL TABLE")
+            logging.info("=" * 80)
+            logging.info(f"Found {len(exclusion_set)} table(s) marked for exclusion:")
+            for obj_name in sorted(exclusion_set):
+                logging.info(f"  - {obj_name}")
+            logging.info("=" * 80)
+        else:
+            logging.info("No exclusions found in control table for this schema/object type")
+
+        return exclusion_set
+
+    except psycopg2.Error as e:
+        logging.warning(f"Could not fetch exclusion list from control table: {e}")
+        logging.warning("Continuing without exclusions...")
+        return set()
+    except Exception as e:
+        logging.warning(f"Unexpected error fetching exclusion list: {e}")
+        logging.warning("Continuing without exclusions...")
+        return set()
+
+
 # Setup logging with dynamic file names and timestamps
 def setup_logging(log_directory, run_identifier):
     try:
@@ -109,11 +163,32 @@ def get_ddl_files(ddl_base_path, schema_name):
 def read_ddl_file(ddl_base_path, schema_name, file_name):
     try:
         file_path = os.path.join(ddl_base_path, schema_name, file_name)
-        with open(file_path, 'r', encoding='utf-8') as file:
-            ddl_content = file.read()
-        return ddl_content
+
+        # Check if file exists
+        if not os.path.exists(file_path):
+            logging.error(f"File does not exist: {file_path}")
+            return None
+
+        # Try different encodings
+        encodings = ['utf-8', 'latin-1', 'cp1252', 'iso-8859-1']
+
+        for encoding in encodings:
+            try:
+                with open(file_path, 'r', encoding=encoding) as file:
+                    ddl_content = file.read()
+                    if ddl_content.strip():  # If content is not empty
+                        logging.debug(f"Successfully read {file_name} with encoding: {encoding}")
+                        return ddl_content
+            except UnicodeDecodeError:
+                continue
+
+        # If all encodings fail, log the error
+        logging.error(f"Could not read file {file_name} with any encoding")
+        return None
+
     except Exception as e:
         logging.error(f"Error reading SQL file {file_name}: {e}")
+        logging.error(f"Full path attempted: {file_path}")
         return None
 
 
@@ -156,6 +231,7 @@ def initialize_csv_files(output_directory, run_identifier):
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
         created_file = os.path.join(output_directory, f"{run_identifier}_{timestamp}_created.csv")
         errored_file = os.path.join(output_directory, f"{run_identifier}_{timestamp}_errored.csv")
+        skipped_file = os.path.join(output_directory, f"{run_identifier}_{timestamp}_skipped.csv")
 
         # Created objects CSV
         with open(created_file, 'w', newline='', encoding='utf-8') as f:
@@ -167,14 +243,20 @@ def initialize_csv_files(output_directory, run_identifier):
             writer = csv.writer(f)
             writer.writerow(['object_name', 'schema_name', 'object_type', 'error_type', 'error_message', 'timestamp'])
 
+        # Skipped objects CSV (NEW)
+        with open(skipped_file, 'w', newline='', encoding='utf-8') as f:
+            writer = csv.writer(f)
+            writer.writerow(['object_name', 'schema_name', 'object_type', 'skip_reason', 'timestamp'])
+
         logging.info(f"Initialized CSV files with timestamp: {timestamp}")
         logging.info(f"  - Created: {created_file}")
         logging.info(f"  - Errored: {errored_file}")
+        logging.info(f"  - Skipped: {skipped_file}")
 
-        return created_file, errored_file
+        return created_file, errored_file, skipped_file
     except Exception as e:
         logging.error(f"Error initializing CSV files: {e}")
-        return None, None
+        return None, None, None
 
 
 # Write to created CSV
@@ -201,6 +283,17 @@ def write_to_errored_csv(errored_file, object_name, schema_name, object_type, er
         logging.error(f"Error writing to errored CSV: {e}")
 
 
+# Write to skipped CSV (NEW)
+def write_to_skipped_csv(skipped_file, object_name, schema_name, object_type, skip_reason):
+    try:
+        with open(skipped_file, 'a', newline='', encoding='utf-8') as f:
+            writer = csv.writer(f)
+            writer.writerow([object_name, schema_name, object_type, skip_reason,
+                             datetime.now().strftime('%Y-%m-%d %H:%M:%S')])
+    except Exception as e:
+        logging.error(f"Error writing to skipped CSV: {e}")
+
+
 # Process all DDL files
 def process_ddl_files(connection, config):
     ddl_base_path = config['paths']['ddl_base_path']
@@ -213,9 +306,12 @@ def process_ddl_files(connection, config):
     max_retries = config['execution']['max_retries']
     batch_size = config['execution']['batch_size']
 
+    # Fetch exclusion list from control table
+    exclusion_list = fetch_exclusion_list(connection, schema_name, object_type)
+
     # Initialize CSV files
-    created_file, errored_file = initialize_csv_files(output_directory, run_identifier)
-    if not created_file or not errored_file:
+    created_file, errored_file, skipped_file = initialize_csv_files(output_directory, run_identifier)
+    if not created_file or not errored_file or not skipped_file:
         logging.error("Failed to initialize CSV files. Exiting.")
         return
 
@@ -229,19 +325,30 @@ def process_ddl_files(connection, config):
     total_objects = len(ddl_files)
     created_count = 0
     errored_count = 0
+    skipped_count = 0
     dependency_errors = []
 
     logging.info("=" * 80)
     logging.info(f"Processing Configuration:")
     logging.info(f"  - Schema: {schema_name}")
     logging.info(f"  - Object Type: {object_type.upper()}")
-    logging.info(f"  - Total Objects: {total_objects}")
+    logging.info(f"  - Total Objects in Folder: {total_objects}")
+    logging.info(f"  - Objects to Skip (from control table): {len(exclusion_list)}")
+    logging.info(f"  - Objects to Process: {total_objects - len(exclusion_list)}")
     logging.info(f"  - Run Identifier: {run_identifier}")
     logging.info("=" * 80)
 
-    # First pass: Try to create all objects
+    # First pass: Try to create all objects (except excluded ones)
     for idx, file_name in enumerate(ddl_files, 1):
         object_name = file_name.replace('.sql', '')
+
+        # Check if object is in exclusion list
+        if object_name in exclusion_list:
+            logging.info(f"⊗ Skipping {object_type}: {object_name} (excluded by control table)")
+            write_to_skipped_csv(skipped_file, object_name, schema_name, object_type,
+                                 "Excluded by create_object_control table")
+            skipped_count += 1
+            continue
 
         # Log progress every batch_size objects
         if idx % batch_size == 0:
@@ -313,19 +420,23 @@ def process_ddl_files(connection, config):
             dependency_errors = still_failing
 
     # Final summary
-    success_rate = (created_count / total_objects * 100) if total_objects > 0 else 0
+    objects_to_process = total_objects - skipped_count
+    success_rate = (created_count / objects_to_process * 100) if objects_to_process > 0 else 0
 
     logging.info("=" * 80)
     logging.info("EXECUTION SUMMARY")
     logging.info("=" * 80)
     logging.info(f"Object Type: {object_type.upper()}")
     logging.info(f"Schema: {schema_name}")
-    logging.info(f"Total Objects: {total_objects}")
+    logging.info(f"Total Objects in Folder: {total_objects}")
+    logging.info(f"Skipped (Control Table): {skipped_count}")
+    logging.info(f"Objects Processed: {objects_to_process}")
     logging.info(f"Successfully Created: {created_count}")
     logging.info(f"Failed: {errored_count}")
     logging.info(f"Success Rate: {success_rate:.2f}%")
     logging.info(f"Created objects saved to: {created_file}")
     logging.info(f"Errored objects saved to: {errored_file}")
+    logging.info(f"Skipped objects saved to: {skipped_file}")
     logging.info("=" * 80)
 
     print("\n" + "=" * 80)
@@ -333,11 +444,14 @@ def process_ddl_files(connection, config):
     print("=" * 80)
     print(f"Object Type: {object_type.upper()}")
     print(f"Schema: {schema_name}")
+    print(f"Total Objects in Folder: {total_objects}")
+    print(f"⊗ Skipped (Control Table): {skipped_count} {object_type}s")
     print(f"✓ Successfully created: {created_count} {object_type}s")
     print(f"✗ Failed: {errored_count} {object_type}s")
     print(f"Success Rate: {success_rate:.2f}%")
     print(f"\nCreated objects: {created_file}")
     print(f"Errored objects: {errored_file}")
+    print(f"Skipped objects: {skipped_file}")
     print("=" * 80)
 
 
