@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.bz_adb_nmsaddress AS 
+SELECT adb_nmsaddress.iaddressid, adb_nmsaddress.iconsecutiveerror, adb_nmsaddress.ideliveryid, adb_nmsaddress.iquarantinereason, adb_nmsaddress.istatus, adb_nmsaddress.itype, adb_nmsaddress.mquarantinetext, adb_nmsaddress.saddress, adb_nmsaddress.tscreated, adb_nmsaddress.tslasterror, adb_nmsaddress.tslastmodified, adb_nmsaddress.dw_trans_ts, adb_nmsaddress.row_stat_cd, adb_nmsaddress.appl_src_cd, adb_nmsaddress.load_id FROM mktg_ops_tbls.adb_nmsaddress WITH NO SCHEMA BINDING;

@@ -1,0 +1,30 @@
+CREATE TABLE mktg_ops_tbls.bzfc_sponsor_journey_detail (
+    spon_ext_nm character varying(125) ENCODE lzo distkey,
+    nk_spon_ext_id character varying(9) ENCODE lzo,
+    spon_con_full_nm character varying(101) ENCODE lzo,
+    email_address character varying(100) ENCODE lzo,
+    customer_cd character varying(30) ENCODE lzo,
+    master_customer_cd character varying(30) ENCODE lzo,
+    customer_nm character varying(360) ENCODE lzo,
+    ci_cust_class_cd character(20) ENCODE lzo,
+    ci_cust_class_dsc character(40) ENCODE lzo,
+    contract_customer_flg character(1) ENCODE lzo,
+    bill_to_city character varying(60) ENCODE lzo,
+    bill_to_state character varying(60) ENCODE lzo,
+    site_nm character varying(255) ENCODE lzo,
+    drive_start_dt date ENCODE raw,
+    spon_region_id character(5) ENCODE lzo,
+    spon_region_nm character varying(40) ENCODE lzo,
+    spon_region_cd character varying(5) ENCODE lzo,
+    rsmo_cd character varying(4) ENCODE lzo,
+    rsmo_detail_dsc character varying(15) ENCODE lzo,
+    rsmo_typeb_ind smallint ENCODE az64,
+    distnct_prod_cnt integer ENCODE az64,
+    total_unit_cnt integer ENCODE az64,
+    weekly_start_dt date ENCODE az64,
+    weekly_end_dt date ENCODE az64,
+    list_run_dt date ENCODE az64,
+    row_num integer ENCODE az64
+)
+DISTSTYLE KEY
+SORTKEY ( drive_start_dt );

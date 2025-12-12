@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.actvty_vwthrgh AS 
+SELECT gs_viewthrough.actvty_dt, gs_viewthrough.dcm_site, gs_viewthrough.ord_val, gs_viewthrough.vwthrgh_rev, gs_viewthrough.clckthrgh_rev FROM data_lab_mktg_tbls.gs_viewthrough WITH NO SCHEMA BINDING;

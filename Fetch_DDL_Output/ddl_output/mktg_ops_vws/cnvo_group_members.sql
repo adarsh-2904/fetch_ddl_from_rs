@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.cnvo_group_members AS 
+SELECT cnvo_group_members.cnvo_group_id, cnvo_group_members.cnvo_cnst_id, cnvo_group_members.cnvo_subgroup_id FROM convio_tbls.cnvo_group_members WITH NO SCHEMA BINDING;

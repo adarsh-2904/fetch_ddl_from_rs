@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.dim_src_2_intrctn_brdg AS 
+SELECT dim_src_2_intrctn_brdg.src_key, dim_src_2_intrctn_brdg.src_cd, dim_src_2_intrctn_brdg.pg_src_cd, dim_src_2_intrctn_brdg.mail_dt, dim_src_2_intrctn_brdg.email_launch_dt, dim_src_2_intrctn_brdg.intrctn_dt, dim_src_2_intrctn_brdg.row_status_cd, dim_src_2_intrctn_brdg.dw_trans_ts, dim_src_2_intrctn_brdg.load_id, dim_src_2_intrctn_brdg.appl_src_cd FROM mktg_ops_tbls.dim_src_2_intrctn_brdg WITH NO SCHEMA BINDING;

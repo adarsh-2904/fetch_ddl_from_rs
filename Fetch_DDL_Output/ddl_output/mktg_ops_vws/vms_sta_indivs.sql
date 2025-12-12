@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.vms_sta_indivs AS 
+SELECT vms_sta_indivs.hierarchy_name, vms_sta_indivs.registration_type_name, vms_sta_indivs.registration_id, vms_sta_indivs.registration_name, vms_sta_indivs.registration_start_datetime, vms_sta_indivs.account_id, vms_sta_indivs.registration_status_lookup, vms_sta_indivs.relationship_status, vms_sta_indivs.status_name, vms_sta_indivs.team_id, vms_sta_indivs.row_stat_cd, vms_sta_indivs.dw_trans_ts, vms_sta_indivs.appl_src_cd, vms_sta_indivs.load_id FROM mktg_ops_tbls.vms_sta_indivs WITH NO SCHEMA BINDING;

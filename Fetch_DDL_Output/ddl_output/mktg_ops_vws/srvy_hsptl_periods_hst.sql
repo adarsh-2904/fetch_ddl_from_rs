@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.srvy_hsptl_periods_hst AS 
+SELECT srvy_hsptl_periods_hst.calendar_yr_mth, srvy_hsptl_periods_hst.calendar_mth, srvy_hsptl_periods_hst.calendar_yr, srvy_hsptl_periods_hst.fiscal_yr, srvy_hsptl_periods_hst.season FROM mktg_ops_tbls.srvy_hsptl_periods_hst WITH NO SCHEMA BINDING;

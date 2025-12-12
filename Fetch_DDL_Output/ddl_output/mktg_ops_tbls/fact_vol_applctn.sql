@@ -1,0 +1,31 @@
+CREATE TABLE mktg_ops_tbls.fact_vol_applctn (
+    cnst_mstr_id bigint ENCODE az64 distkey,
+    orig_cnst_mstr_id bigint ENCODE az64,
+    attrib_typ character varying(20) ENCODE lzo,
+    src_cd character varying(20) ENCODE lzo,
+    subsrc_cd character varying(40) ENCODE lzo,
+    email_addr character varying(128) ENCODE lzo,
+    campgn_key integer ENCODE az64,
+    delivery_key integer ENCODE az64,
+    spon_ext_id character varying(9) ENCODE lzo,
+    site_ext_id character varying(9) ENCODE lzo,
+    site_cd character varying(4) ENCODE lzo,
+    site_nm character varying(200) ENCODE lzo,
+    nk_donat_dt date ENCODE raw,
+    accnt_id integer ENCODE az64,
+    application_ts timestamp without time zone ENCODE raw,
+    path_id integer ENCODE az64,
+    path_nm character varying(255) ENCODE lzo,
+    entry_point_id integer ENCODE az64,
+    point_of_entry character varying(255) ENCODE lzo,
+    intake_outcome character varying(24) ENCODE lzo,
+    outcome_ts timestamp without time zone ENCODE az64,
+    contact_status character varying(50) ENCODE lzo,
+    contact_completed_dt timestamp without time zone ENCODE az64,
+    dw_trans_ts timestamp without time zone NOT NULL ENCODE az64,
+    row_stat_cd character(1) NOT NULL ENCODE lzo,
+    appl_src_cd character varying(4) NOT NULL ENCODE lzo,
+    load_id integer NOT NULL ENCODE az64
+)
+DISTSTYLE KEY
+SORTKEY ( nk_donat_dt, application_ts );

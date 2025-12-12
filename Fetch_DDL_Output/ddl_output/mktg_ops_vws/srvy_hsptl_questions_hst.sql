@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.srvy_hsptl_questions_hst AS 
+SELECT srvy_hsptl_questions_hst.question_id, srvy_hsptl_questions_hst.question_dsc, srvy_hsptl_questions_hst.question_sort, srvy_hsptl_questions_hst.category_id FROM mktg_ops_tbls.srvy_hsptl_questions_hst WITH NO SCHEMA BINDING;

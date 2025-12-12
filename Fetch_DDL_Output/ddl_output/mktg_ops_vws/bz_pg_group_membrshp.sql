@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.bz_pg_group_membrshp AS 
+SELECT bz_pg_group_membrshp.cnst_mstr_id, bz_pg_group_membrshp.pg_group_key, bz_pg_group_membrshp.dw_trans_ts FROM mktg_ops_tbls.bz_pg_group_membrshp WITH NO SCHEMA BINDING;

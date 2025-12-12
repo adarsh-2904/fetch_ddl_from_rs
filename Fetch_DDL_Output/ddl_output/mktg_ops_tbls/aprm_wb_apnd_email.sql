@@ -1,0 +1,28 @@
+CREATE TABLE mktg_ops_tbls.aprm_wb_apnd_email (
+    snapshot_ts timestamp without time zone NOT NULL ENCODE az64,
+    created_ts timestamp without time zone ENCODE az64,
+    email_template character varying(75) ENCODE lzo,
+    id integer ENCODE az64,
+    last_mod_by character varying(765) ENCODE lzo,
+    last_mod_ts timestamp without time zone ENCODE az64,
+    outbnd_id integer ENCODE az64,
+    owner_id character varying(765) ENCODE lzo,
+    reject_rsn character varying(255) ENCODE lzo,
+    status character varying(765) ENCODE lzo,
+    ttl character varying(75) ENCODE lzo,
+    cnt_num integer ENCODE az64,
+    owner0 integer ENCODE az64,
+    prev_status integer ENCODE az64,
+    priority integer ENCODE az64,
+    srcsys_ts timestamp without time zone NOT NULL ENCODE az64,
+    dw_create_ts timestamp without time zone NOT NULL ENCODE az64,
+    dw_updt_ts timestamp without time zone NOT NULL ENCODE az64,
+    row_stat_cd character(1) NOT NULL ENCODE lzo,
+    appl_src_cd character(4) NOT NULL ENCODE lzo,
+    load_id integer NOT NULL ENCODE az64,
+    to_display_nm character varying(255) ENCODE lzo,
+    is_forwarded integer ENCODE az64,
+    forwarding_email character varying(255) ENCODE lzo,
+    contxt_cd character(1) ENCODE lzo
+)
+DISTSTYLE ALL;

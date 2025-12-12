@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.bz_dim_rpt_cell_cd AS 
+SELECT bz_dim_rpt_cell_cd.rpt_cell_cd_key, bz_dim_rpt_cell_cd.rpt_cell_cd_id, bz_dim_rpt_cell_cd.rpt_cell_cd, bz_dim_rpt_cell_cd.low_dt, bz_dim_rpt_cell_cd.high_dt, bz_dim_rpt_cell_cd.tag_cd, bz_dim_rpt_cell_cd.low_dontn, bz_dim_rpt_cell_cd.high_dontn, bz_dim_rpt_cell_cd.dw_trans_ts, bz_dim_rpt_cell_cd.row_stat_cd, bz_dim_rpt_cell_cd.appl_src_cd, bz_dim_rpt_cell_cd.load_id FROM mktg_ops_tbls.bz_dim_rpt_cell_cd WITH NO SCHEMA BINDING;

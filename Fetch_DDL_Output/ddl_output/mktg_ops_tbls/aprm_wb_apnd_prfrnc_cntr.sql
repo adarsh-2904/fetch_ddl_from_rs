@@ -1,0 +1,26 @@
+CREATE TABLE mktg_ops_tbls.aprm_wb_apnd_prfrnc_cntr (
+    snapshot_ts timestamp without time zone NOT NULL ENCODE az64,
+    audience_mbr_id integer ENCODE az64,
+    data_src_id integer ENCODE az64,
+    data_src_key character varying(75) ENCODE lzo,
+    email_addr character varying(45) ENCODE lzo,
+    first_nm character varying(25) ENCODE lzo,
+    hist_rec_ts timestamp without time zone ENCODE az64,
+    hist_rec_id integer ENCODE az64,
+    last_nm character varying(25) ENCODE lzo,
+    contact_prfrnc_channel_typ character varying(255) ENCODE lzo,
+    contact_prfrnc_content_typ character varying(255) ENCODE lzo,
+    contact_prfrnc_email_fmt character varying(255) ENCODE lzo,
+    contact_prfrnc_form_id_mos character varying(255) ENCODE lzo,
+    contact_prfrnc_unsub_from character varying(255) ENCODE lzo,
+    contact_prfrnc_email_prf character varying(255) ENCODE lzo,
+    obmid character varying(765) ENCODE lzo,
+    ibf_cnst_mstr_id integer ENCODE az64,
+    srcsys_ts timestamp without time zone NOT NULL ENCODE az64,
+    dw_create_ts timestamp without time zone NOT NULL ENCODE az64,
+    dw_updt_ts timestamp without time zone NOT NULL ENCODE az64,
+    row_stat_cd character(1) NOT NULL ENCODE lzo,
+    appl_src_cd character(4) NOT NULL ENCODE lzo,
+    load_id integer NOT NULL ENCODE az64
+)
+DISTSTYLE ALL;
