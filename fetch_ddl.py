@@ -3,6 +3,7 @@ import re
 import psycopg2
 import logging
 from dotenv import load_dotenv
+from datetime import datetime
 
 # Load environment variables from a .env file
 load_dotenv()
@@ -10,13 +11,19 @@ load_dotenv()
 # Ensure the log file directory exists
 log_dir = "C:/Users/Exavalu/OneDrive - exavalu/ARC/ddl"
 os.makedirs(log_dir, exist_ok=True)
+current_timestamp = datetime.now()
+
+print(f"Script started at {current_timestamp}")
+
 
 # Configure logging
 logging.basicConfig(
-    filename=os.path.join(log_dir, "script_logs.log"),
+    filename=os.path.join(log_dir, f"script_logs_{current_timestamp.strftime('%Y%m%d_%H%M')}.log"),
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
+
+
 
 # Function to connect to the Redshift database
 def connect_to_redshift(host, port, dbname, user, password):
@@ -161,7 +168,7 @@ def fetch_stored_procedure_ddl(connection, schema_name, procedure_name):
 # Function to save DDL to a file
 def save_ddl_to_file(base_path, schema_name, table_name, ddl):
     try:
-        schema_path = os.path.join(base_path, schema_name)
+        schema_path = os.path.join(base_path, f"{schema_name}_{current_timestamp.strftime('%Y%m%d_%H%M')}")
         os.makedirs(schema_path, exist_ok=True)
         file_path = os.path.join(schema_path, f"{table_name}.sql")
         with open(file_path, "w") as file:
