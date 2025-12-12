@@ -189,10 +189,10 @@ def main():
     password = os.getenv("REDSHIFT_PASSWORD")
 
     # Schema name to fetch DDLs for
-    schema_name = "mktg_ops_tbls"
+    schema_name = "mktg_ops_vws"
 
     # Relation type e.g., tables/views/procedures
-    relation_type = "procedure"  
+    relation_type = "view"  
 
     # Base path to save DDL files
     base_path = f"C:/Users/Exavalu/OneDrive - exavalu/ARC/ddl/{relation_type}"
