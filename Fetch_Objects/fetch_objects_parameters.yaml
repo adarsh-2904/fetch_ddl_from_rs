@@ -1,0 +1,34 @@
+# Redshift QA Environment Configuration
+redshift:
+  host: "redshift.test.datahub.redcross.net"
+  port: 5439
+  dbname: "mods_bi"
+  user: "adarsh_ram"
+  password: "3c7liI8myEkEKJUZe4JB"
+
+# Paths Configuration (using relative paths from project root)
+paths:
+  log_directory: "Fetch_Object_Output/Logs"       # Where log files will be created
+
+# Object Configuration - EDIT THIS SECTION FOR DIFFERENT RUNS
+object_config:
+  schema_name: "mktg_ops_tbls"           # Schema to fetch DDL files from
+  object_type: "table"               # Options: "view", "table", "procedure"
+  run_identifier: "mktg_ops_tbls_tables"  # Used for naming log files
+
+# Example configurations for different runs:
+#
+# FOR VIEWS (mktg_ops_vws):
+#   schema_name: "mktg_ops_vws"
+#   object_type: "view"
+#   run_identifier: "mktg_ops_vws_views"
+#
+# FOR TABLES (mktg_ops_tbls):
+#   schema_name: "mktg_ops_tbls"
+#   object_type: "table"
+#   run_identifier: "mktg_ops_tbls_tables"
+#
+# FOR STORED PROCEDURES:
+#   schema_name: "mktg_ops_tbls"
+#   object_type: "procedure"
+#   run_identifier: "mktg_ops_tbls_procedures"
