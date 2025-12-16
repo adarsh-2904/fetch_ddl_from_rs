@@ -3,8 +3,8 @@ redshift:
   host: "redshift.dev.datahub.redcross.net"
   port: 5439
   dbname: "mods_bi"
-  user: "adarsh_ram"
-  password: "3c7liI8myEkEKJUZe4JB"
+  user: "user_name"
+  password: "password"
 
 paths:
   ddl_base_path: "Fetch_Object_Output"           # Base path - code handles rest
@@ -16,6 +16,7 @@ object_config:
   schema_name: "mktg_ops_tbls"           # Schema name to match folder prefix
   object_type: "table"                # Options: "view", "table", "procedure"
   run_identifier: "mktg_ops_tbls_tables"  # For Naming Log Files
+
 
 # Execution Configuration
 execution:

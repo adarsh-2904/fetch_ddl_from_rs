@@ -4,16 +4,23 @@ import psycopg2
 import logging
 import yaml
 from datetime import datetime
+from pathlib import Path
 
-# Get the project root directory (where the script is located)
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+# Since .py file is now inside Fetch_Object_Input folder
+# Get the Fetch_Object_Input directory
+SCRIPT_DIR = Path(__file__).parent
+
+# Get the project root directory (one level up from Fetch_Object_Input)
+PROJECT_ROOT = SCRIPT_DIR.parent
 
 ROOT = project_root = os.path.dirname(PROJECT_ROOT)
 
 
 # Load configuration from YAML file
 def load_config():
-    config_path = os.path.join(PROJECT_ROOT, "fetch_objects_parameters.yaml")
+
+    # YAML is in the same folder as the script
+    config_path = SCRIPT_DIR / "fetch_objects_parameters.yaml"
     try:
         with open(config_path, 'r') as file:
             config = yaml.safe_load(file)
@@ -32,17 +39,16 @@ redshift_config = config['redshift']
 paths_config = config['paths']
 object_config = config['object_config']
 
-# Set up logging directory
-log_dir = os.path.join(ROOT, paths_config['log_directory'])
-os.makedirs(log_dir, exist_ok=True)
+# Set up logging directory (relative to PROJECT_ROOT)
+log_dir = PROJECT_ROOT / paths_config['log_directory']
+log_dir.mkdir(parents=True, exist_ok=True)
 current_timestamp = datetime.now()
 
 print(f"Script started at {current_timestamp}")
 
 # Configure logging
 logging.basicConfig(
-    filename=os.path.join(log_dir,
-                          f"fetch_{object_config['run_identifier']}_{current_timestamp.strftime('%Y%m%d_%H%M')}.log"),
+    filename=log_dir / f"fetch_{object_config['run_identifier']}_{current_timestamp.strftime('%Y%m%d_%H%M')}.log",
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
@@ -198,9 +204,9 @@ def fetch_stored_procedure_ddl(connection, schema_name, procedure_name):
 def save_ddl_to_file(base_path, schema_name, object_name, ddl):
     try:
         # Create schema-specific folder with timestamp
-        schema_path = os.path.join(base_path, f"{schema_name}_{current_timestamp.strftime('%Y%m%d_%H%M')}")
-        os.makedirs(schema_path, exist_ok=True)
-        file_path = os.path.join(schema_path, f"{object_name}.sql")
+        schema_path = base_path / f"{schema_name}_{current_timestamp.strftime('%Y%m%d_%H%M')}"
+        schema_path.mkdir(parents=True, exist_ok=True)
+        file_path = schema_path / f"{object_name}.sql"
         with open(file_path, "w") as file:
             file.write(ddl)
         print(f"Saved DDL for {object_name} to {file_path}")
@@ -217,10 +223,9 @@ def main():
     schema_name = object_config['schema_name']
     relation_type = object_config['object_type']
 
-
-    # Set base path for DDL files using relative path
-    base_path = os.path.join(ROOT, "Fetch_Object_Output", relation_type.capitalize())
-    os.makedirs(base_path, exist_ok=True)
+    # Set base path for DDL files using relative path from PROJECT_ROOT
+    base_path = PROJECT_ROOT / "Fetch_Object_Output" / relation_type.capitalize()
+    base_path.mkdir(parents=True, exist_ok=True)
 
     print(f"\n{'=' * 60}")
     print(f"Starting DDL fetch for: {relation_type.upper()}")

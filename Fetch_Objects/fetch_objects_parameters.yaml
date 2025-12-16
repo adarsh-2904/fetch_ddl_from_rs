@@ -3,8 +3,8 @@ redshift:
   host: "redshift.test.datahub.redcross.net"
   port: 5439
   dbname: "mods_bi"
-  user: "adarsh_ram"
-  password: "3c7liI8myEkEKJUZe4JB"
+  user: "user_name"
+  password: "password"
 
 # Paths Configuration (using relative paths from project root)
 paths:
@@ -13,8 +13,8 @@ paths:
 # Object Configuration - EDIT THIS SECTION FOR DIFFERENT RUNS
 object_config:
   schema_name: "mktg_ops_tbls"           # Schema to fetch DDL files from
-  object_type: "table"               # Options: "view", "table", "procedure"
-  run_identifier: "mktg_ops_tbls_tables"  # Used for naming log files
+  object_type: "procedure"               # Options: "view", "table", "procedure"
+  run_identifier: "mktg_ops_tbls_procedures"  # Used for naming log files
 
 # Example configurations for different runs:
 #
