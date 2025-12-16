@@ -3,8 +3,8 @@ redshift:
   host: "redshift.dev.datahub.redcross.net"
   port: 5439
   dbname: "mods_bi"
-  user: "User_name"
-  password: "Password"
+  user: "hritik_singhania"
+  password: "Test446446474784"
 
 paths:
   ddl_base_path: "Fetch_Object_Output"           # Base path - code handles rest
@@ -13,9 +13,9 @@ paths:
 
 # Object Configuration - EDIT THIS SECTION FOR DIFFERENT RUNS
 object_config:
-  schema_name: "mktg_ops_vws"           # Schema name to match folder prefix
-  object_type: "view"                # Options: "view", "table", "procedure"
-  run_identifier: "mktg_ops_vws_views"  # For Naming Log Files
+  schema_name: "mktg_ops_tbls"           # Schema name to match folder prefix
+  object_type: "procedure"                # Options: "view", "table", "procedure"
+  run_identifier: "mktg_ops_tbls_procedures"  # For Naming Log Files
 
 # Execution Configuration
 execution:
