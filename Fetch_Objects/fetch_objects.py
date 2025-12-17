@@ -58,8 +58,8 @@ logging.basicConfig(
 # Function to connect to the Redshift database
 def connect_to_redshift():
     try:
-        username = input("Enter Redshift username: ")
-        password = pwinput.pwinput(prompt="Enter Redshift password: ", mask="*")
+        username = "adarsh_ram" #input("Enter Redshift username: ")
+        password = "3c7liI8myEkEKJUZe4JB" #pwinput.pwinput(prompt="Enter Redshift password: ", mask="*")
         connection = psycopg2.connect(
             host=redshift_config['host'],
             port=redshift_config['port'],
@@ -221,12 +221,135 @@ def save_ddl_to_file(base_path, schema_name, object_name, ddl):
         logging.error(f"Error saving DDL to file for {object_name}: {e}")
 
 
-# Main function
+def get_object_lists(conn, TABLE_NAME):
+    
+    tables = []
+    views = []
+    procedures = []
+    
+    SQL = f"""
+    SELECT
+    schema_name,
+    object_name,
+    object_type
+    FROM {TABLE_NAME};
+    """
+
+    with conn.cursor() as cur:
+        cur.execute(SQL)
+        for schema_name, object_name, object_type in cur.fetchall():
+            qualified = f"{schema_name}.{object_name}"
+            t = (object_type or "").strip().lower()
+            if t == "table":
+                tables.append(qualified)
+            elif t == "view":
+                views.append(qualified)
+            elif t == "procedure":
+                procedures.append(qualified)
+            else:
+                # Unknown types can be logged or handled here if needed
+                pass
+
+    return tables, views, procedures
+
+    
+
+
+def fetch_all_objects(conn, schema_name, relation_type, base_path):
+    tables, views, procedures = get_object_lists(conn, "mods_bi.etl_config.fetch_all_objects_exclude_ctl")
+    if relation_type == "view":
+        objects = fetch_table_names(conn, schema_name)
+        if not objects:
+            print(f"No {relation_type}s found in the schema.")
+            logging.warning(f"No {relation_type}s found in schema {schema_name}")
+            return
+
+        for idx, object_name in enumerate(objects, 1):
+            print(f"Processing {idx}/{len(objects)}: {object_name}")
+            if f"{schema_name}.{object_name}" not in views:
+                ddl = fetch_table_ddl(conn, schema_name, object_name, "view")
+                if ddl:
+                    save_ddl_to_file(base_path, schema_name, object_name, ddl)
+                else:
+                    print(f"No DDL found for {relation_type} {object_name}.")
+                    logging.warning(f"No DDL found for {relation_type} {object_name}")
+    elif relation_type == "table":
+        objects = fetch_table_names(conn, schema_name)
+        if not objects:
+            print(f"No {relation_type}s found in the schema.")
+            logging.warning(f"No {relation_type}s found in schema {schema_name}")
+            return
+        for idx, object_name in enumerate(objects, 1):
+            print(f"Processing {idx}/{len(objects)}: {object_name}")
+            if f"{schema_name}.{object_name}" not in tables:
+                ddl = fetch_table_ddl(conn, schema_name, object_name, "table")
+                if ddl:
+                    save_ddl_to_file(base_path, schema_name, object_name, ddl)
+                else:
+                    print(f"No DDL found for {relation_type} {object_name}.")
+                    logging.warning(f"No DDL found for {relation_type} {object_name}")
+    elif relation_type == "procedure":
+        procedures_all = fetch_stored_procedure_names(conn, schema_name)
+        if not objects:
+            print(f"No {relation_type}s found in the schema.")
+            logging.warning(f"No {relation_type}s found in schema {schema_name}")
+            return
+        for idx, procedure_name in enumerate(procedures_all, 1):
+            print(f"Processing {idx}/{len(procedures_all)}: {procedure_name}")
+            if f"{schema_name}.{procedure_name}" not in procedures:
+                ddl = fetch_stored_procedure_ddl(conn, schema_name, procedure_name)
+                if ddl:
+                    save_ddl_to_file(base_path, schema_name, procedure_name, ddl)
+                else:
+                    print(f"No DDL found for {relation_type} {object_name}.")
+                    logging.warning(f"No DDL found for {relation_type} {object_name}")
+    else:
+        print(
+            "Invalid object type. Please set 'object_type' to 'view', 'table', or 'procedure' in the YAML config.")
+        logging.error(f"Invalid object type: {relation_type}")
+
+def selected_objects(conn, schema_name, relation_type, base_path):
+    tables, views, procedures = get_object_lists(conn, "mods_bi.etl_config.fetch_selected_objects_ctl")
+    if relation_type == "view":
+        for idx, view in enumerate(views,1):
+            print(f"Processing {idx}/{len(views)}: {view}")
+            schema, object_name = view.split('.')
+            ddl = fetch_table_ddl(conn, schema, object_name, "view")
+            if ddl:
+                save_ddl_to_file(base_path, schema, object_name, ddl)
+            else:
+                    print(f"No DDL found for {relation_type} {object_name}.")
+                    logging.warning(f"No DDL found for {relation_type} {object_name}")
+    elif relation_type == "table":
+        for idx, table in enumerate(tables, 1):
+            print(f"Processing {idx}/{len(tables)}: {table}")
+            schema, object_name = table.split('.')
+            ddl = fetch_table_ddl(conn, schema, object_name, "table")
+            if ddl:
+                save_ddl_to_file(base_path, schema, object_name, ddl)
+            else:
+                    print(f"No DDL found for {relation_type} {object_name}.")
+                    logging.warning(f"No DDL found for {relation_type} {object_name}")
+    elif relation_type == "procedure":
+        for idx, procedure in enumerate(procedures, 1):
+            print(f"Processing {idx}/{len(procedures)}: {procedure}")
+            schema, object_name = procedure.split('.')
+            ddl = fetch_stored_procedure_ddl(conn, schema, object_name)
+            if ddl:
+                save_ddl_to_file(base_path, schema, object_name, ddl)
+            else:
+                    print(f"No DDL found for {relation_type} {object_name}.")
+                    logging.warning(f"No DDL found for {relation_type} {object_name}")
+    else:
+        print(
+            "Invalid object type. Please set 'object_type' to 'view', 'table', or 'procedure' in the YAML config.")
+        logging.error(f"Invalid object type: {relation_type}")
+
+
 def main():
-    # Get configuration values
     schema_name = object_config['schema_name']
     relation_type = object_config['object_type']
-
+    mode = object_config['mode']
     # Set base path for DDL files using relative path from PROJECT_ROOT
     base_path = PROJECT_ROOT / "Fetch_Object_Output" / relation_type.capitalize()
     base_path.mkdir(parents=True, exist_ok=True)
@@ -237,62 +360,28 @@ def main():
     print(f"Output Path: {base_path}")
     print(f"{'=' * 60}\n")
 
+    try: 
+        conn = connect_to_redshift()
 
-    # Connect to Redshift
-    connection = connect_to_redshift()
-    if not connection:
-        return
-
-    try:
-        if relation_type == "view" or relation_type == "table":
-            objects = fetch_table_names(connection, schema_name)
-            if not objects:
-                print(f"No {relation_type}s found in the schema.")
-                logging.warning(f"No {relation_type}s found in schema {schema_name}")
-                return
-
-            print(f"Found {len(objects)} {relation_type}(s) to process\n")
-
-            for idx, object_name in enumerate(objects, 1):
-                print(f"Processing {idx}/{len(objects)}: {object_name}")
-                ddl = fetch_table_ddl(connection, schema_name, object_name, relation_type)
-                if ddl:
-                    save_ddl_to_file(base_path, schema_name, object_name, ddl)
-                else:
-                    print(f"No DDL found for {relation_type} {object_name}.")
-                    logging.warning(f"No DDL found for {relation_type} {object_name}")
-
-        elif relation_type == "procedure":
-            procedures = fetch_stored_procedure_names(connection, schema_name)
-            if not procedures:
-                print("No procedures found in the schema.")
-                logging.warning(f"No procedures found in schema {schema_name}")
-                return
-
-            print(f"Found {len(procedures)} procedure(s) to process\n")
-
-            for idx, procedure_name in enumerate(procedures, 1):
-                print(f"Processing {idx}/{len(procedures)}: {procedure_name}")
-                ddl = fetch_stored_procedure_ddl(connection, schema_name, procedure_name)
-                if ddl:
-                    save_ddl_to_file(base_path, schema_name, procedure_name, ddl)
-                else:
-                    print(f"No DDL found for procedure {procedure_name}.")
-                    logging.warning(f"No DDL found for procedure {procedure_name}")
-        else:
-            print(
-                "Invalid object type. Please set 'object_type' to 'view', 'table', or 'procedure' in the YAML config.")
-            logging.error(f"Invalid object type: {relation_type}")
+        if mode == "selected":
+            selected_objects(conn, schema_name, relation_type, base_path)
+            
+        if mode == "all":
+            fetch_all_objects(conn, schema_name, relation_type, base_path)
+            
 
         print(f"\n{'=' * 60}")
         print("DDL fetch completed successfully!")
         print(f"{'=' * 60}\n")
         logging.info("DDL fetch completed successfully")
 
+    except Exception as e:
+        print("Error during test:", e)
     finally:
-        connection.close()
-        print("Database connection closed.")
+        if conn:
+            conn.close()
 
+    
 
 if __name__ == "__main__":
-    main()
+   main()
