@@ -3,8 +3,7 @@ redshift:
   host: "redshift.test.datahub.redcross.net"
   port: 5439
   dbname: "mods_bi"
-  user: "user_name"
-  password: "password"
+  
 
 # Paths Configuration (using relative paths from project root)
 paths:

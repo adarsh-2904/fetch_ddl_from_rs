@@ -5,6 +5,7 @@ import logging
 import yaml
 from datetime import datetime
 from pathlib import Path
+import pwinput
 
 # Since .py file is now inside Fetch_Object_Input folder
 # Get the Fetch_Object_Input directory
@@ -57,15 +58,18 @@ logging.basicConfig(
 # Function to connect to the Redshift database
 def connect_to_redshift():
     try:
+        username = input("Enter Redshift username: ")
+        password = pwinput.pwinput(prompt="Enter Redshift password: ", mask="*")
         connection = psycopg2.connect(
             host=redshift_config['host'],
             port=redshift_config['port'],
             dbname=redshift_config['dbname'],
-            user=redshift_config['user'],
-            password=redshift_config['password']
+            user=username,
+            password=password
         )
         logging.info("Successfully connected to Redshift")
         print("Successfully connected to Redshift")
+        del password  # Remove password from memory
         return connection
     except Exception as e:
         print(f"Error connecting to Redshift: {e}")
