@@ -58,8 +58,8 @@ logging.basicConfig(
 # Function to connect to the Redshift database
 def connect_to_redshift():
     try:
-        username = "adarsh_ram" #input("Enter Redshift username: ")
-        password = "3c7liI8myEkEKJUZe4JB" #pwinput.pwinput(prompt="Enter Redshift password: ", mask="*")
+        username = input("Enter Redshift username: ")
+        password = pwinput.pwinput(prompt="Enter Redshift password: ", mask="*")
         connection = psycopg2.connect(
             host=redshift_config['host'],
             port=redshift_config['port'],

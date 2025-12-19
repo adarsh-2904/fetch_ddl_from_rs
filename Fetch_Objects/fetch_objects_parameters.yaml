@@ -14,7 +14,7 @@ object_config:
   schema_name: "mktg_ops_tbls"           # Schema to fetch DDL files from
   object_type: "table"               # Options: "view", "table", "procedure"
   run_identifier: "mktg_ops_tbls_tables"  # Used for naming log files
-  mode: "all"                   # Options: "all", "selected"
+  mode: "selected"                   # Options: "all", "selected"
 
 # Example configurations for different runs:
 #
