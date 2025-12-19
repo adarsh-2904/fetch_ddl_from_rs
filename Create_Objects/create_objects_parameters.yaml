@@ -3,8 +3,6 @@ redshift:
   host: "redshift.dev.datahub.redcross.net"
   port: 5439
   dbname: "mods_bi"
-  user: "user_name"
-  password: "password"
 
 paths:
   ddl_base_path: "Fetch_Object_Output"           # Base path - code handles rest
