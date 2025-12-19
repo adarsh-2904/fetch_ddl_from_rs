@@ -1,0 +1,11 @@
+# Database Object Migration Tool - Python Dependencies
+# Install all: pip install --user -r requirements.txt
+
+# PostgreSQL database adapter for Python
+psycopg2-binary==2.9.11
+
+# YAML parser and emitter for Python
+pyyaml==6.0.1
+
+# Secure password input with masking
+pwinput==1.0.3

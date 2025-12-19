@@ -6,6 +6,7 @@ import csv
 from datetime import datetime
 from pathlib import Path
 import glob
+import pwinput
 
 
 # Load configuration from YAML
@@ -106,15 +107,18 @@ def setup_logging(log_directory, run_identifier):
 # Connect to Redshift
 def connect_to_redshift(config):
     try:
+        username = input("Enter Redshift username: ")
+        password = pwinput.pwinput(prompt="Enter Redshift password: ", mask="*")
         connection = psycopg2.connect(
             host=config['redshift']['host'],
             port=config['redshift']['port'],
             dbname=config['redshift']['dbname'],
-            user=config['redshift']['user'],
-            password=config['redshift']['password']
+            user=username,
+            password=password
         )
         logging.info(f"Successfully connected to Redshift DEV: {config['redshift']['host']}")
-        logging.info(f"Database: {config['redshift']['dbname']}, User: {config['redshift']['user']}")
+        logging.info(f"Database: {config['redshift']['dbname']}, User: {username}")
+        del password  # Remove password from memory
         return connection
     except Exception as e:
         logging.error(f"Error connecting to Redshift: {e}")

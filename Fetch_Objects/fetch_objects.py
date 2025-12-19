@@ -1,3 +1,29 @@
+"""
+Script Behavior Summary:
+
+1. Database Credentials:
+   - The database username and password for `fetchobjects.py` are provided at runtime
+     through an interactive prompt.
+   - The password input is masked (not visible on the screen).
+   - Once the database connection is established, the password is not stored or reused
+     anywhere in the code.
+
+2. Runtime Fetch Options:
+   - The script supports two runtime modes for fetching database objects:
+     
+     a) Selected Mode:
+        - When the fetch option is set to 'selected', the list of tables to be fetched
+          is dynamically pulled from the database using control tables.
+        - The following SQL files are used:
+            • etl_config/fetch_selected_objects_ctl.sql
+            • etl_config/fetch_all_objects_exclude_ctl.sql
+
+     b) All Mode:
+        - When the fetch option is set to 'all', the script fetches all database objects
+          except those explicitly listed in the exclude control table.
+        - Objects present in the exclusion list are skipped during the fetch process.
+"""
+
 import os
 import re
 import psycopg2
@@ -289,17 +315,17 @@ def fetch_all_objects(conn, schema_name, relation_type, base_path):
                     print(f"No DDL found for {relation_type} {object_name}.")
                     logging.warning(f"No DDL found for {relation_type} {object_name}")
     elif relation_type == "procedure":
-        procedures_all = fetch_stored_procedure_names(conn, schema_name)
+        objects = fetch_stored_procedure_names(conn, schema_name)
         if not objects:
             print(f"No {relation_type}s found in the schema.")
             logging.warning(f"No {relation_type}s found in schema {schema_name}")
             return
-        for idx, procedure_name in enumerate(procedures_all, 1):
-            print(f"Processing {idx}/{len(procedures_all)}: {procedure_name}")
-            if f"{schema_name}.{procedure_name}" not in procedures:
-                ddl = fetch_stored_procedure_ddl(conn, schema_name, procedure_name)
+        for idx, object_name in enumerate(objects, 1):
+            print(f"Processing {idx}/{len(objects)}: {object_name}")
+            if f"{schema_name}.{object_name}" not in procedures:
+                ddl = fetch_stored_procedure_ddl(conn, schema_name, object_name)
                 if ddl:
-                    save_ddl_to_file(base_path, schema_name, procedure_name, ddl)
+                    save_ddl_to_file(base_path, schema_name, object_name, ddl)
                 else:
                     print(f"No DDL found for {relation_type} {object_name}.")
                     logging.warning(f"No DDL found for {relation_type} {object_name}")
