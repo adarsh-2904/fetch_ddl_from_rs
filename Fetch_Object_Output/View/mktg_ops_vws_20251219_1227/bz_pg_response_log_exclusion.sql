@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.bz_pg_response_log_exclusion AS 
+SELECT pg_response_log_exclusion.email_addr, pg_response_log_exclusion.active_exclusion_ind, pg_response_log_exclusion.create_ts, pg_response_log_exclusion.update_ts, pg_response_log_exclusion.dw_trans_ts, pg_response_log_exclusion.appl_src_cd, pg_response_log_exclusion.load_id FROM mktg_ops_tbls.pg_response_log_exclusion WITH NO SCHEMA BINDING;

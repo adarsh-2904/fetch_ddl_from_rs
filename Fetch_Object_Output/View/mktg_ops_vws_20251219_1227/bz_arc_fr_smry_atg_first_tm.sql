@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.bz_arc_fr_smry_atg_first_tm AS 
+SELECT bz_arc_fr_smry_atg_first_tm.cnst_mstr_id, bz_arc_fr_smry_atg_first_tm.nk_order_id, bz_arc_fr_smry_atg_first_tm.first_time_trans_dt, bz_arc_fr_smry_atg_first_tm.cnvo_email, bz_arc_fr_smry_atg_first_tm.cnvo_bill_to_first_nm, bz_arc_fr_smry_atg_first_tm.cnvo_bill_to_last_nm, bz_arc_fr_smry_atg_first_tm.em_cnst_data_src_cd, bz_arc_fr_smry_atg_first_tm.em_cnst_email FROM mktg_ops_tbls.bz_arc_fr_smry_atg_first_tm WITH NO SCHEMA BINDING;

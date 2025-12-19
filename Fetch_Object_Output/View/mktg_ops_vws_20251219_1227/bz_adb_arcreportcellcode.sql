@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.bz_adb_arcreportcellcode AS 
+SELECT adb_arcreportcellcode.ireportcellcodeid, adb_arcreportcellcode.shighdate, adb_arcreportcellcode.shighdonation, adb_arcreportcellcode.slowdate, adb_arcreportcellcode.slowdonation, adb_arcreportcellcode.stag, adb_arcreportcellcode.dw_trans_ts, adb_arcreportcellcode.row_stat_cd, adb_arcreportcellcode.appl_src_cd, adb_arcreportcellcode.load_id FROM mktg_ops_tbls.adb_arcreportcellcode WITH NO SCHEMA BINDING;

@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.arc_vms_txn AS 
+SELECT arc_vms_txn.cnst_mstr_id, arc_vms_txn.cnst_hsld_id, arc_vms_txn.vol_key, arc_vms_txn.nk_hrs_summary_sku, arc_vms_txn.tot_hrs_cnt, arc_vms_txn.hrs_wrkd_dt, arc_vms_txn.unit_key, arc_vms_txn.vol_geo_zip_cd, arc_vms_txn.disaster_assignment_flg, arc_vms_txn.lob_nm, arc_vms_txn.dw_trans_ts, arc_vms_txn.appl_src_cd, arc_vms_txn.load_id FROM mktg_ops_tbls.arc_vms_txn WITH NO SCHEMA BINDING;

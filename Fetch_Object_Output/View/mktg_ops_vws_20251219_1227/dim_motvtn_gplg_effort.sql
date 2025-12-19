@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.dim_motvtn_gplg_effort AS 
+SELECT pg_catalog.row_number() OVER(  PARTITION BY 2 ORDER BY gs_gplg_motvtn_char_8.effort_num) AS motvtn_gplg_effort_key, '8'::text AS motvtn_char_string, gs_gplg_motvtn_char_8.effort_num, gs_gplg_motvtn_char_8.effort_num_cd, gs_gplg_motvtn_char_8.effort_num_dsc FROM data_lab_mktg_tbls.gs_gplg_motvtn_char_8 WITH NO SCHEMA BINDING;

@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.srvy_hsptl_questn_2_srvy_xref AS 
+SELECT srvy_hsptl_questn_2_srvy_xref.question_id, srvy_hsptl_questn_2_srvy_xref.srvy_id, srvy_hsptl_questn_2_srvy_xref.iwebappid, srvy_hsptl_questn_2_srvy_xref.src_attrbt_nm, srvy_hsptl_questn_2_srvy_xref.srvy_question_num, srvy_hsptl_questn_2_srvy_xref.adobe_path_var FROM mktg_ops_tbls.srvy_hsptl_questn_2_srvy_xref WITH NO SCHEMA BINDING;

@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.bz_adb_enumrtn_lkp AS 
+SELECT adb_enumrtn_lkp.table_nm, adb_enumrtn_lkp.column_nm, adb_enumrtn_lkp.enumrtn_label, adb_enumrtn_lkp.enumrtn_cd, adb_enumrtn_lkp.enumrtn_dsc, adb_enumrtn_lkp.dw_trans_ts, adb_enumrtn_lkp.row_stat_cd, adb_enumrtn_lkp.appl_src_cd, adb_enumrtn_lkp.load_id FROM mktg_ops_tbls.adb_enumrtn_lkp WITH NO SCHEMA BINDING;

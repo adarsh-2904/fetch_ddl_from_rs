@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.bz_adb_nmssubscription AS 
+SELECT adb_nmssubscription.iconfirmationid, adb_nmssubscription.ideletestatus, adb_nmssubscription.iemailformat, adb_nmssubscription.irecipientid, adb_nmssubscription.iserviceid, adb_nmssubscription.saddressspecific, adb_nmssubscription.tscreated, adb_nmssubscription.tsexpiration, adb_nmssubscription.dw_trans_ts, adb_nmssubscription.row_stat_cd, adb_nmssubscription.appl_src_cd, adb_nmssubscription.load_id FROM mktg_ops_tbls.adb_nmssubscription WITH NO SCHEMA BINDING;

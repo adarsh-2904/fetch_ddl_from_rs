@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.rr_rqq_rql_file_xref AS 
+SELECT DISTINCT rr_rqq_rql_file_xref.src_cd, rr_rqq_rql_file_xref.segmnt_cd, rr_rqq_rql_file_xref.segmnt_dsc, rr_rqq_rql_file_xref.file_cd, rr_rqq_rql_file_xref.file_cd_dsc FROM mktg_ops_tbls.rr_rqq_rql_file_xref WITH NO SCHEMA BINDING;

@@ -1,0 +1,281 @@
+object_name,schema_name,object_type,status,validation_status,validation_error,created_timestamp
+actvty_vwthrgh,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""data_lab_mktg_tbls.gs_viewthrough"" does not exist",2025-12-19 13:05:45
+adb_arcgms_broadlog,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:05:46
+adb_nmsbroadlogrcp,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:05:48
+adb_nmsrecipient,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:05:49
+arc_biomed_gender_race,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for relation cnst_cdi_smry_bio_prfr,2025-12-19 13:05:51
+arc_biomed_txn_ext_staff,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:05:54
+arc_entrprs_smry,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""mktg_ops_tbls.gms_arc_fr_smry"" does not exist",2025-12-19 13:05:55
+arc_glossary,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:05:57
+arc_phss_smry,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:05:58
+arc_phss_txn,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:06:00
+arc_vms_smry,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:06:01
+arc_vms_txn,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:06:02
+atg_order_registrants,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:06:04
+atg_registrants,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:06:05
+bzfc_active_cnst_segmnt,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:06:07
+bzfc_active_cnst_snpsht,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:06:08
+bzfc_adb_recipient_insrt_delta,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:06:10
+bzfc_adb_recipient_updt_delta,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:06:11
+bzfc_arc_best_smry,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:06:13
+bzfc_cdi_bio_prfr_email_profile,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for relation cnst_cdi_smry_bio_prfr,2025-12-19 13:06:14
+bzfc_cnst_cdi_fr_prfr_em_prfl,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:06:15
+bzfc_cnst_fr_prfr_flags,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""mktg_ops_tbls.gms_cnst_cdi_smry_fr_prfr"" does not exist",2025-12-19 13:06:18
+bzfc_comnictn_src,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:06:19
+bzfc_dim_unit_merged,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:06:20
+bzfc_email_append,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:06:22
+bzfc_fact_dmail_interaction,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:06:23
+bzfc_fact_dmail_intrctn_norm,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for relation bzfc_fact_dmail_intrctn_norm,2025-12-19 13:06:25
+bzfc_fact_email_interaction,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:06:26
+bzfc_fact_interaction,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for relation fact_interaction_aprm,2025-12-19 13:06:27
+bzfc_fact_interaction_all,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:06:29
+bzfc_fact_interaction_em_smry,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:06:30
+bzfc_fact_phone_interaction,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for relation pg_src_convrsn,2025-12-19 13:06:32
+bzfc_fact_phone_interaction_pg,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for relation dim_calendar,2025-12-19 13:06:34
+bzfc_fact_response_all,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:06:36
+bzfc_fact_sms_interaction,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""mktg_ops_tbls.bzfc_fact_sms_interaction"" does not exist",2025-12-19 13:06:37
+bzfc_fr_cnst_in_blood_region,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""mktg_ops_tbls.gms_cnst_cdi_smry_fr_prfr"" does not exist",2025-12-19 13:06:38
+bzfc_fsa_ask,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""ddcoe_vws.bzfc_fsa_ask"" does not exist",2025-12-19 13:06:40
+bzfc_fsa_cnst_indv_chrctrs2,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""ddcoe_vws.bzf_cnst_fsa_chrctrstc2"" does not exist",2025-12-19 13:06:41
+bzfc_fsa_cnst_indv_cntct_prefc,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""ddcoe_vws.bzf_cnst_fsa_cntct_prefc"" does not exist",2025-12-19 13:06:43
+bzfc_fsa_cnst_org_chrctrs2,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""ddcoe_vws.bzf_cnst_fsa_chrctrstc2"" does not exist",2025-12-19 13:06:44
+bzfc_fsa_cnst_org_cntct_prefc,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""ddcoe_vws.bzf_cnst_fsa_cntct_prefc"" does not exist",2025-12-19 13:06:46
+bzfc_pg_response_log,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:06:49
+bzfc_pg_response_log_ref,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:06:51
+bzfc_phone_append,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for relation pacific_east_phone_append,2025-12-19 13:06:53
+bzfc_prospect_pt_scr_fin,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""data_lab_mktg_tbls.prospect_pt_scr_fin"" does not exist",2025-12-19 13:06:54
+bzfc_prospect_pt_scr_nonfin,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""data_lab_mktg_tbls.prospect_pt_scr_fin"" does not exist",2025-12-19 13:06:56
+bzfc_sms_bio_prfl,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for relation pacific_east_phone_append,2025-12-19 13:06:57
+bzfc_sms_fr_prf,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:07:02
+bzfc_sms_fr_prfl,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:07:04
+bzfc_sms_phss_prfl,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for relation pacific_east_phone_append,2025-12-19 13:07:05
+bzfc_sms_profile,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:07:07
+bzfc_sms_vms_prfl,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for relation pacific_east_phone_append,2025-12-19 13:07:08
+bzfc_sponsor_journey_detail,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:07:10
+bzfc_sponsor_journey_smry,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,column b.dr_territory_id does not exist,2025-12-19 13:07:11
+bzfc_taxo_bio_collection_curr,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,Remote object depends on external shared object.,2025-12-19 13:07:13
+bzfc_taxo_humanitarian_curr,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,Remote object depends on external shared object.,2025-12-19 13:07:14
+bzfc_taxo_subscr_gplg,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,Remote object depends on external shared object.,2025-12-19 13:07:16
+bzfc_trigrd_campgn_smry,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for relation gms_bzfc_fact_email_intrctn_smry,2025-12-19 13:07:18
+bzfc_vms_cnst_in_blood_region,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for relation nhqmktg_cdrp_enrllmnt_sts,2025-12-19 13:07:19
+bzf_cem_cnst_msg_pref,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:07:21
+bzf_cem_fr_cnst_loc_prefs,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:07:23
+bzf_cnst_chrctrstc,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:07:25
+bzf_cnst_chrctrstc_arcpg,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:07:26
+bzf_cnst_chrctrstc_simio,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for relation bzf_cnst_chrctrstc_simio,2025-12-19 13:07:27
+bzf_cnst_scr,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""mktg_data_tbls.bzf_cnst_scr"" does not exist",2025-12-19 13:07:29
+bzf_cnst_scr_simio,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for relation bzf_cnst_scr_simio,2025-12-19 13:07:30
+bzf_prospect_pt_scr,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""data_lab_mktg_tbls.prospect_pt_scr_fin"" does not exist",2025-12-19 13:07:32
+bzl_cnst_fsa_acqstn,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for relation bzl_cnst_fsa_acqstn,2025-12-19 13:07:34
+bzl_cnst_mstr_fsa_acct_cntct,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""ddcoe_vws.bz_cnst_fsa"" does not exist",2025-12-19 13:07:35
+bzl_vms_sta_shift_smry,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:07:37
+bz_adb_arcgms_broadlog,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:07:39
+bz_adb_enumrtn_lkp,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:07:45
+bz_adb_nmsbroadlogrcp,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:07:48
+bz_adb_nmsdelivery,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:07:50
+bz_adb_nmsexcludelogrcp,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:07:53
+bz_adb_nmstrackingurl,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:00
+bz_adb_nmswebapp,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:03
+bz_aprm_email_bncd,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:06
+bz_aprm_email_lnk_clkd,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:08
+bz_aprm_email_opened,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:09
+bz_aprm_email_remove,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:11
+bz_aprm_email_sent,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:12
+bz_aprm_wb_apnd_prfrnc_cntr,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:13
+bz_aprm_wb_apnd_unsubs_rplc,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for relation aprm_wb_apnd_unsubs_rplc,2025-12-19 13:08:15
+bz_aprm_wb_rplc_fr_prf_cntr_lt,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for relation aprm_wb_rplc_fr_prf_cntr_lt,2025-12-19 13:08:16
+bz_arcpg_response_typ,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""ddcoe_vws.bz_arcpg_response_typ"" does not exist",2025-12-19 13:08:17
+bz_arc_comm_log,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:19
+bz_arc_fr_smry_atg_first_tm,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:20
+bz_arc_fr_smry_rco_first_tm,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:22
+bz_arc_fr_smry_rco_last_donat,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:23
+bz_arc_fr_smry_rco_last_sustnr_donat,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:24
+bz_area_code_2_time_zone,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:27
+bz_campgn_yr_end_dow_projctn,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:28
+bz_cnst_birth_best,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:30
+bz_cnst_birth_pg,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:31
+bz_cnst_cnstcy_affn,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""ddcoe_vws.bz_cnst_cnstcy_affn"" does not exist",2025-12-19 13:08:33
+bz_cnst_fsa_acqstn,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""ddcoe_vws.bz_cnst_fsa_acqstn"" does not exist",2025-12-19 13:08:34
+bz_cnst_gender_best,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:35
+bz_cnst_mstr,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:37
+bz_comnictn_src,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:38
+bz_cur_mth_bio_donor_freq,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:39
+bz_digital_analytics_txn,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:41
+bz_dim_appt_typ,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:42
+bz_dim_campgn,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:43
+bz_dim_channel,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:45
+bz_dim_cnst_demographic,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:46
+bz_dim_delivery,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:48
+bz_dim_dm_src_treatmnt_xref,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:49
+bz_dim_edrtl_response_period,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:51
+bz_dim_email_intrctn_typ,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:52
+bz_dim_fund_cd,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,Relation dim_fund_cd does not exist in the database.,2025-12-19 13:08:54
+bz_dim_operator,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:55
+bz_dim_phone_adtnl_reqst,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:57
+bz_dim_phone_call_dspstn,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:08:58
+bz_dim_phone_campgn,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:00
+bz_dim_phone_campgn_src_cd_xref,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for relation pg_src_convrsn,2025-12-19 13:09:01
+bz_dim_phone_script,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:03
+bz_dim_rpt_cell_cd,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:04
+bz_dim_treatmnt,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:05
+bz_dim_zipcodes,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:08
+bz_email_src_cd,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:09
+bz_fund,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:10
+bz_gms_arc_fr_txn_segmnt,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:13
+bz_grp_ref,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:15
+bz_microsites_report,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""data_lab_mktg_tbls.microsites_report"" does not exist",2025-12-19 13:09:16
+bz_pg_group_membrshp,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:18
+bz_pg_group_ref,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:19
+bz_pg_response_log_exclusion,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:21
+bz_prospect_pt_scr,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""data_lab_mktg_tbls.prospect_pt_scr_fin"" does not exist",2025-12-19 13:09:23
+bz_rr_dm_srccd_aprm_cellcd,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""mktg_data_tbls.rr_dm_srccd_aprm_cellcd"" does not exist",2025-12-19 13:09:24
+bz_scr,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:26
+campgn_prospct_list,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:27
+chptr_list_membrshp,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:28
+chptr_portal_list_typ_ref,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:30
+cnst_addr_ncoa_log,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:31
+cnst_addr_ncoa_log_1,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:32
+cnst_cdi_phss_preferred_dmail,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:36
+cnst_cdi_phss_preferred_email,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:37
+cnst_cdi_smry_non_fr_prfr,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:40
+cnst_cdi_smry_phss_prfr,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:41
+cnst_cdi_smry_vms_prfr,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for relation nhqmktg_cdrp_enrllmnt_sts,2025-12-19 13:09:44
+cnst_cdi_src_profile_mb,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:45
+cnst_mstr_id_map,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:46
+cnst_sturt_lst_affl,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:48
+cnvo_cnst,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for schema convio_tbls,2025-12-19 13:09:49
+cnvo_group_acct,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for schema convio_tbls,2025-12-19 13:09:51
+cnvo_group_members,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for schema convio_tbls,2025-12-19 13:09:52
+dim_age_band,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:53
+dim_bio_mstr_cust_appnd,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:55
+dim_email_segmnt,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:57
+dim_isp_labor,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:09:59
+dim_motvtn_clt_matrix,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""data_lab_mktg_tbls.gs_fy21_clt_motivtn_char10_11_norm"" does not exist",2025-12-19 13:10:01
+dim_motvtn_gplg_effort,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""data_lab_mktg_tbls.gs_gplg_motvtn_char_8"" does not exist",2025-12-19 13:10:02
+dim_motvtn_gplg_scr,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""data_lab_mktg_tbls.gs_gplg_motvtn_char_9_10"" does not exist",2025-12-19 13:10:03
+dim_motvtn_gplg_segmnt,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""data_lab_mktg_tbls.gs_gplg_motvtn_char_11_12"" does not exist",2025-12-19 13:10:05
+dim_recipient,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:06
+dim_src_2_intrctn_brdg,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:08
+dim_volunteer,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:12
+dv_active_segmnt_snapsht,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:13
+dv_digtl_engmnt_scorcrd,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:15
+esri_blockgroup_demgrphc,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:16
+esri_zip_cd_demgrphc,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:17
+fact_atg_order_line,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:19
+fact_dmail_interaction,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:20
+fact_email_interaction,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:21
+fact_interaction_aprm,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,Relation fact_interaction_aprm does not exist in the database.,2025-12-19 13:10:23
+fact_vol_applctn,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:24
+fresh_address_email_append,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:26
+fr_asset_gift_smry,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"schema ""ufds_vws"" does not exist",2025-12-19 13:10:27
+geo_zip_code_to_chapter,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:29
+gmpbzal_dim_fund,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:30
+gmpbzal_dim_src,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for relation pg_src_convrsn,2025-12-19 13:10:31
+gmpbz_chpt_cnst_cnstcy,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:33
+gmpbz_cnst_comnictn_email,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:34
+gmpbz_dim_arcpg_amt_typ,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:35
+gmpbz_dim_arcpg_chan_typ,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:37
+gmpbz_dim_arcpg_comnictn_typ,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:38
+gmpbz_dim_arcpg_response_typ,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:40
+gmpbz_dim_arcpg_src,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:41
+gmpbz_dim_comnictn,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:42
+gmpbz_dim_dollar_tier,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:45
+gmpbz_dim_fund,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:46
+gmpbz_dim_giftran_typ,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:49
+gmpbz_dim_gift_stg,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:50
+gmpbz_dim_gl_fcc,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:51
+gmpbz_dim_intrctn_typ,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:53
+gmpbz_dim_merchant,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,Relation gms_tbls does not exist in the database.,2025-12-19 13:10:54
+gmpbz_dim_pmt_mthd,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:55
+gmpbz_dim_prog,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:10:56
+gmpbz_dim_rgnrt_reason,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"schema ""ufds_vws"" does not exist",2025-12-19 13:10:58
+gmpbz_dim_src,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for relation pg_src_convrsn,2025-12-19 13:10:59
+gmpbz_dim_sustnr_typ,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:01
+gmpbz_dim_vendor,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:02
+gmpbz_fact_arcpg_cnst_comnictn,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:03
+gmpbz_gift_addr,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:05
+gmpbz_gift_premium,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:06
+gmpbz_gift_sku,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:07
+gms_arc_fr_smry,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""mktg_ops_tbls.gms_arc_fr_smry"" does not exist",2025-12-19 13:11:09
+gms_arc_fr_smry_cbg,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""mktg_ops_tbls.gms_arc_fr_smry_cbg"" does not exist",2025-12-19 13:11:10
+gms_arc_fr_smry_sustnr,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:12
+gms_arc_fr_txn,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:13
+gms_arc_fr_txn_sustnr,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:14
+gms_bzfc_adb_fact_donation,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:16
+gms_bzfc_cnst_cdi_fr_prfr_em_prfl,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:17
+gms_bzfc_dim_unf_fr_cnst,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:18
+gms_bzfc_donation_rank,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:20
+gms_bzfc_fact_ask,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for relation dim_calendar,2025-12-19 13:11:21
+gms_bzfc_fact_ask_cntct_intrctn,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:22
+gms_bzfc_fact_cnst_comnictn,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:24
+gms_bzfc_fact_email_intrctn_smry,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for relation gms_bzfc_fact_email_intrctn_smry,2025-12-19 13:11:25
+gms_bzfc_fact_giftran,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:26
+gms_bzf_cnst_cnstcy,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:28
+gms_bzf_cnst_cnstcy_curnt,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:29
+gms_bz_pg_group_membrshp,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:30
+gms_cnst_cdi_smry_fr_pa_dm,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,permission denied for relation cnst_cdi_s_f_p_fr_dmail,2025-12-19 13:11:32
+gms_cnst_cdi_smry_fr_prfr,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""mktg_ops_tbls.gms_cnst_cdi_smry_fr_prfr"" does not exist",2025-12-19 13:11:33
+gms_cnst_cdi_smry_fr_prfr_src,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,column a.grp_key does not exist,2025-12-19 13:11:35
+gms_frfbz_dim_tag,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:36
+gms_pg_group_membrshp_src,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""mktg_ops_tbls.gms_arc_fr_smry"" does not exist",2025-12-19 13:11:38
+gms_sf_acct_contct_brdg,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:39
+lkp_adb_intrctn_status_dsc,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:41
+mktg_sky_dates,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""mktg_ops_tbls.mktg_sky_dates"" does not exist",2025-12-19 13:11:42
+nhqmktg_cdrp_enrllmnt_sts,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:43
+pacific_east_email_append,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:45
+pbi_bzl_fact_show_prodctv_ind,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:46
+pbi_entrprs_campgn_comnts,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:47
+pbi_entrprs_campgn_results,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:49
+pbi_entrprs_campgn_smry,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:50
+phone_interaction_eoc,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:53
+phone_interaction_pg_eoc,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:54
+rr_rqq_rql_file_xref,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:57
+rr_rqq_rql_file_xref_mtvtn_cd,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:11:59
+scr_val_ref,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""data_lab_mktg_tbls.scr_val_ref"" does not exist",2025-12-19 13:12:00
+srvy_anvrsry_vlntr_questions,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:01
+srvy_anvrsry_vlntr_questn_2_srvy_xref,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:03
+srvy_anvrsry_vlntr_rspns_norm,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:04
+srvy_anvrsry_vlntr_rspns_txt_norm,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""mktg_ops_tbls.srvy_anvrsry_vlntr_rspns_txt_norm"" does not exist",2025-12-19 13:12:05
+srvy_anvrsry_vlntr_survey,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:07
+srvy_anvrsry_vlntr_values,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:08
+srvy_anvrsy_vlntr_rspns,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""mktg_ops_tbls.srvy_new_anvrsy_vlntr_rspns"" does not exist",2025-12-19 13:12:09
+srvy_anvrsy_vlntr_rspns_all,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""mktg_ops_tbls.srvy_anvrsy_vlntr_rspns_all"" does not exist",2025-12-19 13:12:11
+srvy_blood_sponsor,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:12
+srvy_blood_sponsor_questn_2_srvy_xref,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:13
+srvy_blood_sponsor_rspns,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:15
+srvy_blood_sponsor_survey,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:16
+srvy_blood_sponsor_values,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:17
+srvy_gplg_rspns_ss,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""mktg_ops_tbls.gms_cnst_cdi_smry_fr_prfr"" does not exist",2025-12-19 13:12:19
+srvy_hsptl_customer_contact,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:20
+srvy_hsptl_periods_hst,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:22
+srvy_hsptl_questions,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:23
+srvy_hsptl_questions_hst,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:25
+srvy_hsptl_questn_2_srvy_xref,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:26
+srvy_hsptl_questn_catgry,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:27
+srvy_hsptl_respondents,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:29
+srvy_hsptl_respondents_hst,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:30
+srvy_hsptl_rspns,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""mktg_ops_tbls.srvy_hsptl_rspns"" does not exist",2025-12-19 13:12:31
+srvy_hsptl_rspns_hst,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:33
+srvy_hsptl_rspns_txt,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""mktg_ops_tbls.srvy_hsptl_rspns_txt"" does not exist",2025-12-19 13:12:34
+srvy_hsptl_sf_contact,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:35
+srvy_hsptl_survey,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:37
+srvy_hsptl_survey_hst,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:38
+srvy_hsptl_values,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:40
+srvy_hsptl_values_hst,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:41
+srvy_new_vlntr_los,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""mktg_stage_tbls.lkp_positions_taxonomy_mktg_stg"" does not exist",2025-12-19 13:12:42
+srvy_new_vlntr_questions,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:44
+srvy_new_vlntr_questn_2_srvy_xref,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:45
+srvy_new_vlntr_rspns_norm,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:46
+srvy_new_vlntr_rspns_txt_norm,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""mktg_ops_tbls.srvy_new_vlntr_rspns_txt_norm"" does not exist",2025-12-19 13:12:48
+srvy_new_vlntr_survey,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:49
+srvy_new_vlntr_values,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:50
+srvy_vlntr_anvrsry_los,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""mktg_stage_tbls.lkp_positions_taxonomy_mktg_stg"" does not exist",2025-12-19 13:12:52
+srvy_vlntr_geogrphy_taxo,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,Remote object depends on external shared object.,2025-12-19 13:12:53
+srvy_vlntr_los,mktg_ops_vws,view,SUCCESS,VALIDATION_FAILED,"relation ""mktg_stage_tbls.lkp_positions_taxonomy_mktg_stg"" does not exist",2025-12-19 13:12:55
+suprsn_ts_cnst,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:56
+suprsn_ts_cnst_test,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:57
+suspect_domains,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:12:58
+vaidity_email_valdtn,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:13:03
+vcn_smry_intake,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:13:04
+vms_sta_indivs,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:13:06
+vms_sta_orgs,mktg_ops_vws,view,SUCCESS,VALIDATED_OK,,2025-12-19 13:13:07

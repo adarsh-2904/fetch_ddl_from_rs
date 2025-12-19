@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.bz_campgn_yr_end_dow_projctn AS 
+SELECT campgn_yr_end_dow_projctn.calendar_dt, campgn_yr_end_dow_projctn.channel, campgn_yr_end_dow_projctn.budget_amt, campgn_yr_end_dow_projctn.fy_cd FROM mktg_ops_tbls.campgn_yr_end_dow_projctn WITH NO SCHEMA BINDING;

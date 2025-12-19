@@ -1,0 +1,26 @@
+object_name,schema_name,object_type,error_type,error_message,timestamp
+ld_cnst_cdi_bio_preferred_email,mktg_ops_tbls,procedure,PERMISSION_ERROR,must be owner of function or procedure ld_cnst_cdi_bio_preferred_email,2025-12-19 13:02:19
+ld_cnst_cdi_vms_preferred_dmail,mktg_ops_tbls,procedure,PERMISSION_ERROR,must be owner of function or procedure ld_cnst_cdi_vms_preferred_dmail,2025-12-19 13:02:28
+ld_cnst_cdi_vms_preferred_email,mktg_ops_tbls,procedure,PERMISSION_ERROR,must be owner of function or procedure ld_cnst_cdi_vms_preferred_email,2025-12-19 13:02:30
+sp_adb_accistbl_contacts,mktg_ops_tbls,procedure,PERMISSION_ERROR,must be owner of function or procedure sp_adb_accistbl_contacts,2025-12-19 13:04:08
+sp_adb_arcbitlyreturn,mktg_ops_tbls,procedure,PERMISSION_ERROR,must be owner of function or procedure sp_adb_arcbitlyreturn,2025-12-19 13:04:09
+sp_adb_arcgms_broadlog,mktg_ops_tbls,procedure,PERMISSION_ERROR,must be owner of function or procedure sp_adb_arcgms_broadlog,2025-12-19 13:04:10
+sp_adb_arckaleyradeactivation,mktg_ops_tbls,procedure,PERMISSION_ERROR,must be owner of function or procedure sp_adb_arckaleyradeactivation,2025-12-19 13:04:11
+sp_adb_arcreportcellcode,mktg_ops_tbls,procedure,PERMISSION_ERROR,must be owner of function or procedure sp_adb_arcreportcellcode,2025-12-19 13:04:14
+sp_adb_arctreatmentcode,mktg_ops_tbls,procedure,PERMISSION_ERROR,must be owner of function or procedure sp_adb_arctreatmentcode,2025-12-19 13:04:15
+sp_adb_nmsaddress,mktg_ops_tbls,procedure,PERMISSION_ERROR,must be owner of function or procedure sp_adb_nmsaddress,2025-12-19 13:04:17
+sp_adb_nmsbroadlogmsg,mktg_ops_tbls,procedure,PERMISSION_ERROR,must be owner of function or procedure sp_adb_nmsbroadlogmsg,2025-12-19 13:04:18
+sp_adb_nmsbroadlogrcp,mktg_ops_tbls,procedure,PERMISSION_ERROR,must be owner of function or procedure sp_adb_nmsbroadlogrcp,2025-12-19 13:04:19
+sp_adb_nmsdelivery_data,mktg_ops_tbls,procedure,PERMISSION_ERROR,must be owner of function or procedure sp_adb_nmsdelivery_data,2025-12-19 13:04:21
+sp_adb_nmsexcludelogrcp,mktg_ops_tbls,procedure,PERMISSION_ERROR,must be owner of function or procedure sp_adb_nmsexcludelogrcp,2025-12-19 13:04:22
+sp_adb_nmsinsms,mktg_ops_tbls,procedure,PERMISSION_ERROR,must be owner of function or procedure sp_adb_nmsinsms,2025-12-19 13:04:23
+sp_adb_nmsoperation,mktg_ops_tbls,procedure,PERMISSION_ERROR,must be owner of function or procedure sp_adb_nmsoperation,2025-12-19 13:04:25
+sp_adb_nmsrecipient,mktg_ops_tbls,procedure,PERMISSION_ERROR,must be owner of function or procedure sp_adb_nmsrecipient,2025-12-19 13:04:26
+sp_adb_nmsservice,mktg_ops_tbls,procedure,PERMISSION_ERROR,must be owner of function or procedure sp_adb_nmsservice,2025-12-19 13:04:27
+sp_adb_nmssubscription,mktg_ops_tbls,procedure,PERMISSION_ERROR,must be owner of function or procedure sp_adb_nmssubscription,2025-12-19 13:04:28
+sp_adb_nmsuseragent,mktg_ops_tbls,procedure,PERMISSION_ERROR,must be owner of function or procedure sp_adb_nmsuseragent,2025-12-19 13:04:30
+sp_adb_nmswebapp,mktg_ops_tbls,procedure,PERMISSION_ERROR,must be owner of function or procedure sp_adb_nmswebapp,2025-12-19 13:04:31
+sp_adb_nmswebapplogrcp,mktg_ops_tbls,procedure,PERMISSION_ERROR,must be owner of function or procedure sp_adb_nmswebapplogrcp,2025-12-19 13:04:33
+sp_adb_xtkfolder,mktg_ops_tbls,procedure,PERMISSION_ERROR,must be owner of function or procedure sp_adb_xtkfolder,2025-12-19 13:04:36
+sp_adb_xtkworkflow,mktg_ops_tbls,procedure,PERMISSION_ERROR,must be owner of function or procedure sp_adb_xtkworkflow,2025-12-19 13:04:45
+sp_upsert_dim_campgn,mktg_ops_tbls,procedure,PERMISSION_ERROR,must be owner of function or procedure sp_upsert_dim_campgn,2025-12-19 13:04:50

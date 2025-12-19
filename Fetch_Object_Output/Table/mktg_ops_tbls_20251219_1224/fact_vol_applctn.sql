@@ -1,0 +1,31 @@
+CREATE TABLE mktg_ops_tbls.fact_vol_applctn (
+    cnst_mstr_id bigint ENCODE az64 distkey,
+    orig_cnst_mstr_id bigint ENCODE az64,
+    attrib_typ character varying(20) ENCODE lzo COLLATE case_sensitive,
+    src_cd character varying(20) ENCODE lzo COLLATE case_sensitive,
+    subsrc_cd character varying(40) ENCODE lzo COLLATE case_sensitive,
+    email_addr character varying(128) ENCODE lzo COLLATE case_sensitive,
+    campgn_key integer ENCODE az64,
+    delivery_key integer ENCODE az64,
+    spon_ext_id character varying(9) ENCODE lzo COLLATE case_sensitive,
+    site_ext_id character varying(9) ENCODE lzo COLLATE case_sensitive,
+    site_cd character varying(4) ENCODE lzo COLLATE case_sensitive,
+    site_nm character varying(200) ENCODE lzo COLLATE case_sensitive,
+    nk_donat_dt date ENCODE raw,
+    accnt_id integer ENCODE az64,
+    application_ts timestamp without time zone ENCODE raw,
+    path_id integer ENCODE az64,
+    path_nm character varying(255) ENCODE lzo COLLATE case_sensitive,
+    entry_point_id integer ENCODE az64,
+    point_of_entry character varying(255) ENCODE lzo COLLATE case_sensitive,
+    intake_outcome character varying(24) ENCODE lzo COLLATE case_sensitive,
+    outcome_ts timestamp without time zone ENCODE az64,
+    contact_status character varying(50) ENCODE lzo COLLATE case_sensitive,
+    contact_completed_dt timestamp without time zone ENCODE az64,
+    dw_trans_ts timestamp without time zone NOT NULL ENCODE az64,
+    row_stat_cd character(1) NOT NULL ENCODE lzo COLLATE case_sensitive,
+    appl_src_cd character varying(4) NOT NULL ENCODE lzo COLLATE case_sensitive,
+    load_id integer NOT NULL ENCODE az64
+)
+DISTSTYLE KEY
+SORTKEY ( nk_donat_dt, application_ts );

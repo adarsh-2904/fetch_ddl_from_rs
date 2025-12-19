@@ -1,0 +1,127 @@
+2025-12-19 14:11:15,559 - INFO - ================================================================================
+2025-12-19 14:11:15,559 - INFO - Starting DROP Objects Script - mktg_ops_tbls_procedures
+2025-12-19 14:11:15,559 - INFO - Timestamp: 20251219_141115
+2025-12-19 14:11:15,559 - INFO - ================================================================================
+2025-12-19 14:11:15,566 - INFO - Configuration loaded successfully
+2025-12-19 14:11:15,566 - INFO - Log file: D:\Create_Fetch_Python_Code\database_object_migration\Create_Object_Output\Logs\mktg_ops_tbls_procedures_20251219_141115_drop_log.log
+2025-12-19 14:11:15,567 - INFO - Source file: D:\Create_Fetch_Python_Code\database_object_migration\Create_Object_Output\Procedure\mktg_ops_tbls_procedures_20251219_130120_created.csv
+2025-12-19 14:11:30,184 - INFO - Successfully connected to Redshift DEV: redshift.dev.datahub.redcross.net
+2025-12-19 14:11:30,184 - INFO - Database: mods_bi, User: hritik_singhania
+2025-12-19 14:11:30,184 - INFO - Found 102 objects to drop from D:\Create_Fetch_Python_Code\database_object_migration\Create_Object_Output\Procedure\mktg_ops_tbls_procedures_20251219_130120_created.csv
+2025-12-19 14:11:30,200 - INFO - Starting to drop 102 procedure(s)
+2025-12-19 14:11:30,206 - INFO - Initialized drop summary CSV: D:\Create_Fetch_Python_Code\database_object_migration\Create_Object_Output\Procedure\mktg_ops_tbls_procedures_20251219_141130_dropped_summary.csv
+2025-12-19 14:11:31,551 - INFO - \u2713 Successfully dropped procedure: ld_arc_phss_smry
+2025-12-19 14:11:32,867 - INFO - \u2713 Successfully dropped procedure: ld_arc_vms_smry
+2025-12-19 14:11:34,163 - INFO - \u2713 Successfully dropped procedure: ld_arc_vms_txn
+2025-12-19 14:11:35,514 - INFO - \u2713 Successfully dropped procedure: ld_bzfc_active_cnst_multi_snpsht
+2025-12-19 14:11:36,887 - INFO - \u2713 Successfully dropped procedure: ld_bzfc_active_cnst_snpsht
+2025-12-19 14:11:38,264 - INFO - \u2713 Successfully dropped procedure: ld_bzfc_adb_recipient_updt_delta
+2025-12-19 14:11:39,569 - INFO - \u2713 Successfully dropped procedure: ld_bzfc_bio_dnr_segmnt_dashbrd
+2025-12-19 14:11:40,894 - INFO - \u2713 Successfully dropped procedure: ld_bzfc_cnst_cdi_phss_em_prfl
+2025-12-19 14:11:42,232 - INFO - \u2713 Successfully dropped procedure: ld_bzfc_fact_dmail_intrctn_norm
+2025-12-19 14:11:43,641 - INFO - \u2713 Successfully dropped procedure: ld_bzfc_fact_intrctn_em_smry
+2025-12-19 14:11:44,975 - INFO - \u2713 Successfully dropped procedure: ld_bzfc_fact_phone_interaction
+2025-12-19 14:11:46,319 - INFO - \u2713 Successfully dropped procedure: ld_bzfc_fact_response_all
+2025-12-19 14:11:47,737 - INFO - \u2713 Successfully dropped procedure: ld_bzfc_fact_response_new
+2025-12-19 14:11:49,150 - INFO - \u2713 Successfully dropped procedure: ld_bzfc_pg_response_log
+2025-12-19 14:11:50,549 - INFO - \u2713 Successfully dropped procedure: ld_bzfc_phss_lrnr_list_mbrshp
+2025-12-19 14:11:51,936 - INFO - \u2713 Successfully dropped procedure: ld_bzfc_sms_fr_prfl
+2025-12-19 14:11:53,246 - INFO - \u2713 Successfully dropped procedure: ld_bzfc_sms_profile
+2025-12-19 14:11:54,569 - INFO - \u2713 Successfully dropped procedure: ld_bzf_cnst_cdi_sltn_id
+2025-12-19 14:11:56,197 - INFO - \u2713 Successfully dropped procedure: ld_bzl_cnst_mstr_fsa_in_primry
+2025-12-19 14:11:57,578 - INFO - \u2713 Successfully dropped procedure: ld_bz_arc_fr_smry_atg_first_tm
+2025-12-19 14:11:58,933 - INFO - \u2713 Successfully dropped procedure: ld_bz_arc_fr_smry_rco_first_tm
+2025-12-19 14:12:00,297 - INFO - \u2713 Successfully dropped procedure: ld_bz_arc_fr_smry_rco_last_donat
+2025-12-19 14:12:01,723 - INFO - \u2713 Successfully dropped procedure: ld_bz_arc_fr_smry_rco_last_sustnr_donat
+2025-12-19 14:12:03,191 - INFO - \u2713 Successfully dropped procedure: ld_bz_cnst_birth_best
+2025-12-19 14:12:04,555 - INFO - \u2713 Successfully dropped procedure: ld_bz_dim_cnst_demographic
+2025-12-19 14:12:05,968 - INFO - \u2713 Successfully dropped procedure: ld_bz_dim_rpt_cell_cd
+2025-12-19 14:12:07,648 - INFO - \u2713 Successfully dropped procedure: ld_bz_dim_treatmnt
+2025-12-19 14:12:08,957 - INFO - \u2713 Successfully dropped procedure: ld_bz_email_src_cd
+2025-12-19 14:12:10,293 - INFO - \u2713 Successfully dropped procedure: ld_bz_fact_response_pg
+2025-12-19 14:12:11,616 - INFO - \u2713 Successfully dropped procedure: ld_bz_gms_arc_fr_txn_segmnt
+2025-12-19 14:12:12,907 - INFO - \u2713 Successfully dropped procedure: ld_bz_google_analytics_txn
+2025-12-19 14:12:14,231 - INFO - \u2713 Successfully dropped procedure: ld_bz_srvy_rgnl_ldrshp
+2025-12-19 14:12:15,559 - INFO - \u2713 Successfully dropped procedure: ld_cnst_cdi_arc_biomed_smry
+2025-12-19 14:12:16,861 - INFO - \u2713 Successfully dropped procedure: ld_cnst_cdi_arc_biomed_txn
+2025-12-19 14:12:18,189 - INFO - \u2713 Successfully dropped procedure: ld_cnst_cdi_bio_preferred_dmail
+2025-12-19 14:12:19,542 - INFO - \u2713 Successfully dropped procedure: ld_cnst_cdi_phss_preferred_dmail
+2025-12-19 14:12:20,832 - INFO - \u2713 Successfully dropped procedure: ld_cnst_cdi_phss_preferred_email
+2025-12-19 14:12:22,132 - INFO - \u2713 Successfully dropped procedure: ld_cnst_cdi_smry_bio_prfr
+2025-12-19 14:12:23,455 - INFO - \u2713 Successfully dropped procedure: ld_cnst_cdi_smry_phss_prfr
+2025-12-19 14:12:24,807 - INFO - \u2713 Successfully dropped procedure: ld_cnst_cdi_smry_vms_prfr
+2025-12-19 14:12:26,299 - INFO - \u2713 Successfully dropped procedure: ld_dim_dm_src_treatmnt_xref
+2025-12-19 14:12:27,683 - INFO - \u2713 Successfully dropped procedure: ld_dim_recipient
+2025-12-19 14:12:28,957 - INFO - \u2713 Successfully dropped procedure: ld_dim_src_2_intrctn_brdg
+2025-12-19 14:12:30,332 - INFO - \u2713 Successfully dropped procedure: ld_dm_response_gplg_stg_match
+2025-12-19 14:12:31,668 - INFO - \u2713 Successfully dropped procedure: ld_dv_active_segmnt_snapsht
+2025-12-19 14:12:33,032 - INFO - \u2713 Successfully dropped procedure: ld_dv_arc_entrprs_smry
+2025-12-19 14:12:34,476 - INFO - \u2713 Successfully dropped procedure: ld_dv_channel_accessibility
+2025-12-19 14:12:35,852 - INFO - \u2713 Successfully dropped procedure: ld_dv_de_accessblty_lifestg
+2025-12-19 14:12:37,146 - INFO - \u2713 Successfully dropped procedure: ld_dv_de_accessblty_overall
+2025-12-19 14:12:37,146 - INFO - Progress: 50/102 procedure(s) processed
+2025-12-19 14:12:38,591 - INFO - \u2713 Successfully dropped procedure: ld_dv_de_scorcrd_campgns
+2025-12-19 14:12:39,906 - INFO - \u2713 Successfully dropped procedure: ld_dv_digtl_engmnt_scorcrd
+2025-12-19 14:12:41,227 - INFO - \u2713 Successfully dropped procedure: ld_fact_dmail_interaction_updt
+2025-12-19 14:12:42,618 - INFO - \u2713 Successfully dropped procedure: ld_fact_vol_applctn
+2025-12-19 14:12:44,001 - INFO - \u2713 Successfully dropped procedure: ld_gms_arc_fr_giftran_stg
+2025-12-19 14:12:45,330 - INFO - \u2713 Successfully dropped procedure: ld_gms_arc_fr_smry
+2025-12-19 14:12:46,994 - INFO - \u2713 Successfully dropped procedure: ld_gms_arc_fr_smry_cbg
+2025-12-19 14:12:49,717 - INFO - \u2713 Successfully dropped procedure: ld_gms_arc_fr_smry_sustnr
+2025-12-19 14:12:51,384 - INFO - \u2713 Successfully dropped procedure: ld_gms_arc_fr_txn
+2025-12-19 14:12:52,858 - INFO - \u2713 Successfully dropped procedure: ld_gms_bzfc_adb_fact_donation
+2025-12-19 14:12:54,368 - INFO - \u2713 Successfully dropped procedure: ld_gms_bzfc_cdi_fr_prfr_email_profile
+2025-12-19 14:12:55,848 - INFO - \u2713 Successfully dropped procedure: ld_gms_bzfc_cnst_fr_prfr_em_prfl
+2025-12-19 14:12:57,530 - INFO - \u2713 Successfully dropped procedure: ld_gms_bzfc_donation_rank
+2025-12-19 14:12:59,179 - INFO - \u2713 Successfully dropped procedure: ld_gms_bzfc_fact_ask_cntct_intrctn
+2025-12-19 14:13:00,675 - INFO - \u2713 Successfully dropped procedure: ld_gms_bzfc_fact_email_intrctn_smry
+2025-12-19 14:13:02,434 - INFO - \u2713 Successfully dropped procedure: ld_gms_bzf_cnst_cnstcy
+2025-12-19 14:13:03,707 - INFO - \u2713 Successfully dropped procedure: ld_gms_bzf_cnst_cnstcy_curnt
+2025-12-19 14:13:05,108 - INFO - \u2713 Successfully dropped procedure: ld_gms_bz_pg_group_membrshp
+2025-12-19 14:13:06,427 - INFO - \u2713 Successfully dropped procedure: ld_gms_cnst_behvrl_segmnt
+2025-12-19 14:13:07,952 - INFO - \u2713 Successfully dropped procedure: ld_gms_cnst_cdi_smry_fr_prfr
+2025-12-19 14:13:09,286 - INFO - \u2713 Successfully dropped procedure: ld_gms_cnst_cdi_smry_fr_prfr1
+2025-12-19 14:13:10,584 - INFO - \u2713 Successfully dropped procedure: ld_gms_cnst_cdi_s_f_p_fr_dmail
+2025-12-19 14:13:11,936 - INFO - \u2713 Successfully dropped procedure: ld_gms_cnst_cdi_s_f_p_fr_email
+2025-12-19 14:13:13,279 - INFO - \u2713 Successfully dropped procedure: ld_mbl_dntns_zero_dollar_insert
+2025-12-19 14:13:14,720 - INFO - \u2713 Successfully dropped procedure: ld_pbi_bio_demogrphcs
+2025-12-19 14:13:16,131 - INFO - \u2713 Successfully dropped procedure: ld_pbi_cfremappend
+2025-12-19 14:13:17,480 - INFO - \u2713 Successfully dropped procedure: ld_pbi_entrprs_campgn_non_adb
+2025-12-19 14:13:18,813 - INFO - \u2713 Successfully dropped procedure: ld_pbi_entrprs_campgn_results
+2025-12-19 14:13:20,462 - INFO - \u2713 Successfully dropped procedure: ld_pbi_entrprs_campgn_smry
+2025-12-19 14:13:21,883 - INFO - \u2713 Successfully dropped procedure: ld_pbi_model_perf_dashbrd
+2025-12-19 14:13:23,262 - INFO - \u2713 Successfully dropped procedure: ld_pg_src_convrsn
+2025-12-19 14:13:24,627 - INFO - \u2713 Successfully dropped procedure: ld_srvy_anvrsry_rspns_txt_norm
+2025-12-19 14:13:25,947 - INFO - \u2713 Successfully dropped procedure: ld_srvy_anvrsry_vlntr_rspns_norm
+2025-12-19 14:13:27,279 - INFO - \u2713 Successfully dropped procedure: ld_srvy_anvrsy_vlntr_rspns_all
+2025-12-19 14:13:28,589 - INFO - \u2713 Successfully dropped procedure: ld_srvy_anvrsy_vlntr_rspns_cmnt
+2025-12-19 14:13:29,960 - INFO - \u2713 Successfully dropped procedure: ld_srvy_anvrsy_vlntr_rspns_cmnt_curnt
+2025-12-19 14:13:31,313 - INFO - \u2713 Successfully dropped procedure: ld_srvy_hsptl_respondents
+2025-12-19 14:13:32,630 - INFO - \u2713 Successfully dropped procedure: ld_srvy_hsptl_rspns
+2025-12-19 14:13:33,930 - INFO - \u2713 Successfully dropped procedure: ld_srvy_hsptl_rspns_txt
+2025-12-19 14:13:35,235 - INFO - \u2713 Successfully dropped procedure: ld_srvy_new_anvrsy_vlntr_rspns
+2025-12-19 14:13:36,722 - INFO - \u2713 Successfully dropped procedure: ld_srvy_new_vlntr_rspns_cmnt_curnt
+2025-12-19 14:13:38,559 - INFO - \u2713 Successfully dropped procedure: ld_srvy_new_vlntr_rspns_norm
+2025-12-19 14:13:40,191 - INFO - \u2713 Successfully dropped procedure: ld_srvy_new_vlntr_rspns_txt_norm
+2025-12-19 14:13:41,497 - INFO - \u2713 Successfully dropped procedure: ld_suprsn_ts_cnst
+2025-12-19 14:13:42,812 - INFO - \u2713 Successfully dropped procedure: ld_updt_cnst_mstr_id_updates
+2025-12-19 14:13:44,116 - INFO - \u2713 Successfully dropped procedure: ld_updt_dm_campaign_hist
+2025-12-19 14:13:45,508 - INFO - \u2713 Successfully dropped procedure: sp_adb_arcprefchangefr
+2025-12-19 14:13:46,827 - INFO - \u2713 Successfully dropped procedure: sp_adb_nmsdelivery
+2025-12-19 14:13:48,187 - INFO - \u2713 Successfully dropped procedure: sp_adb_nmstrackingurl
+2025-12-19 14:13:49,668 - INFO - \u2713 Successfully dropped procedure: sp_adb_nmswebapplogrcpdata
+2025-12-19 14:13:49,674 - INFO - Progress: 100/102 procedure(s) processed
+2025-12-19 14:13:51,009 - INFO - \u2713 Successfully dropped procedure: sp_backup_dim_phone_campgn
+2025-12-19 14:13:52,306 - INFO - \u2713 Successfully dropped procedure: sp_backup_dim_phone_script
+2025-12-19 14:13:53,679 - INFO - \u2713 Successfully dropped procedure: updt_email_append_suprsn
+2025-12-19 14:13:53,686 - INFO - ================================================================================
+2025-12-19 14:13:53,686 - INFO - DROP OPERATION SUMMARY
+2025-12-19 14:13:53,686 - INFO - ================================================================================
+2025-12-19 14:13:53,686 - INFO - Object Type: PROCEDURE
+2025-12-19 14:13:53,686 - INFO - Total Objects: 102
+2025-12-19 14:13:53,691 - INFO - Successfully Dropped: 102
+2025-12-19 14:13:53,691 - INFO - Failed: 0
+2025-12-19 14:13:53,692 - INFO - Success Rate: 100.00%
+2025-12-19 14:13:53,692 - INFO - Drop summary saved to: D:\Create_Fetch_Python_Code\database_object_migration\Create_Object_Output\Procedure\mktg_ops_tbls_procedures_20251219_141130_dropped_summary.csv
+2025-12-19 14:13:53,693 - INFO - ================================================================================
+2025-12-19 14:13:53,695 - INFO - Connection closed. Drop script execution completed.

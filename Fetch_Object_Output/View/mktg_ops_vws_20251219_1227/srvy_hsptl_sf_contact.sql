@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.srvy_hsptl_sf_contact AS 
+SELECT srvy_hsptl_sf_contact.email, srvy_hsptl_sf_contact.customer_id, srvy_hsptl_sf_contact.sf_contact_id, srvy_hsptl_sf_contact.survey_id FROM mktg_ops_tbls.srvy_hsptl_sf_contact WITH NO SCHEMA BINDING;

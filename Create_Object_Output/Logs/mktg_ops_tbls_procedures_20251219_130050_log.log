@@ -1,0 +1,173 @@
+2025-12-19 13:00:50,894 - INFO - ================================================================================
+2025-12-19 13:00:50,894 - INFO - Starting DDL Execution Script - mktg_ops_tbls_procedures
+2025-12-19 13:00:50,894 - INFO - Timestamp: 20251219_130050
+2025-12-19 13:00:50,894 - INFO - ================================================================================
+2025-12-19 13:00:50,894 - INFO - Configuration loaded successfully
+2025-12-19 13:00:50,894 - INFO - Log file: D:\Create_Fetch_Python_Code\database_object_migration\Create_Object_Output\Logs\mktg_ops_tbls_procedures_20251219_130050_log.log
+2025-12-19 13:01:12,191 - INFO - Successfully connected to Redshift DEV: redshift.dev.datahub.redcross.net
+2025-12-19 13:01:12,191 - INFO - Database: mods_bi, User: hritik_singhania
+2025-12-19 13:01:12,203 - INFO - ================================================================================
+2025-12-19 13:01:12,203 - INFO - DYNAMIC FOLDER RESOLUTION
+2025-12-19 13:01:12,203 - INFO - ================================================================================
+2025-12-19 13:01:12,203 - INFO - Object Type: PROCEDURE
+2025-12-19 13:01:12,203 - INFO - Schema Name: mktg_ops_tbls
+2025-12-19 13:01:12,207 - INFO - Base Path: D:\Create_Fetch_Python_Code\database_object_migration\Fetch_Object_Output\Procedure
+2025-12-19 13:01:12,207 - INFO - Found 1 matching folder(s)
+2025-12-19 13:01:12,207 - INFO - Latest Folder: mktg_ops_tbls_20251219_1221
+2025-12-19 13:01:12,208 - INFO - Full Path: D:\Create_Fetch_Python_Code\database_object_migration\Fetch_Object_Output\Procedure\mktg_ops_tbls_20251219_1221
+2025-12-19 13:01:12,208 - INFO - ================================================================================
+2025-12-19 13:01:20,297 - INFO - User confirmed folder selection
+2025-12-19 13:01:20,300 - INFO - Initialized CSV files with timestamp: 20251219_130120
+2025-12-19 13:01:20,300 - INFO -   - Output Directory: D:\Create_Fetch_Python_Code\database_object_migration\Create_Object_Output\Procedure
+2025-12-19 13:01:20,300 - INFO -   - Created: D:\Create_Fetch_Python_Code\database_object_migration\Create_Object_Output\Procedure\mktg_ops_tbls_procedures_20251219_130120_created.csv
+2025-12-19 13:01:20,300 - INFO -   - Errored: D:\Create_Fetch_Python_Code\database_object_migration\Create_Object_Output\Procedure\mktg_ops_tbls_procedures_20251219_130120_errored.csv
+2025-12-19 13:01:20,312 - INFO - Found 127 SQL files in D:\Create_Fetch_Python_Code\database_object_migration\Fetch_Object_Output\Procedure\mktg_ops_tbls_20251219_1221
+2025-12-19 13:01:20,313 - INFO - ================================================================================
+2025-12-19 13:01:20,313 - INFO - Processing Configuration:
+2025-12-19 13:01:20,314 - INFO -   - Schema: mktg_ops_tbls
+2025-12-19 13:01:20,314 - INFO -   - Object Type: PROCEDURE
+2025-12-19 13:01:20,314 - INFO -   - Total Objects in Folder: 127
+2025-12-19 13:01:20,315 - INFO -   - Run Identifier: mktg_ops_tbls_procedures
+2025-12-19 13:01:20,315 - INFO - ================================================================================
+2025-12-19 13:01:22,390 - INFO - \u2713 Successfully created procedure: ld_arc_phss_smry
+2025-12-19 13:01:23,827 - INFO - \u2713 Successfully created procedure: ld_arc_vms_smry
+2025-12-19 13:01:25,290 - INFO - \u2713 Successfully created procedure: ld_arc_vms_txn
+2025-12-19 13:01:26,692 - INFO - \u2713 Successfully created procedure: ld_bzfc_active_cnst_multi_snpsht
+2025-12-19 13:01:28,130 - INFO - \u2713 Successfully created procedure: ld_bzfc_active_cnst_snpsht
+2025-12-19 13:01:29,551 - INFO - \u2713 Successfully created procedure: ld_bzfc_adb_recipient_updt_delta
+2025-12-19 13:01:33,333 - INFO - \u2713 Successfully created procedure: ld_bzfc_bio_dnr_segmnt_dashbrd
+2025-12-19 13:01:34,881 - INFO - \u2713 Successfully created procedure: ld_bzfc_cnst_cdi_phss_em_prfl
+2025-12-19 13:01:37,815 - INFO - \u2713 Successfully created procedure: ld_bzfc_fact_dmail_intrctn_norm
+2025-12-19 13:01:39,547 - INFO - \u2713 Successfully created procedure: ld_bzfc_fact_intrctn_em_smry
+2025-12-19 13:01:40,919 - INFO - \u2713 Successfully created procedure: ld_bzfc_fact_phone_interaction
+2025-12-19 13:01:43,441 - INFO - \u2713 Successfully created procedure: ld_bzfc_fact_response_all
+2025-12-19 13:01:46,100 - INFO - \u2713 Successfully created procedure: ld_bzfc_fact_response_new
+2025-12-19 13:01:48,715 - INFO - \u2713 Successfully created procedure: ld_bzfc_pg_response_log
+2025-12-19 13:01:50,092 - INFO - \u2713 Successfully created procedure: ld_bzfc_phss_lrnr_list_mbrshp
+2025-12-19 13:01:51,524 - INFO - \u2713 Successfully created procedure: ld_bzfc_sms_fr_prfl
+2025-12-19 13:01:52,885 - INFO - \u2713 Successfully created procedure: ld_bzfc_sms_profile
+2025-12-19 13:01:54,337 - INFO - \u2713 Successfully created procedure: ld_bzf_cnst_cdi_sltn_id
+2025-12-19 13:01:55,786 - INFO - \u2713 Successfully created procedure: ld_bzl_cnst_mstr_fsa_in_primry
+2025-12-19 13:01:57,162 - INFO - \u2713 Successfully created procedure: ld_bz_arc_fr_smry_atg_first_tm
+2025-12-19 13:01:58,568 - INFO - \u2713 Successfully created procedure: ld_bz_arc_fr_smry_rco_first_tm
+2025-12-19 13:02:00,062 - INFO - \u2713 Successfully created procedure: ld_bz_arc_fr_smry_rco_last_donat
+2025-12-19 13:02:01,485 - INFO - \u2713 Successfully created procedure: ld_bz_arc_fr_smry_rco_last_sustnr_donat
+2025-12-19 13:02:02,845 - INFO - \u2713 Successfully created procedure: ld_bz_cnst_birth_best
+2025-12-19 13:02:04,228 - INFO - \u2713 Successfully created procedure: ld_bz_dim_cnst_demographic
+2025-12-19 13:02:05,696 - INFO - \u2713 Successfully created procedure: ld_bz_dim_rpt_cell_cd
+2025-12-19 13:02:07,060 - INFO - \u2713 Successfully created procedure: ld_bz_dim_treatmnt
+2025-12-19 13:02:08,407 - INFO - \u2713 Successfully created procedure: ld_bz_email_src_cd
+2025-12-19 13:02:09,836 - INFO - \u2713 Successfully created procedure: ld_bz_fact_response_pg
+2025-12-19 13:02:11,339 - INFO - \u2713 Successfully created procedure: ld_bz_gms_arc_fr_txn_segmnt
+2025-12-19 13:02:12,769 - INFO - \u2713 Successfully created procedure: ld_bz_google_analytics_txn
+2025-12-19 13:02:14,192 - INFO - \u2713 Successfully created procedure: ld_bz_srvy_rgnl_ldrshp
+2025-12-19 13:02:15,636 - INFO - \u2713 Successfully created procedure: ld_cnst_cdi_arc_biomed_smry
+2025-12-19 13:02:17,093 - INFO - \u2713 Successfully created procedure: ld_cnst_cdi_arc_biomed_txn
+2025-12-19 13:02:18,521 - INFO - \u2713 Successfully created procedure: ld_cnst_cdi_bio_preferred_dmail
+2025-12-19 13:02:19,632 - WARNING - \u2717 Failed to create procedure: ld_cnst_cdi_bio_preferred_email - Error Type: PERMISSION_ERROR
+2025-12-19 13:02:20,977 - INFO - \u2713 Successfully created procedure: ld_cnst_cdi_phss_preferred_dmail
+2025-12-19 13:02:22,448 - INFO - \u2713 Successfully created procedure: ld_cnst_cdi_phss_preferred_email
+2025-12-19 13:02:23,890 - INFO - \u2713 Successfully created procedure: ld_cnst_cdi_smry_bio_prfr
+2025-12-19 13:02:25,411 - INFO - \u2713 Successfully created procedure: ld_cnst_cdi_smry_phss_prfr
+2025-12-19 13:02:27,121 - INFO - \u2713 Successfully created procedure: ld_cnst_cdi_smry_vms_prfr
+2025-12-19 13:02:28,212 - WARNING - \u2717 Failed to create procedure: ld_cnst_cdi_vms_preferred_dmail - Error Type: PERMISSION_ERROR
+2025-12-19 13:02:30,383 - WARNING - \u2717 Failed to create procedure: ld_cnst_cdi_vms_preferred_email - Error Type: PERMISSION_ERROR
+2025-12-19 13:02:32,892 - INFO - \u2713 Successfully created procedure: ld_dim_dm_src_treatmnt_xref
+2025-12-19 13:02:34,715 - INFO - \u2713 Successfully created procedure: ld_dim_recipient
+2025-12-19 13:02:36,836 - INFO - \u2713 Successfully created procedure: ld_dim_src_2_intrctn_brdg
+2025-12-19 13:02:38,716 - INFO - \u2713 Successfully created procedure: ld_dm_response_gplg_stg_match
+2025-12-19 13:02:40,752 - INFO - \u2713 Successfully created procedure: ld_dv_active_segmnt_snapsht
+2025-12-19 13:02:42,682 - INFO - \u2713 Successfully created procedure: ld_dv_arc_entrprs_smry
+2025-12-19 13:02:42,682 - INFO - Progress: 50/127 procedures processed
+2025-12-19 13:02:44,068 - INFO - \u2713 Successfully created procedure: ld_dv_channel_accessibility
+2025-12-19 13:02:46,809 - INFO - \u2713 Successfully created procedure: ld_dv_de_accessblty_lifestg
+2025-12-19 13:02:48,183 - INFO - \u2713 Successfully created procedure: ld_dv_de_accessblty_overall
+2025-12-19 13:02:49,726 - INFO - \u2713 Successfully created procedure: ld_dv_de_scorcrd_campgns
+2025-12-19 13:02:51,122 - INFO - \u2713 Successfully created procedure: ld_dv_digtl_engmnt_scorcrd
+2025-12-19 13:02:52,573 - INFO - \u2713 Successfully created procedure: ld_fact_dmail_interaction_updt
+2025-12-19 13:02:54,072 - INFO - \u2713 Successfully created procedure: ld_fact_vol_applctn
+2025-12-19 13:02:55,477 - INFO - \u2713 Successfully created procedure: ld_gms_arc_fr_giftran_stg
+2025-12-19 13:02:57,758 - INFO - \u2713 Successfully created procedure: ld_gms_arc_fr_smry
+2025-12-19 13:02:59,173 - INFO - \u2713 Successfully created procedure: ld_gms_arc_fr_smry_cbg
+2025-12-19 13:03:00,820 - INFO - \u2713 Successfully created procedure: ld_gms_arc_fr_smry_sustnr
+2025-12-19 13:03:02,279 - INFO - \u2713 Successfully created procedure: ld_gms_arc_fr_txn
+2025-12-19 13:03:04,221 - INFO - \u2713 Successfully created procedure: ld_gms_bzfc_adb_fact_donation
+2025-12-19 13:03:05,910 - INFO - \u2713 Successfully created procedure: ld_gms_bzfc_cdi_fr_prfr_email_profile
+2025-12-19 13:03:07,296 - INFO - \u2713 Successfully created procedure: ld_gms_bzfc_cnst_fr_prfr_em_prfl
+2025-12-19 13:03:08,712 - INFO - \u2713 Successfully created procedure: ld_gms_bzfc_donation_rank
+2025-12-19 13:03:10,074 - INFO - \u2713 Successfully created procedure: ld_gms_bzfc_fact_ask_cntct_intrctn
+2025-12-19 13:03:12,143 - INFO - \u2713 Successfully created procedure: ld_gms_bzfc_fact_email_intrctn_smry
+2025-12-19 13:03:13,576 - INFO - \u2713 Successfully created procedure: ld_gms_bzf_cnst_cnstcy
+2025-12-19 13:03:14,949 - INFO - \u2713 Successfully created procedure: ld_gms_bzf_cnst_cnstcy_curnt
+2025-12-19 13:03:16,420 - INFO - \u2713 Successfully created procedure: ld_gms_bz_pg_group_membrshp
+2025-12-19 13:03:19,650 - INFO - \u2713 Successfully created procedure: ld_gms_cnst_behvrl_segmnt
+2025-12-19 13:03:22,252 - INFO - \u2713 Successfully created procedure: ld_gms_cnst_cdi_smry_fr_prfr
+2025-12-19 13:03:24,214 - INFO - \u2713 Successfully created procedure: ld_gms_cnst_cdi_smry_fr_prfr1
+2025-12-19 13:03:26,312 - INFO - \u2713 Successfully created procedure: ld_gms_cnst_cdi_s_f_p_fr_dmail
+2025-12-19 13:03:27,756 - INFO - \u2713 Successfully created procedure: ld_gms_cnst_cdi_s_f_p_fr_email
+2025-12-19 13:03:29,127 - INFO - \u2713 Successfully created procedure: ld_mbl_dntns_zero_dollar_insert
+2025-12-19 13:03:30,510 - INFO - \u2713 Successfully created procedure: ld_pbi_bio_demogrphcs
+2025-12-19 13:03:31,982 - INFO - \u2713 Successfully created procedure: ld_pbi_cfremappend
+2025-12-19 13:03:33,712 - INFO - \u2713 Successfully created procedure: ld_pbi_entrprs_campgn_non_adb
+2025-12-19 13:03:36,955 - INFO - \u2713 Successfully created procedure: ld_pbi_entrprs_campgn_results
+2025-12-19 13:03:38,602 - INFO - \u2713 Successfully created procedure: ld_pbi_entrprs_campgn_smry
+2025-12-19 13:03:40,282 - INFO - \u2713 Successfully created procedure: ld_pbi_model_perf_dashbrd
+2025-12-19 13:03:41,780 - INFO - \u2713 Successfully created procedure: ld_pg_src_convrsn
+2025-12-19 13:03:43,220 - INFO - \u2713 Successfully created procedure: ld_srvy_anvrsry_rspns_txt_norm
+2025-12-19 13:03:44,974 - INFO - \u2713 Successfully created procedure: ld_srvy_anvrsry_vlntr_rspns_norm
+2025-12-19 13:03:46,978 - INFO - \u2713 Successfully created procedure: ld_srvy_anvrsy_vlntr_rspns_all
+2025-12-19 13:03:48,658 - INFO - \u2713 Successfully created procedure: ld_srvy_anvrsy_vlntr_rspns_cmnt
+2025-12-19 13:03:50,099 - INFO - \u2713 Successfully created procedure: ld_srvy_anvrsy_vlntr_rspns_cmnt_curnt
+2025-12-19 13:03:51,539 - INFO - \u2713 Successfully created procedure: ld_srvy_hsptl_respondents
+2025-12-19 13:03:54,799 - INFO - \u2713 Successfully created procedure: ld_srvy_hsptl_rspns
+2025-12-19 13:03:56,235 - INFO - \u2713 Successfully created procedure: ld_srvy_hsptl_rspns_txt
+2025-12-19 13:03:57,737 - INFO - \u2713 Successfully created procedure: ld_srvy_new_anvrsy_vlntr_rspns
+2025-12-19 13:03:59,354 - INFO - \u2713 Successfully created procedure: ld_srvy_new_vlntr_rspns_cmnt_curnt
+2025-12-19 13:04:00,830 - INFO - \u2713 Successfully created procedure: ld_srvy_new_vlntr_rspns_norm
+2025-12-19 13:04:02,325 - INFO - \u2713 Successfully created procedure: ld_srvy_new_vlntr_rspns_txt_norm
+2025-12-19 13:04:03,796 - INFO - \u2713 Successfully created procedure: ld_suprsn_ts_cnst
+2025-12-19 13:04:06,184 - INFO - \u2713 Successfully created procedure: ld_updt_cnst_mstr_id_updates
+2025-12-19 13:04:07,653 - INFO - \u2713 Successfully created procedure: ld_updt_dm_campaign_hist
+2025-12-19 13:04:08,711 - WARNING - \u2717 Failed to create procedure: sp_adb_accistbl_contacts - Error Type: PERMISSION_ERROR
+2025-12-19 13:04:08,727 - INFO - Progress: 100/127 procedures processed
+2025-12-19 13:04:09,796 - WARNING - \u2717 Failed to create procedure: sp_adb_arcbitlyreturn - Error Type: PERMISSION_ERROR
+2025-12-19 13:04:10,861 - WARNING - \u2717 Failed to create procedure: sp_adb_arcgms_broadlog - Error Type: PERMISSION_ERROR
+2025-12-19 13:04:11,932 - WARNING - \u2717 Failed to create procedure: sp_adb_arckaleyradeactivation - Error Type: PERMISSION_ERROR
+2025-12-19 13:04:13,737 - INFO - \u2713 Successfully created procedure: sp_adb_arcprefchangefr
+2025-12-19 13:04:14,836 - WARNING - \u2717 Failed to create procedure: sp_adb_arcreportcellcode - Error Type: PERMISSION_ERROR
+2025-12-19 13:04:15,924 - WARNING - \u2717 Failed to create procedure: sp_adb_arctreatmentcode - Error Type: PERMISSION_ERROR
+2025-12-19 13:04:16,988 - WARNING - \u2717 Failed to create procedure: sp_adb_nmsaddress - Error Type: PERMISSION_ERROR
+2025-12-19 13:04:18,060 - WARNING - \u2717 Failed to create procedure: sp_adb_nmsbroadlogmsg - Error Type: PERMISSION_ERROR
+2025-12-19 13:04:19,128 - WARNING - \u2717 Failed to create procedure: sp_adb_nmsbroadlogrcp - Error Type: PERMISSION_ERROR
+2025-12-19 13:04:20,583 - INFO - \u2713 Successfully created procedure: sp_adb_nmsdelivery
+2025-12-19 13:04:21,662 - WARNING - \u2717 Failed to create procedure: sp_adb_nmsdelivery_data - Error Type: PERMISSION_ERROR
+2025-12-19 13:04:22,764 - WARNING - \u2717 Failed to create procedure: sp_adb_nmsexcludelogrcp - Error Type: PERMISSION_ERROR
+2025-12-19 13:04:23,843 - WARNING - \u2717 Failed to create procedure: sp_adb_nmsinsms - Error Type: PERMISSION_ERROR
+2025-12-19 13:04:25,001 - WARNING - \u2717 Failed to create procedure: sp_adb_nmsoperation - Error Type: PERMISSION_ERROR
+2025-12-19 13:04:26,091 - WARNING - \u2717 Failed to create procedure: sp_adb_nmsrecipient - Error Type: PERMISSION_ERROR
+2025-12-19 13:04:27,239 - WARNING - \u2717 Failed to create procedure: sp_adb_nmsservice - Error Type: PERMISSION_ERROR
+2025-12-19 13:04:28,338 - WARNING - \u2717 Failed to create procedure: sp_adb_nmssubscription - Error Type: PERMISSION_ERROR
+2025-12-19 13:04:29,848 - INFO - \u2713 Successfully created procedure: sp_adb_nmstrackingurl
+2025-12-19 13:04:30,897 - WARNING - \u2717 Failed to create procedure: sp_adb_nmsuseragent - Error Type: PERMISSION_ERROR
+2025-12-19 13:04:31,960 - WARNING - \u2717 Failed to create procedure: sp_adb_nmswebapp - Error Type: PERMISSION_ERROR
+2025-12-19 13:04:33,029 - WARNING - \u2717 Failed to create procedure: sp_adb_nmswebapplogrcp - Error Type: PERMISSION_ERROR
+2025-12-19 13:04:34,625 - INFO - \u2713 Successfully created procedure: sp_adb_nmswebapplogrcpdata
+2025-12-19 13:04:36,901 - WARNING - \u2717 Failed to create procedure: sp_adb_xtkfolder - Error Type: PERMISSION_ERROR
+2025-12-19 13:04:45,623 - WARNING - \u2717 Failed to create procedure: sp_adb_xtkworkflow - Error Type: PERMISSION_ERROR
+2025-12-19 13:04:47,506 - INFO - \u2713 Successfully created procedure: sp_backup_dim_phone_campgn
+2025-12-19 13:04:49,073 - INFO - \u2713 Successfully created procedure: sp_backup_dim_phone_script
+2025-12-19 13:04:50,391 - WARNING - \u2717 Failed to create procedure: sp_upsert_dim_campgn - Error Type: PERMISSION_ERROR
+2025-12-19 13:05:00,245 - INFO - \u2713 Successfully created procedure: updt_email_append_suprsn
+2025-12-19 13:05:00,251 - INFO - ================================================================================
+2025-12-19 13:05:00,251 - INFO - EXECUTION SUMMARY
+2025-12-19 13:05:00,251 - INFO - ================================================================================
+2025-12-19 13:05:00,251 - INFO - Object Type: PROCEDURE
+2025-12-19 13:05:00,251 - INFO - Schema: mktg_ops_tbls
+2025-12-19 13:05:00,251 - INFO - Total Objects in Folder: 127
+2025-12-19 13:05:00,251 - INFO - Successfully Created: 102
+2025-12-19 13:05:00,251 - INFO - Failed: 25
+2025-12-19 13:05:00,254 - INFO - Success Rate: 80.31%
+2025-12-19 13:05:00,254 - INFO - Created objects saved to: D:\Create_Fetch_Python_Code\database_object_migration\Create_Object_Output\Procedure\mktg_ops_tbls_procedures_20251219_130120_created.csv
+2025-12-19 13:05:00,254 - INFO - Errored objects saved to: D:\Create_Fetch_Python_Code\database_object_migration\Create_Object_Output\Procedure\mktg_ops_tbls_procedures_20251219_130120_errored.csv
+2025-12-19 13:05:00,254 - INFO - ================================================================================
+2025-12-19 13:05:00,256 - INFO - Connection closed. Script execution completed.

@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.dim_email_segmnt AS 
+SELECT dim_email_segmnt.email_segmnt_key, dim_email_segmnt.email_segmnt_cd, dim_email_segmnt.email_segmnt_dsc, dim_email_segmnt.dw_trans_ts, dim_email_segmnt.row_stat_cd, dim_email_segmnt.appl_src_cd, dim_email_segmnt.load_id FROM mktg_ops_tbls.dim_email_segmnt WITH NO SCHEMA BINDING;

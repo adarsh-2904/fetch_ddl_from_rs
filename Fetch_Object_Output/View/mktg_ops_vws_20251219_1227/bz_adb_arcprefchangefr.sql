@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.bz_adb_arcprefchangefr AS 
+SELECT adb_arcprefchangefr.iblacklistemail_fr, adb_arcprefchangefr.ideliveryid, adb_arcprefchangefr.iprefchangefrid, adb_arcprefchangefr.irecipientid, adb_arcprefchangefr.sfr_em_email, adb_arcprefchangefr.tslastmodified, adb_arcprefchangefr.dw_trans_ts, adb_arcprefchangefr.row_stat_cd, adb_arcprefchangefr.appl_src_cd, adb_arcprefchangefr.load_id FROM mktg_ops_tbls.adb_arcprefchangefr WITH NO SCHEMA BINDING;

@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.bz_dim_campgn AS 
+SELECT dim_campgn.campgn_key, dim_campgn.nk_campgn_id, dim_campgn.campgn_cd, dim_campgn.campgn_nm, dim_campgn.campgn_plan_id, dim_campgn.campgn_plan_nm, dim_campgn.campgn_lob_id, dim_campgn.campgn_lob_nm, dim_campgn.campgn_channel_id, dim_campgn.campgn_channel_nm, dim_campgn.campgn_program_id, dim_campgn.campgn_program_nm, dim_campgn.is_triggrd_campgn, dim_campgn.srcsys_trans_ts, dim_campgn.dw_trans_ts, dim_campgn.row_stat_cd, dim_campgn.appl_src_cd, dim_campgn.load_id FROM mktg_ops_tbls.dim_campgn WITH NO SCHEMA BINDING;

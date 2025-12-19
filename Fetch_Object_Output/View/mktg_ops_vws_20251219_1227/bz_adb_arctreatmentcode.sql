@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.bz_adb_arctreatmentcode AS 
+SELECT adb_arctreatmentcode.itreatmentcodeid, adb_arctreatmentcode.streatmentcode, adb_arctreatmentcode.sreportcellcodeid, adb_arctreatmentcode.iactive, adb_arctreatmentcode.streatmentdesc, adb_arctreatmentcode.tscreated, adb_arctreatmentcode.dw_trans_ts, adb_arctreatmentcode.row_stat_cd, adb_arctreatmentcode.appl_src_cd, adb_arctreatmentcode.load_id FROM mktg_ops_tbls.adb_arctreatmentcode WITH NO SCHEMA BINDING;

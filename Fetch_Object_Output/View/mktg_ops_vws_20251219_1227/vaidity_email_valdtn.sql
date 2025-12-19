@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.vaidity_email_valdtn AS 
+SELECT vaidity_email_valdtn.email_addr, vaidity_email_valdtn.valdtn_status, vaidity_email_valdtn.valdtn_dt, vaidity_email_valdtn.valdtn_file_nm FROM mktg_ops_tbls.vaidity_email_valdtn WITH NO SCHEMA BINDING;

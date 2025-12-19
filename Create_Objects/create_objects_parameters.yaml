@@ -12,8 +12,8 @@ paths:
 # Object Configuration - EDIT THIS SECTION FOR DIFFERENT RUNS
 object_config:
   schema_name: "mktg_ops_tbls"           # Schema name to match folder prefix
-  object_type: "table"                # Options: "view", "table", "procedure"
-  run_identifier: "mktg_ops_tbls_tables"  # For Naming Log Files
+  object_type: "procedure"                # Options: "view", "table", "procedure"
+  run_identifier: "mktg_ops_tbls_procedures"  # For Naming Log Files
 
 
 # Execution Configuration

@@ -303,49 +303,93 @@ def validate_view(connection, schema_name, view_name):
         return False, str(e)
 
 
-# Validate all created views
-def validate_all_views(connection, created_file, schema_name):
+# Validate a table
+def validate_table(connection, schema_name, table_name):
     """
-    Reads created.csv, validates each view, and updates the CSV with validation results
-    Only runs if object_type is VIEW
+    Validates a table by executing a lightweight query that returns at most one row.
+    Returns (success: bool, error_message: str or None)
+    """
+    try:
+        cursor = connection.cursor()
+        validation_query = f"SELECT 1 FROM {schema_name}.{table_name} LIMIT 1;"
+        cursor.execute(validation_query)
+        cursor.close()
+        connection.commit()
+        return True, None
+    except psycopg2.Error as e:
+        connection.rollback()
+        error_message = str(e).strip()
+        error_msg_short = error_message[:500] if len(error_message) > 500 else error_message
+        return False, error_msg_short
+    except Exception as e:
+        connection.rollback()
+        return False, str(e)
+
+
+# Validate all created objects for a specific object type (VIEW or TABLE)
+def validate_all_objects(connection, created_file, schema_name, object_type):
+    """
+    Reads created.csv, validates each object of object_type, and updates the CSV with validation results
+    Runs for VIEW and TABLE
     """
     try:
         logging.info("=" * 80)
-        logging.info("STARTING VIEW VALIDATION")
+        logging.info(f"STARTING {object_type.upper()} VALIDATION")
         logging.info("=" * 80)
 
         # Read the created CSV
-        views_to_validate = []
+        rows = []
         with open(created_file, 'r', newline='', encoding='utf-8') as f:
             reader = csv.DictReader(f)
             for row in reader:
-                views_to_validate.append(row)
+                rows.append(row)
 
-        if not views_to_validate:
-            logging.info("No views to validate")
+        if not rows:
+            logging.info(f"No {object_type.lower()}s to validate")
             return 0, 0
 
-        logging.info(f"Found {len(views_to_validate)} view(s) to validate")
+        # Filter rows for the requested object type
+        to_validate = [r for r in rows if r['object_type'].lower() == object_type.lower()]
+
+        if not to_validate:
+            logging.info(f"No {object_type.lower()}s to validate")
+            return 0, 0
+
+        logging.info(f"Found {len(to_validate)} {object_type.lower()}(s) to validate")
 
         validated_ok = 0
         validation_failed = 0
 
-        # Validate each view
-        for view in views_to_validate:
-            view_name = view['object_name']
+        # Validate each object
+        for obj in to_validate:
+            name = obj['object_name']
 
-            success, error_message = validate_view(connection, schema_name, view_name)
+            if object_type.lower() == 'view':
+                success, error_message = validate_view(connection, schema_name, name)
+            else:  # table
+                success, error_message = validate_table(connection, schema_name, name)
 
             if success:
-                logging.info(f"✓ Validation successful: {view_name}")
-                view['validation_status'] = 'VALIDATED_OK'
-                view['validation_error'] = ''
+                logging.info(f"✓ Validation successful: {name}")
+                obj['validation_status'] = 'VALIDATED_OK'
+                obj['validation_error'] = ''
                 validated_ok += 1
             else:
-                logging.warning(f"✗ Validation failed: {view_name} - {error_message}")
-                view['validation_status'] = 'VALIDATION_FAILED'
-                view['validation_error'] = error_message
+                logging.warning(f"✗ Validation failed: {name} - {error_message}")
+                obj['validation_status'] = 'VALIDATION_FAILED'
+                obj['validation_error'] = error_message
                 validation_failed += 1
+
+        # Merge updated rows back and write CSV
+        updated_rows = []
+        validated_names = {r['object_name'] for r in to_validate}
+        for original in rows:
+            if original['object_name'] in validated_names and original['object_type'].lower() == object_type.lower():
+                # find updated row
+                updated = next((r for r in to_validate if r['object_name'] == original['object_name']), original)
+                updated_rows.append(updated)
+            else:
+                updated_rows.append(original)
 
         # Rewrite the CSV with validation columns
         with open(created_file, 'w', newline='', encoding='utf-8') as f:
@@ -353,21 +397,21 @@ def validate_all_views(connection, created_file, schema_name):
                           'validation_status', 'validation_error', 'created_timestamp']
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
-            writer.writerows(views_to_validate)
+            writer.writerows(updated_rows)
 
         logging.info("=" * 80)
-        logging.info("VIEW VALIDATION SUMMARY")
+        logging.info(f"{object_type.upper()} VALIDATION SUMMARY")
         logging.info("=" * 80)
-        logging.info(f"Total Views Validated: {len(views_to_validate)}")
+        logging.info(f"Total {object_type.capitalize()}s Validated: {len(to_validate)}")
         logging.info(f"✓ Validated Successfully: {validated_ok}")
         logging.info(f"✗ Validation Failed: {validation_failed}")
-        logging.info(f"Validation Success Rate: {(validated_ok / len(views_to_validate) * 100):.2f}%")
+        logging.info(f"Validation Success Rate: {(validated_ok / len(to_validate) * 100):.2f}%")
         logging.info("=" * 80)
 
         return validated_ok, validation_failed
 
     except Exception as e:
-        logging.error(f"Error during view validation: {e}")
+        logging.error(f"Error during {object_type.lower()} validation: {e}")
         return 0, 0
 
 
@@ -410,8 +454,8 @@ def write_to_created_csv(created_file, object_name, schema_name, object_type):
     try:
         with open(created_file, 'a', newline='', encoding='utf-8') as f:
             writer = csv.writer(f)
-            # For views, validation columns will be filled later
-            if object_type.lower() == 'view':
+            # For views and tables, validation columns will be filled later
+            if object_type.lower() in ('view', 'table'):
                 writer.writerow([object_name, schema_name, object_type, 'SUCCESS',
                                  'PENDING', '', datetime.now().strftime('%Y-%m-%d %H:%M:%S')])
             else:
@@ -571,11 +615,11 @@ def process_ddl_files(connection, config):
 
             dependency_errors = still_failing
 
-    # VIEW VALIDATION - Only run if object_type is VIEW
+    # OBJECT VALIDATION - Run for VIEW and TABLE
     validated_ok = 0
     validation_failed = 0
-    if object_type.lower() == 'view' and created_count > 0:
-        validated_ok, validation_failed = validate_all_views(connection, created_file, schema_name)
+    if object_type.lower() in ('view', 'table') and created_count > 0:
+        validated_ok, validation_failed = validate_all_objects(connection, created_file, schema_name, object_type)
 
     # Final summary
     success_rate = (created_count / total_objects * 100) if total_objects > 0 else 0
@@ -590,13 +634,13 @@ def process_ddl_files(connection, config):
     logging.info(f"Failed: {errored_count}")
     logging.info(f"Success Rate: {success_rate:.2f}%")
 
-    # Add validation summary for views
-    if object_type.lower() == 'view' and created_count > 0:
+    # Add validation summary for views/tables
+    if object_type.lower() in ('view', 'table') and created_count > 0:
         overall_success = validated_ok
         overall_total = created_count
         overall_rate = (overall_success / overall_total * 100) if overall_total > 0 else 0
         logging.info("")
-        logging.info("VIEW VALIDATION RESULTS:")
+        logging.info(f"{object_type.upper()} VALIDATION RESULTS:")
         logging.info(f"✓ Validated Successfully: {validated_ok}")
         logging.info(f"✗ Validation Failed: {validation_failed}")
         logging.info(f"Overall Success Rate (Created + Validated): {overall_rate:.2f}%")
@@ -615,12 +659,12 @@ def process_ddl_files(connection, config):
     print(f"✗ Failed: {errored_count} {object_type}s")
     print(f"Success Rate: {success_rate:.2f}%")
 
-    # Add validation summary for views
-    if object_type.lower() == 'view' and created_count > 0:
+    # Add validation summary for views/tables
+    if object_type.lower() in ('view','table') and created_count > 0:
         overall_rate = (validated_ok / created_count * 100) if created_count > 0 else 0
-        print(f"\nVIEW VALIDATION:")
-        print(f"✓ Validated OK: {validated_ok} views")
-        print(f"✗ Validation Failed: {validation_failed} views")
+        print(f"\n{object_type.upper()} VALIDATION:")
+        print(f"✓ Validated OK: {validated_ok} {object_type.lower()}s")
+        print(f"✗ Validation Failed: {validation_failed} {object_type.lower()}s")
         print(f"Overall Success Rate (Created + Validated): {overall_rate:.2f}%")
 
     print(f"\nCreated objects: {created_file}")
