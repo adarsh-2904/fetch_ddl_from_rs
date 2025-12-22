@@ -1,14 +1,14 @@
 """
 Script Behavior Summary:
 
-3. Database Credentials:
+1. Database Credentials:
    - The database username and password for `create_objects.py` are provided at runtime
      through an interactive prompt.
    - The password input is masked and not displayed on the screen.
    - Credentials are used only for establishing the target database connection and
      are not stored after the connection is created.
 
-4. Object Creation Workflow:
+2. Object Creation Workflow:
    - The script connects to the target database.
    - The object type(s) to be created are read from the YAML configuration file.
    - Based on the object type, the script executes the corresponding DDL scripts
@@ -17,7 +17,7 @@ Script Behavior Summary:
    - Before execution, the script displays the source folder containing the DDL scripts
      and asks for user confirmation (Y/N) to proceed with object creation.
 
-5. Drop and Create Capability:
+3. Drop and Create Capability:
    - For tables, the script supports a DROP followed by CREATE operation.
    - This is implemented because `CREATE OR REPLACE TABLE` is not supported.
    - Existing tables are safely dropped before being recreated.
