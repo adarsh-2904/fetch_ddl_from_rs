@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.chptr_portal_list_typ_ref AS 
+SELECT chptr_portal_list_typ_ref.list_typ_key, chptr_portal_list_typ_ref.list_typ_cd, chptr_portal_list_typ_ref.list_typ_dsc, chptr_portal_list_typ_ref.list_cat_cd, chptr_portal_list_typ_ref.list_cat_dsc, chptr_portal_list_typ_ref.list_sub_cat_cd, chptr_portal_list_typ_ref.list_sub_cat_dsc, chptr_portal_list_typ_ref.dw_trans_ts, chptr_portal_list_typ_ref.active_flg FROM mktg_ops_tbls.chptr_portal_list_typ_ref WITH NO SCHEMA BINDING;

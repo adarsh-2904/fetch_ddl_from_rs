@@ -1,0 +1,38 @@
+object_name,schema_name,object_type,error_type,error_message,timestamp
+adb_bio_dnr_stsfctn_srvy,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_bio_dnr_stsfctn_srvy"" already exists",2026-01-15 18:59:44
+adb_nmsdelivery_b401072026,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_nmsdelivery_b401072026"" already exists",2026-01-15 19:00:06
+adb_nmsrecipient_b401072026,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_nmsrecipient_b401072026"" already exists",2026-01-15 19:00:25
+adb_nmswebapplogrcpdata_b401072026,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_nmswebapplogrcpdata_b401072026"" already exists",2026-01-15 19:00:48
+adb_nmswebapp_b401072026,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""adb_nmswebapp_b401072026"" already exists",2026-01-15 19:00:56
+aprm_email_lnk_clkd_b401072026,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_email_lnk_clkd_b401072026"" already exists",2026-01-15 19:02:24
+aprm_email_sent_b401072026,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""aprm_email_sent_b401072026"" already exists",2026-01-15 19:02:48
+arc_biomed_smry,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""arc_biomed_smry"" already exists",2026-01-15 19:05:03
+arc_biomed_txn,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""arc_biomed_txn"" already exists",2026-01-15 19:05:10
+arc_vms_smry,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""arc_vms_smry"" already exists",2026-01-15 19:07:43
+arc_vms_txn,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""arc_vms_txn"" already exists",2026-01-15 19:07:46
+audit_log,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""audit_log"" already exists",2026-01-15 19:07:52
+bzfc_cnst_cdi_phss_email_prfl,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""bzfc_cnst_cdi_phss_email_prfl"" already exists",2026-01-15 19:08:43
+bzfc_fact_dmail_intrctn_norm,mktg_ops_tbls,table,OTHER_ERROR,"Cannot specify DISTKEY for column ""cnst_mstr_id"" of table ""bzfc_fact_dmail_intrctn_norm"" when DISTSTYLE is NONE or EVEN",2026-01-15 19:08:54
+bzf_cnst_scr_b401072026,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""bzf_cnst_scr_b401072026"" already exists",2026-01-15 19:11:01
+bz_adobe_analytics_rcb_txn,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""bz_adobe_analytics_rcb_txn"" already exists",2026-01-15 19:11:14
+bz_email_src_cd,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""bz_email_src_cd"" already exists",2026-01-15 19:12:11
+bz_gms_arc_fr_txn_segmnt,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""bz_gms_arc_fr_txn_segmnt"" already exists",2026-01-15 19:12:20
+dim_edrtl_response_period,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""dim_edrtl_response_period"" already exists",2026-01-15 19:13:57
+dim_odr,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""dim_odr"" already exists",2026-01-15 19:14:02
+dim_online_channel,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""dim_online_channel"" already exists",2026-01-15 19:14:04
+dim_region_rsmo,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""dim_region_rsmo"" already exists",2026-01-15 19:14:29
+dv_channel_accessibility,mktg_ops_tbls,table,OTHER_ERROR,"Cannot specify DISTKEY for column ""cnst_mstr_id"" of table ""dv_channel_accessibility"" when DISTSTYLE is NONE or EVEN",2026-01-15 19:15:11
+fact_response_aprm_b401072026,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""fact_response_aprm_b401072026"" already exists",2026-01-15 19:16:03
+fundraising_profiles_20240507_unsubscribe_trimmed,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""fundraising_profiles_20240507_unsubscribe_trimmed"" already exists",2026-01-15 19:16:30
+gms_arc_fr_txn,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""gms_arc_fr_txn"" already exists",2026-01-15 19:16:52
+gms_cnst_cdi_smry_fr_prfr,mktg_ops_tbls,table,OTHER_ERROR,"Cannot specify DISTKEY for column ""em_email_key"" of table ""gms_cnst_cdi_smry_fr_prfr"" when DISTSTYLE is NONE or EVEN",2026-01-15 19:17:42
+gms_cnst_cdi_smry_fr_prfr_sync,mktg_ops_tbls,table,OTHER_ERROR,"Cannot specify DISTKEY for column ""cnst_mstr_id"" of table ""gms_cnst_cdi_smry_fr_prfr_sync"" when DISTSTYLE is NONE or EVEN",2026-01-15 19:17:56
+gofundraise_donor,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""gofundraise_donor"" already exists",2026-01-15 19:17:59
+lkp_positions_taxonomy_mktg_stg_b401072026,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""lkp_positions_taxonomy_mktg_stg_b401072026"" already exists",2026-01-15 19:18:08
+load_control_table,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""load_control_table"" already exists",2026-01-15 19:18:11
+mobile_commons_20240507_active,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""mobile_commons_20240507_active"" already exists",2026-01-15 19:18:25
+pbi_fact_bio_freq_rtntn_react_dtl,mktg_ops_tbls,table,OTHER_ERROR,"Cannot specify DISTKEY for column ""donor_id"" of table ""pbi_fact_bio_freq_rtntn_react_dtl"" when DISTSTYLE is NONE or EVEN",2026-01-15 19:19:28
+replication_dim_recipient,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""replication_dim_recipient"" already exists",2026-01-15 19:20:47
+srvy_anvrsy_vlntr_rspns_fy22,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_anvrsy_vlntr_rspns_fy22"" already exists",2026-01-15 19:21:40
+srvy_gplg_rspns_ss,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_gplg_rspns_ss"" already exists",2026-01-15 19:22:25
+srvy_hsptl_questn_2_srvy_xref,mktg_ops_tbls,table,ALREADY_EXISTS,"Relation ""srvy_hsptl_questn_2_srvy_xref"" already exists",2026-01-15 19:22:46

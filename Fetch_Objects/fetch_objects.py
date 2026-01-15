@@ -326,6 +326,12 @@ def fetch_table_ddl(connection, schema_name, table_name, relation_type):
     except Exception as e:
         print(f"Error fetching DDL for {relation_type} {table_name}: {e}")
         logging.error(f"Error fetching DDL for {relation_type} {table_name}: {e}")
+        # Rollback transaction to reset state for next operation
+        try:
+            connection.rollback()
+            logging.info(f"Transaction rolled back after error fetching {relation_type} {table_name}")
+        except Exception as rollback_error:
+            logging.error(f"Error during rollback: {rollback_error}")
         return None
 
 
@@ -366,6 +372,12 @@ def fetch_stored_procedure_ddl(connection, schema_name, procedure_name):
     except Exception as e:
         print(f"Error fetching DDL for stored procedure {procedure_name}: {e}")
         logging.error(f"Error fetching DDL for stored procedure {procedure_name}: {e}")
+        # Rollback transaction to reset state for next operation
+        try:
+            connection.rollback()
+            logging.info(f"Transaction rolled back after error fetching procedure {procedure_name}")
+        except Exception as rollback_error:
+            logging.error(f"Error during rollback: {rollback_error}")
         return None
 
 
@@ -386,42 +398,40 @@ def save_ddl_to_file(base_path, schema_name, object_name, ddl):
         logging.error(f"Error saving DDL to file for {object_name}: {e}")
 
 
-def get_object_lists(conn, TABLE_NAME):
-    
-    tables = []
-    views = []
-    procedures = []
-    
-    SQL = f"""
-    SELECT
-    schema_name,
-    object_name,
-    object_type
-    FROM {TABLE_NAME};
+# Function to get list of objects from control table (for 'selected' mode)
+def get_object_lists(conn, control_table_path, relation_type):
     """
-
-    with conn.cursor() as cur:
-        cur.execute(SQL)
-        for schema_name, object_name, object_type in cur.fetchall():
-            qualified = f"{schema_name}.{object_name}"
-            t = (object_type or "").strip().lower()
-            if t == "table":
-                tables.append(qualified)
-            elif t == "view":
-                views.append(qualified)
-            elif t == "procedure":
-                procedures.append(qualified)
-            else:
-                # Unknown types can be logged or handled here if needed
-                pass
-
-    return tables, views, procedures
-
-    
+    Fetch list of objects from the control table for the specified object type.
+    Returns a list of objects in 'schema.object_name' format for the given relation_type
+    """
+    try:
+        cursor = conn.cursor()
+        
+        # Query the control table to get objects for the specific type
+        query = f"""
+            SELECT schema_name || '.' || object_name as full_object_name
+            FROM {control_table_path}
+            WHERE object_type = %s
+        """
+        
+        cursor.execute(query, (relation_type.lower(),))
+        results = cursor.fetchall()
+        cursor.close()
+        
+        # Extract object names from results
+        objects = [row[0] for row in results]
+        logging.info(f"Retrieved {len(objects)} {relation_type}s from control table")
+        
+        return objects
+        
+    except Exception as e:
+        logging.error(f"Error fetching object lists from control table: {e}")
+        print(f"Error fetching object lists from control table: {e}")
+        return []
 
 
 def fetch_all_objects(conn, schema_name, relation_type, base_path):
-    tables, views, procedures = get_object_lists(conn, "mods_bi.etl_config.fetch_all_objects_exclude_ctl")
+    # Fetch all objects WITHOUT exclusion filtering
     if relation_type == "view":
         objects = fetch_table_names(conn, schema_name)
         if not objects:
@@ -431,13 +441,12 @@ def fetch_all_objects(conn, schema_name, relation_type, base_path):
 
         for idx, object_name in enumerate(objects, 1):
             print(f"Processing {idx}/{len(objects)}: {object_name}")
-            if f"{schema_name}.{object_name}" not in views:
-                ddl = fetch_table_ddl(conn, schema_name, object_name, "view")
-                if ddl:
-                    save_ddl_to_file(base_path, schema_name, object_name, ddl)
-                else:
-                    print(f"No DDL found for {relation_type} {object_name}.")
-                    logging.warning(f"No DDL found for {relation_type} {object_name}")
+            ddl = fetch_table_ddl(conn, schema_name, object_name, "view")
+            if ddl:
+                save_ddl_to_file(base_path, schema_name, object_name, ddl)
+            else:
+                print(f"No DDL found for {relation_type} {object_name}.")
+                logging.warning(f"No DDL found for {relation_type} {object_name}")
     elif relation_type == "table":
         objects = fetch_table_names(conn, schema_name)
         if not objects:
@@ -446,13 +455,12 @@ def fetch_all_objects(conn, schema_name, relation_type, base_path):
             return
         for idx, object_name in enumerate(objects, 1):
             print(f"Processing {idx}/{len(objects)}: {object_name}")
-            if f"{schema_name}.{object_name}" not in tables:
-                ddl = fetch_table_ddl(conn, schema_name, object_name, "table")
-                if ddl:
-                    save_ddl_to_file(base_path, schema_name, object_name, ddl)
-                else:
-                    print(f"No DDL found for {relation_type} {object_name}.")
-                    logging.warning(f"No DDL found for {relation_type} {object_name}")
+            ddl = fetch_table_ddl(conn, schema_name, object_name, "table")
+            if ddl:
+                save_ddl_to_file(base_path, schema_name, object_name, ddl)
+            else:
+                print(f"No DDL found for {relation_type} {object_name}.")
+                logging.warning(f"No DDL found for {relation_type} {object_name}")
     elif relation_type == "procedure":
         objects = fetch_stored_procedure_names(conn, schema_name)
         if not objects:
@@ -461,50 +469,56 @@ def fetch_all_objects(conn, schema_name, relation_type, base_path):
             return
         for idx, object_name in enumerate(objects, 1):
             print(f"Processing {idx}/{len(objects)}: {object_name}")
-            if f"{schema_name}.{object_name}" not in procedures:
-                ddl = fetch_stored_procedure_ddl(conn, schema_name, object_name)
-                if ddl:
-                    save_ddl_to_file(base_path, schema_name, object_name, ddl)
-                else:
-                    print(f"No DDL found for {relation_type} {object_name}.")
-                    logging.warning(f"No DDL found for {relation_type} {object_name}")
+            ddl = fetch_stored_procedure_ddl(conn, schema_name, object_name)
+            if ddl:
+                save_ddl_to_file(base_path, schema_name, object_name, ddl)
+            else:
+                print(f"No DDL found for {relation_type} {object_name}.")
+                logging.warning(f"No DDL found for {relation_type} {object_name}")
     else:
         print(
             "Invalid object type. Please set 'object_type' to 'view', 'table', or 'procedure' in the YAML config.")
         logging.error(f"Invalid object type: {relation_type}")
 
 def selected_objects(conn, schema_name, relation_type, base_path):
-    tables, views, procedures = get_object_lists(conn, "mods_bi.etl_config.fetch_selected_objects_ctl")
+    # Fetch only selected objects for the specific relation_type (no exclusion filtering)
+    objects = get_object_lists(conn, "mods_bi.etl_config.fetch_selected_objects_ctl", relation_type)
+    
+    if not objects:
+        print(f"No {relation_type}s found in selected objects control table.")
+        logging.warning(f"No {relation_type}s found in selected objects control table")
+        return
+    
     if relation_type == "view":
-        for idx, view in enumerate(views,1):
-            print(f"Processing {idx}/{len(views)}: {view}")
+        for idx, view in enumerate(objects, 1):
+            print(f"Processing {idx}/{len(objects)}: {view}")
             schema, object_name = view.split('.')
             ddl = fetch_table_ddl(conn, schema, object_name, "view")
             if ddl:
                 save_ddl_to_file(base_path, schema, object_name, ddl)
             else:
-                    print(f"No DDL found for {relation_type} {object_name}.")
-                    logging.warning(f"No DDL found for {relation_type} {object_name}")
+                print(f"No DDL found for {relation_type} {object_name}.")
+                logging.warning(f"No DDL found for {relation_type} {object_name}")
     elif relation_type == "table":
-        for idx, table in enumerate(tables, 1):
-            print(f"Processing {idx}/{len(tables)}: {table}")
+        for idx, table in enumerate(objects, 1):
+            print(f"Processing {idx}/{len(objects)}: {table}")
             schema, object_name = table.split('.')
             ddl = fetch_table_ddl(conn, schema, object_name, "table")
             if ddl:
                 save_ddl_to_file(base_path, schema, object_name, ddl)
             else:
-                    print(f"No DDL found for {relation_type} {object_name}.")
-                    logging.warning(f"No DDL found for {relation_type} {object_name}")
+                print(f"No DDL found for {relation_type} {object_name}.")
+                logging.warning(f"No DDL found for {relation_type} {object_name}")
     elif relation_type == "procedure":
-        for idx, procedure in enumerate(procedures, 1):
-            print(f"Processing {idx}/{len(procedures)}: {procedure}")
+        for idx, procedure in enumerate(objects, 1):
+            print(f"Processing {idx}/{len(objects)}: {procedure}")
             schema, object_name = procedure.split('.')
             ddl = fetch_stored_procedure_ddl(conn, schema, object_name)
             if ddl:
                 save_ddl_to_file(base_path, schema, object_name, ddl)
             else:
-                    print(f"No DDL found for {relation_type} {object_name}.")
-                    logging.warning(f"No DDL found for {relation_type} {object_name}")
+                print(f"No DDL found for {relation_type} {object_name}.")
+                logging.warning(f"No DDL found for {relation_type} {object_name}")
     else:
         print(
             "Invalid object type. Please set 'object_type' to 'view', 'table', or 'procedure' in the YAML config.")

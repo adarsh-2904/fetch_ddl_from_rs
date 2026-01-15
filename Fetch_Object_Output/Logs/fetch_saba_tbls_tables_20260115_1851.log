@@ -1,0 +1,13 @@
+2026-01-15 18:51:25,641 - INFO - User selected environment: TEST
+2026-01-15 18:51:25,641 - INFO - User selected object type: TABLE
+2026-01-15 18:51:25,641 - INFO - User selected schema: saba_tbls
+2026-01-15 18:51:25,641 - INFO - User selected mode: ALL
+2026-01-15 18:51:42,399 - INFO - Successfully connected to Redshift TEST: redshift.test.datahub.redcross.net
+2026-01-15 18:51:43,170 - INFO - Fetched 2 relations from schema saba_tbls
+2026-01-15 18:51:43,523 - ERROR - Error fetching DDL for table dim_order: permission denied for schema saba_tbls
+
+2026-01-15 18:51:43,523 - WARNING - No DDL found for table dim_order
+2026-01-15 18:51:43,870 - ERROR - Error fetching DDL for table fact_course_record: current transaction is aborted, commands ignored until end of transaction block
+
+2026-01-15 18:51:43,887 - WARNING - No DDL found for table fact_course_record
+2026-01-15 18:51:43,887 - INFO - DDL fetch completed successfully

@@ -1,0 +1,9 @@
+2026-01-15 18:35:35,967 - INFO - User selected environment: TEST
+2026-01-15 18:35:35,967 - INFO - User selected object type: TABLE
+2026-01-15 18:35:35,967 - INFO - User selected schema: mktg_ops_tbls
+2026-01-15 18:35:35,967 - INFO - User selected mode: SELECTED
+2026-01-15 18:35:50,075 - INFO - Successfully connected to Redshift TEST: redshift.test.datahub.redcross.net
+2026-01-15 18:35:50,786 - ERROR - Error fetching object lists from control table: function concat(character varying, "unknown", character varying) does not exist
+HINT:  No function matches the given name and argument types. You may need to add explicit type casts.
+
+2026-01-15 18:35:50,786 - INFO - DDL fetch completed successfully

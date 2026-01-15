@@ -1,0 +1,15 @@
+2026-01-15 18:54:16,245 - INFO - User selected environment: TEST
+2026-01-15 18:54:16,245 - INFO - User selected object type: TABLE
+2026-01-15 18:54:16,245 - INFO - User selected schema: saba_tbls
+2026-01-15 18:54:16,245 - INFO - User selected mode: ALL
+2026-01-15 18:54:32,484 - INFO - Successfully connected to Redshift TEST: redshift.test.datahub.redcross.net
+2026-01-15 18:54:33,266 - INFO - Fetched 2 relations from schema saba_tbls
+2026-01-15 18:54:33,655 - ERROR - Error fetching DDL for table dim_order: permission denied for schema saba_tbls
+
+2026-01-15 18:54:34,223 - INFO - Transaction rolled back after error fetching table dim_order
+2026-01-15 18:54:34,223 - WARNING - No DDL found for table dim_order
+2026-01-15 18:54:34,935 - ERROR - Error fetching DDL for table fact_course_record: permission denied for schema saba_tbls
+
+2026-01-15 18:54:35,419 - INFO - Transaction rolled back after error fetching table fact_course_record
+2026-01-15 18:54:35,419 - WARNING - No DDL found for table fact_course_record
+2026-01-15 18:54:35,419 - INFO - DDL fetch completed successfully

@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.vms_sta_orgs AS 
+SELECT vms_sta_orgs.team_id, vms_sta_orgs.hierarchy_name, vms_sta_orgs.team_name, vms_sta_orgs.team_type, vms_sta_orgs.is_archived, vms_sta_orgs.row_stat_cd, vms_sta_orgs.dw_trans_ts, vms_sta_orgs.appl_src_cd, vms_sta_orgs.load_id FROM mktg_ops_tbls.vms_sta_orgs WITH NO SCHEMA BINDING;

@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW mktg_ops_vws.bz_dim_delivery_status AS 
+SELECT adb_enumrtn_lkp.enumrtn_cd AS intrctn_status_cd, adb_enumrtn_lkp.enumrtn_dsc AS intrctn_status_dsc FROM mktg_ops_tbls.adb_enumrtn_lkp WHERE (((adb_enumrtn_lkp.enumrtn_label)::text = ('jobstatus'::character varying)::text) AND ((adb_enumrtn_lkp.table_nm)::text = ('NmsDelivery'::character varying)::text)) WITH NO SCHEMA BINDING;

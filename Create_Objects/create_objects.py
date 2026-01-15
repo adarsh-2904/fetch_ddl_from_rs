@@ -144,6 +144,32 @@ def prompt_schema_name():
                 sys.exit(1)
 
 
+def prompt_exclusion_table_configured():
+    """
+    Prompt user to confirm if exclusion table is configured on target DB.
+    Returns True if yes, exits if no.
+    """
+    while True:
+        print("\n" + "=" * 80)
+        print("EXCLUSION TABLE CONFIGURATION")
+        print("=" * 80)
+        print("Have you configured the exclusion table on the target DB?")
+        print("(Target: mods_bi.etl_config.fetch_all_objects_exclude_ctl)")
+        print("=" * 80)
+        
+        response = input("Type 'yes' or 'no': ").strip().lower()
+        
+        if response == 'yes':
+            print(f"✓ Proceeding with exclusion filtering enabled")
+            return True
+        elif response == 'no':
+            print(f"✗ Exclusion table not configured. Cannot proceed safely.")
+            print(f"   Please configure the exclusion table on the target DB and try again.")
+            sys.exit(1)
+        else:
+            print(f"✗ Invalid response. Please type 'yes' or 'no'.")
+
+
 # Load configuration from YAML
 def load_config(config_file="create_objects_parameters.yaml"):
     try:
@@ -347,7 +373,7 @@ def drop_table_if_exists(connection, schema_name, table_name):
     """
     try:
         cursor = connection.cursor()
-        drop_sql = f"DROP TABLE IF EXISTS {schema_name}.{table_name} CASCADE;"
+        drop_sql = f"DROP TABLE IF EXISTS {schema_name}.{table_name};"
         cursor.execute(drop_sql)
         connection.commit()
         cursor.close()
@@ -596,6 +622,63 @@ def write_to_errored_csv(errored_file, object_name, schema_name, object_type, er
         logging.error(f"Error writing to errored CSV: {e}")
 
 
+# Get exclusion list from target database
+def get_exclusion_list_from_target(connection, object_type):
+    """
+    Fetch list of excluded objects from target DB exclusion table
+    Returns a set of ("schema_name", "object_name") tuples for fast lookup
+    """
+    try:
+        cursor = connection.cursor()
+        
+        # Query the exclusion table to get excluded objects
+        query = """
+            SELECT schema_name, object_name 
+            FROM mods_bi.etl_config.fetch_all_objects_exclude_ctl
+            WHERE object_type = %s
+        """
+        
+        cursor.execute(query, (object_type.lower(),))
+        results = cursor.fetchall()
+        cursor.close()
+        
+        # Convert to set of tuples for O(1) lookup
+        exclusion_set = set(results)
+        logging.info(f"Retrieved {len(exclusion_set)} exclusion entries for {object_type} from target DB")
+        
+        return exclusion_set
+        
+    except Exception as e:
+        logging.error(f"Error fetching exclusion list from target DB: {e}")
+        print(f"Warning: Could not fetch exclusion list from target DB: {e}")
+        # Return empty set if query fails - safer to proceed without filtering
+        return set()
+
+
+# Initialize skipped CSV file
+def initialize_skipped_csv(skipped_file):
+    try:
+        with open(skipped_file, 'w', newline='', encoding='utf-8') as f:
+            writer = csv.writer(f)
+            writer.writerow(['object_name', 'schema_name', 'object_type', 'reason'])
+        logging.info(f"Initialized skipped CSV file: {skipped_file}")
+        return True
+    except Exception as e:
+        logging.error(f"Error initializing skipped CSV: {e}")
+        return False
+
+
+# Write to skipped CSV
+def write_to_skipped_csv(skipped_file, object_name, schema_name, object_type, reason):
+    try:
+        with open(skipped_file, 'a', newline='', encoding='utf-8') as f:
+            writer = csv.writer(f)
+            writer.writerow([object_name, schema_name, object_type, reason])
+        logging.info(f"Skipped {object_type}: {schema_name}.{object_name} - Reason: {reason}")
+    except Exception as e:
+        logging.error(f"Error writing to skipped CSV: {e}")
+
+
 # Process all DDL files
 def process_ddl_files(connection, config):
     ddl_base_path = config['paths']['ddl_base_path']
@@ -639,6 +722,13 @@ def process_ddl_files(connection, config):
         logging.error("Failed to initialize CSV files. Exiting.")
         return
 
+    # Initialize skipped CSV file (for excluded objects)
+    skipped_file = created_file.replace('_created.csv', '_skipped.csv')
+    initialize_skipped_csv(skipped_file)
+
+    # Get exclusion list from target DB
+    exclusion_list = get_exclusion_list_from_target(connection, object_type)
+
     # Get all DDL files
     ddl_files = get_ddl_files(schema_folder_path)
     if not ddl_files:
@@ -649,6 +739,7 @@ def process_ddl_files(connection, config):
     total_objects = len(ddl_files)
     created_count = 0
     errored_count = 0
+    skipped_count = 0
     dependency_errors = []
 
     logging.info("=" * 80)
@@ -674,6 +765,13 @@ def process_ddl_files(connection, config):
             write_to_errored_csv(errored_file, object_name, schema_name, object_type,
                                  "FILE_READ_ERROR", "Could not read SQL file")
             errored_count += 1
+            continue
+
+        # Check if object is in exclusion list (skip if excluded)
+        if (schema_name, object_name) in exclusion_list:
+            write_to_skipped_csv(skipped_file, object_name, schema_name, object_type,
+                                "Excluded via target DB exclusion table")
+            skipped_count += 1
             continue
 
         # Execute DDL
@@ -749,6 +847,7 @@ def process_ddl_files(connection, config):
     logging.info(f"Schema: {schema_name}")
     logging.info(f"Total Objects in Folder: {total_objects}")
     logging.info(f"Successfully Created: {created_count}")
+    logging.info(f"Skipped (Excluded): {skipped_count}")
     logging.info(f"Failed: {errored_count}")
     logging.info(f"Success Rate: {success_rate:.2f}%")
 
@@ -764,6 +863,7 @@ def process_ddl_files(connection, config):
         logging.info(f"Overall Success Rate (Created + Validated): {overall_rate:.2f}%")
 
     logging.info(f"Created objects saved to: {created_file}")
+    logging.info(f"Skipped objects saved to: {skipped_file}")
     logging.info(f"Errored objects saved to: {errored_file}")
     logging.info("=" * 80)
 
@@ -774,6 +874,7 @@ def process_ddl_files(connection, config):
     print(f"Schema: {schema_name}")
     print(f"Total Objects in Folder: {total_objects}")
     print(f"✓ Successfully created: {created_count} {object_type}s")
+    print(f"⊘ Skipped (Excluded): {skipped_count} {object_type}s")
     print(f"✗ Failed: {errored_count} {object_type}s")
     print(f"Success Rate: {success_rate:.2f}%")
 
@@ -786,6 +887,8 @@ def process_ddl_files(connection, config):
         print(f"Overall Success Rate (Created + Validated): {overall_rate:.2f}%")
 
     print(f"\nCreated objects: {created_file}")
+    if skipped_count > 0:
+        print(f"Skipped objects: {skipped_file}")
     print(f"Errored objects: {errored_file}")
     print("=" * 80)
 
@@ -802,6 +905,9 @@ def main():
     environment = prompt_environment_selection()
     object_type = prompt_object_type_selection()
     schema_name = prompt_schema_name()
+    
+    # Prompt to confirm exclusion table is configured on target DB
+    prompt_exclusion_table_configured()
 
     # Update config with user selections
     config['object_config']['environment'] = environment
@@ -823,6 +929,7 @@ def main():
     logging.info(f"Environment: {environment.upper()}")
     logging.info(f"Object Type: {object_type.upper()}")
     logging.info(f"Schema Name: {schema_name}")
+    logging.info(f"Exclusion table configured on target DB")
 
     # Connect to Redshift with the selected environment
     connection = connect_to_redshift(config, environment)
