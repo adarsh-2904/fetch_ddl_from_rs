@@ -22,6 +22,11 @@ Script Behavior Summary:
         - When the fetch option is set to 'all', the script fetches all database objects
           except those explicitly listed in the exclude control table.
         - Objects present in the exclusion list are skipped during the fetch process.
+
+3. Interactive Environment & Object Type Selection:
+   - Users are prompted at runtime to select the environment (test, staging, prod, dev)
+   - Users are prompted to select the object type (table, view, procedure)
+   - Users are prompted to enter the schema name
 """
 
 import os
@@ -42,6 +47,94 @@ PROJECT_ROOT = SCRIPT_DIR.parent
 
 ROOT = project_root = os.path.dirname(PROJECT_ROOT)
 
+# Global variable to store current timestamp (set in main())
+current_timestamp = None
+
+
+# Environment and Object Type Mappings (Hardcoded - 3 options each)
+ENVIRONMENT_MAP = {
+    "1": "test",
+    "2": "dev",
+    "3": "prod"
+}
+
+OBJECT_TYPE_MAP = {
+    "1": "table",
+    "2": "view",
+    "3": "procedure"
+}
+
+
+def prompt_environment_selection():
+    """
+    Prompt user to select the environment.
+    Returns the environment name (test, dev, prod)
+    Reprompts on invalid input.
+    """
+    while True:
+        print("\n" + "=" * 80)
+        print("SELECT ENVIRONMENT")
+        print("=" * 80)
+        print("1. Test")
+        print("2. Dev")
+        print("3. Prod")
+        print("=" * 80)
+        
+        choice = input("Enter your choice (1-3): ").strip()
+        
+        if choice in ENVIRONMENT_MAP:
+            environment = ENVIRONMENT_MAP[choice]
+            print(f"✓ Selected Environment: {environment.upper()}")
+            return environment
+        else:
+            print("✗ Invalid choice. Please enter 1, 2, or 3.")
+
+
+def prompt_object_type_selection():
+    """
+    Prompt user to select the object type.
+    Returns the object type (table, view, procedure)
+    Reprompts on invalid input.
+    """
+    while True:
+        print("\n" + "=" * 80)
+        print("SELECT OBJECT TYPE")
+        print("=" * 80)
+        print("1. Table")
+        print("2. View")
+        print("3. Procedure")
+        print("=" * 80)
+        
+        choice = input("Enter your choice (1-3): ").strip()
+        
+        if choice in OBJECT_TYPE_MAP:
+            object_type = OBJECT_TYPE_MAP[choice]
+            print(f"✓ Selected Object Type: {object_type.upper()}")
+            return object_type
+        else:
+            print("✗ Invalid choice. Please enter 1, 2, or 3.")
+
+
+def prompt_schema_name():
+    """
+    Prompt user to enter the schema name.
+    Reprompts on empty input.
+    """
+    while True:
+        print("\n" + "=" * 80)
+        print("ENTER SCHEMA NAME")
+        print("=" * 80)
+        print("Examples: mktg_ops_tbls, mktg_ops_vws, mktg_ops_procs")
+        print("=" * 80)
+        
+        schema_name = input("Enter schema name: ").strip()
+        
+        if schema_name:
+            print(f"✓ Selected Schema: {schema_name}")
+            return schema_name
+        else:
+            print("✗ Schema name cannot be empty. Please try again.")
+
 
 # Load configuration from YAML file
 def load_config():
@@ -58,43 +151,27 @@ def load_config():
         raise
 
 
-# Load configuration
-config = load_config()
-
-# Extract configuration values
-redshift_config = config['redshift']
-paths_config = config['paths']
-object_config = config['object_config']
-
-# Set up logging directory (relative to PROJECT_ROOT)
-log_dir = PROJECT_ROOT / paths_config['log_directory']
-log_dir.mkdir(parents=True, exist_ok=True)
-current_timestamp = datetime.now()
-
-print(f"Script started at {current_timestamp}")
-
-# Configure logging
-logging.basicConfig(
-    filename=log_dir / f"fetch_{object_config['run_identifier']}_{current_timestamp.strftime('%Y%m%d_%H%M')}.log",
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s"
-)
-
-
-# Function to connect to the Redshift database
-def connect_to_redshift():
+# Function to connect to the Redshift database - DYNAMIC ENVIRONMENT SELECTION
+def connect_to_redshift(config, environment):
     try:
+        # Get the selected environment config
+        if environment not in config['environments']:
+            print(f"Error: Environment '{environment}' not found in configuration")
+            return None
+        
+        env_config = config['environments'][environment]
+        
         username = input("Enter Redshift username: ")
         password = pwinput.pwinput(prompt="Enter Redshift password: ", mask="*")
         connection = psycopg2.connect(
-            host=redshift_config['host'],
-            port=redshift_config['port'],
-            dbname=redshift_config['dbname'],
+            host=env_config['host'],
+            port=env_config['port'],
+            dbname=env_config['dbname'],
             user=username,
             password=password
         )
-        logging.info("Successfully connected to Redshift")
-        print("Successfully connected to Redshift")
+        logging.info(f"Successfully connected to Redshift {environment.upper()}: {env_config['host']}")
+        print(f"Successfully connected to Redshift {environment.upper()}")
         del password  # Remove password from memory
         return connection
     except Exception as e:
@@ -373,6 +450,45 @@ def selected_objects(conn, schema_name, relation_type, base_path):
 
 
 def main():
+    # Load configuration
+    config = load_config()
+    
+    # Get user selections via interactive prompts
+    environment = prompt_environment_selection()
+    object_type = prompt_object_type_selection()
+    schema_name = prompt_schema_name()
+    
+    # Update config with user selections
+    config['object_config']['environment'] = environment
+    config['object_config']['object_type'] = object_type
+    config['object_config']['schema_name'] = schema_name
+    config['object_config']['run_identifier'] = f"{schema_name}_{object_type}s"
+    
+    paths_config = config['paths']
+    object_config = config['object_config']
+    
+    # Set up logging directory (relative to PROJECT_ROOT)
+    log_dir = PROJECT_ROOT / paths_config['log_directory']
+    log_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Set global current_timestamp for use in other functions
+    global current_timestamp
+    current_timestamp = datetime.now()
+
+    print(f"\nScript started at {current_timestamp}")
+
+    # Configure logging
+    logging.basicConfig(
+        filename=log_dir / f"fetch_{object_config['run_identifier']}_{current_timestamp.strftime('%Y%m%d_%H%M')}.log",
+        level=logging.INFO,
+        format="%(asctime)s - %(levelname)s - %(message)s"
+    )
+    
+    # Log the user selections
+    logging.info(f"User selected environment: {environment.upper()}")
+    logging.info(f"User selected object type: {object_type.upper()}")
+    logging.info(f"User selected schema: {schema_name}")
+    
     schema_name = object_config['schema_name']
     relation_type = object_config['object_type']
     mode = object_config['mode']
@@ -383,11 +499,17 @@ def main():
     print(f"\n{'=' * 60}")
     print(f"Starting DDL fetch for: {relation_type.upper()}")
     print(f"Schema: {schema_name}")
+    print(f"Environment: {environment.upper()}")
     print(f"Output Path: {base_path}")
     print(f"{'=' * 60}\n")
 
+    conn = None
     try: 
-        conn = connect_to_redshift()
+        conn = connect_to_redshift(config, environment)
+        
+        if not conn:
+            logging.error("Failed to connect to Redshift")
+            return
 
         if mode == "selected":
             selected_objects(conn, schema_name, relation_type, base_path)
@@ -402,7 +524,8 @@ def main():
         logging.info("DDL fetch completed successfully")
 
     except Exception as e:
-        print("Error during test:", e)
+        print(f"Error during execution: {e}")
+        logging.error(f"Error during execution: {e}")
     finally:
         if conn:
             conn.close()
