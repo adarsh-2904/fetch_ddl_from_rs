@@ -31,6 +31,7 @@ Script Behavior Summary:
 
 import os
 import re
+import sys
 import psycopg2
 import logging
 import yaml
@@ -64,14 +65,22 @@ OBJECT_TYPE_MAP = {
     "3": "procedure"
 }
 
+MODE_MAP = {
+    "1": "all",
+    "2": "selected"
+}
+
 
 def prompt_environment_selection():
     """
     Prompt user to select the environment.
     Returns the environment name (test, dev, prod)
-    Reprompts on invalid input.
+    Exits on 2 invalid attempts.
     """
-    while True:
+    max_attempts = 2
+    attempt = 0
+    
+    while attempt < max_attempts:
         print("\n" + "=" * 80)
         print("SELECT ENVIRONMENT")
         print("=" * 80)
@@ -87,16 +96,24 @@ def prompt_environment_selection():
             print(f"✓ Selected Environment: {environment.upper()}")
             return environment
         else:
-            print("✗ Invalid choice. Please enter 1, 2, or 3.")
+            attempt += 1
+            if attempt < max_attempts:
+                print(f"✗ Invalid choice. Please enter 1, 2, or 3. (Attempt {attempt}/{max_attempts})")
+            else:
+                print(f"✗ Invalid choice. Maximum attempts exceeded. Exiting.")
+                sys.exit(1)
 
 
 def prompt_object_type_selection():
     """
     Prompt user to select the object type.
     Returns the object type (table, view, procedure)
-    Reprompts on invalid input.
+    Exits on 2 invalid attempts.
     """
-    while True:
+    max_attempts = 2
+    attempt = 0
+    
+    while attempt < max_attempts:
         print("\n" + "=" * 80)
         print("SELECT OBJECT TYPE")
         print("=" * 80)
@@ -112,19 +129,27 @@ def prompt_object_type_selection():
             print(f"✓ Selected Object Type: {object_type.upper()}")
             return object_type
         else:
-            print("✗ Invalid choice. Please enter 1, 2, or 3.")
+            attempt += 1
+            if attempt < max_attempts:
+                print(f"✗ Invalid choice. Please enter 1, 2, or 3. (Attempt {attempt}/{max_attempts})")
+            else:
+                print(f"✗ Invalid choice. Maximum attempts exceeded. Exiting.")
+                sys.exit(1)
 
 
 def prompt_schema_name():
     """
     Prompt user to enter the schema name.
-    Reprompts on empty input.
+    Exits on 2 empty input attempts.
     """
-    while True:
+    max_attempts = 2
+    attempt = 0
+    
+    while attempt < max_attempts:
         print("\n" + "=" * 80)
         print("ENTER SCHEMA NAME")
         print("=" * 80)
-        print("Examples: mktg_ops_tbls, mktg_ops_vws, mktg_ops_procs")
+        print("Examples: mktg_ops_tbls, mktg_ops_vws")
         print("=" * 80)
         
         schema_name = input("Enter schema name: ").strip()
@@ -133,7 +158,44 @@ def prompt_schema_name():
             print(f"✓ Selected Schema: {schema_name}")
             return schema_name
         else:
-            print("✗ Schema name cannot be empty. Please try again.")
+            attempt += 1
+            if attempt < max_attempts:
+                print(f"✗ Schema name cannot be empty. Please try again. (Attempt {attempt}/{max_attempts})")
+            else:
+                print(f"✗ Schema name cannot be empty. Maximum attempts exceeded. Exiting.")
+                sys.exit(1)
+
+
+def prompt_fetch_mode_selection():
+    """
+    Prompt user to select the fetch mode.
+    Returns the mode (all, selected)
+    Exits on 2 invalid attempts.
+    """
+    max_attempts = 2
+    attempt = 0
+    
+    while attempt < max_attempts:
+        print("\n" + "=" * 80)
+        print("SELECT FETCH MODE")
+        print("=" * 80)
+        print("1. All (fetch all objects except excluded)")
+        print("2. Selected (fetch only selected objects from control table)")
+        print("=" * 80)
+        
+        choice = input("Enter your choice (1-2): ").strip()
+        
+        if choice in MODE_MAP:
+            mode = MODE_MAP[choice]
+            print(f"✓ Selected Mode: {mode.upper()}")
+            return mode
+        else:
+            attempt += 1
+            if attempt < max_attempts:
+                print(f"✗ Invalid choice. Please enter 1 or 2. (Attempt {attempt}/{max_attempts})")
+            else:
+                print(f"✗ Invalid choice. Maximum attempts exceeded. Exiting.")
+                sys.exit(1)
 
 
 # Load configuration from YAML file
@@ -457,11 +519,13 @@ def main():
     environment = prompt_environment_selection()
     object_type = prompt_object_type_selection()
     schema_name = prompt_schema_name()
+    mode = prompt_fetch_mode_selection()
     
     # Update config with user selections
     config['object_config']['environment'] = environment
     config['object_config']['object_type'] = object_type
     config['object_config']['schema_name'] = schema_name
+    config['object_config']['mode'] = mode
     config['object_config']['run_identifier'] = f"{schema_name}_{object_type}s"
     
     paths_config = config['paths']
@@ -488,6 +552,7 @@ def main():
     logging.info(f"User selected environment: {environment.upper()}")
     logging.info(f"User selected object type: {object_type.upper()}")
     logging.info(f"User selected schema: {schema_name}")
+    logging.info(f"User selected mode: {mode.upper()}")
     
     schema_name = object_config['schema_name']
     relation_type = object_config['object_type']

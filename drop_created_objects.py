@@ -3,6 +3,7 @@ import psycopg2
 import logging
 import yaml
 import csv
+import sys
 from datetime import datetime
 from pathlib import Path
 import glob
@@ -27,9 +28,12 @@ def prompt_environment_selection():
     """
     Prompt user to select the environment.
     Returns the environment name (test, dev, prod)
-    Reprompts on invalid input.
+    Exits on 2 invalid attempts.
     """
-    while True:
+    max_attempts = 2
+    attempt = 0
+    
+    while attempt < max_attempts:
         print("\n" + "=" * 80)
         print("SELECT ENVIRONMENT")
         print("=" * 80)
@@ -45,16 +49,24 @@ def prompt_environment_selection():
             print(f"✓ Selected Environment: {environment.upper()}")
             return environment
         else:
-            print("✗ Invalid choice. Please enter 1, 2, or 3.")
+            attempt += 1
+            if attempt < max_attempts:
+                print(f"✗ Invalid choice. Please enter 1, 2, or 3. (Attempt {attempt}/{max_attempts})")
+            else:
+                print(f"✗ Invalid choice. Maximum attempts exceeded. Exiting.")
+                sys.exit(1)
 
 
 def prompt_object_type_selection():
     """
     Prompt user to select the object type.
     Returns the object type (table, view, procedure)
-    Reprompts on invalid input.
+    Exits on 2 invalid attempts.
     """
-    while True:
+    max_attempts = 2
+    attempt = 0
+    
+    while attempt < max_attempts:
         print("\n" + "=" * 80)
         print("SELECT OBJECT TYPE")
         print("=" * 80)
@@ -70,15 +82,23 @@ def prompt_object_type_selection():
             print(f"✓ Selected Object Type: {object_type.upper()}")
             return object_type
         else:
-            print("✗ Invalid choice. Please enter 1, 2, or 3.")
+            attempt += 1
+            if attempt < max_attempts:
+                print(f"✗ Invalid choice. Please enter 1, 2, or 3. (Attempt {attempt}/{max_attempts})")
+            else:
+                print(f"✗ Invalid choice. Maximum attempts exceeded. Exiting.")
+                sys.exit(1)
 
 
 def prompt_schema_name():
     """
     Prompt user to enter the schema name.
-    Reprompts on empty input.
+    Exits on 2 empty input attempts.
     """
-    while True:
+    max_attempts = 2
+    attempt = 0
+    
+    while attempt < max_attempts:
         print("\n" + "=" * 80)
         print("ENTER SCHEMA NAME")
         print("=" * 80)
@@ -91,7 +111,12 @@ def prompt_schema_name():
             print(f"✓ Selected Schema: {schema_name}")
             return schema_name
         else:
-            print("✗ Schema name cannot be empty. Please try again.")
+            attempt += 1
+            if attempt < max_attempts:
+                print(f"✗ Schema name cannot be empty. Please try again. (Attempt {attempt}/{max_attempts})")
+            else:
+                print(f"✗ Schema name cannot be empty. Maximum attempts exceeded. Exiting.")
+                sys.exit(1)
 
 
 # Load configuration from YAML
