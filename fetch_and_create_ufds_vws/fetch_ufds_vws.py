@@ -70,16 +70,21 @@ def modify_ddl(ddl, target_schema, source_schema):
     Returns:
         The modified DDL string.
     """
+    target_schema = target_schema.split('.')[0]
+    print(f"Modifying DDL for target schema: {target_schema} and source schema: {source_schema}")
     # Append target schema to the view name
     ddl = re.sub(r'CREATE OR REPLACE VIEW (\w+\.\w+)', f'CREATE OR REPLACE VIEW {target_schema}.\\1', ddl)
 
     # Modify the FROM clause
     def replace_from_clause(match):
         table_ref = match.group(1)
-        if table_ref.startswith('*_rep.') or table_ref.startswith(f'{source_schema}.'):
+        print(f"Original table reference in FROM clause: {table_ref}")
+        if '_rep.' in table_ref or 'eda.' in table_ref:
+            print("No schema prefix needed for this table reference.")
             return f'FROM {table_ref}'
         else:
-            return f'FROM {source_schema}.{table_ref}'
+            print("Adding source schema prefix: eda.")
+            return f'FROM eda.{table_ref}'
 
     ddl = re.sub(r'FROM\s+([a-zA-Z0-9_\.]+)', replace_from_clause, ddl, flags=re.IGNORECASE)
     return ddl
@@ -105,6 +110,7 @@ def main():
     # target_conn_params = params['target_db']
     control_table = 'mktg_ops_tbls.extvws_create_ctl_tbl'
     output_dir = 'C:\\Users\\Exavalu\\OneDrive - exavalu\\ARC\\ddl\\ufds_vws'
+    modified_ddl_dir = 'C:\\Users\\Exavalu\\OneDrive - exavalu\\ARC\\ddl\\ufds_vws\\modified_ddls'
 
     # Connect to source and target databases
     target_conn = psycopg2.connect(
@@ -132,7 +138,7 @@ def main():
             tgt_schema = row['tgt_db_schema']
             src_schema = row['src_db_schema']
 
-            src_view_name = f"ufds_vws.gmpbz_dim_gift_stg"
+            src_view_name = f"{src_schema}.{src_view}"
             # Step 2: Fetch view DDL from source
             ddl = fetch_view_ddl(source_conn, src_view_name)
 
@@ -144,7 +150,7 @@ def main():
             print(f"Modified DDL for view {src_view}:\n{modified_ddl}\n")
 
             # Step 4: Save the modified DDL to a file
-            #save_ddl_to_file(modified_ddl, output_dir, src_view)
+            save_ddl_to_file(modified_ddl, modified_ddl_dir, src_view)
 
             # Step 5: Create the view in the target database
             #create_view_in_target(target_conn, modified_ddl)
