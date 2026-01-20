@@ -3,6 +3,44 @@ import os
 import re
 from datetime import datetime
 import yaml
+from pathlib import Path
+
+SCRIPT_DIR = Path(__file__).parent
+
+# Get the project root directory (one level up from Fetch_Object_Input)
+PROJECT_ROOT = SCRIPT_DIR.parent
+
+ROOT = project_root = os.path.dirname(PROJECT_ROOT)
+
+def save_ddl_to_file1(base_path, schema_name, object_name, ddl):
+    current_timestamp = datetime.now()
+    try:
+        # Create schema-specific folder with timestamp
+        schema_path = base_path / f"{schema_name}"
+        schema_path.mkdir(parents=True, exist_ok=True)
+        file_path = schema_path / f"{object_name}_{current_timestamp.strftime('%Y%m%d_%H%M')}.sql"
+        with open(file_path, "w") as file:
+            file.write(ddl)
+        print(f"Saved DDL for {object_name} to {file_path}")
+       # logging.info(f"Saved DDL for {object_name} to {file_path}")
+
+    except Exception as e:
+        print(f"Error saving DDL to file for {object_name}: {e}")
+        #logging.error(f"Error saving DDL to file for {object_name}: {e}")
+
+# Load configuration from YAML file
+def load_config():
+
+    # YAML is in the same folder as the script
+    config_path = SCRIPT_DIR / "input_parameter_file.yaml"
+    try:
+        with open(config_path, 'r') as file:
+            config = yaml.safe_load(file)
+        print(f"Configuration loaded successfully from {config_path}")
+        return config
+    except Exception as e:
+        print(f"Error loading configuration: {e}")
+        raise
 
 def read_control_table(conn, control_table):
     """
@@ -58,7 +96,7 @@ def save_ddl_to_file(ddl, output_dir, view_name):
         file.write(ddl)
     return file_path
 
-def modify_ddl(ddl, target_schema, source_schema):
+def modify_ddl(ddl, target_schema, source_schema,view_name):
     """
     Modifies the DDL according to the specified rules.
 
@@ -70,23 +108,33 @@ def modify_ddl(ddl, target_schema, source_schema):
     Returns:
         The modified DDL string.
     """
-    target_schema = target_schema.split('.')[0]
     print(f"Modifying DDL for target schema: {target_schema} and source schema: {source_schema}")
-    # Append target schema to the view name
-    ddl = re.sub(r'CREATE OR REPLACE VIEW (\w+\.\w+)', f'CREATE OR REPLACE VIEW {target_schema}.\\1', ddl)
+
+    # Replace the schema name after "CREATE OR REPLACE VIEW" with target database and schema name
+    ddl = re.sub(r'CREATE OR REPLACE VIEW \w+\.\w+', 
+                 lambda match: f"CREATE OR REPLACE VIEW {target_schema}.{match.group(0).split('.')[-1]}", 
+                 ddl)
 
     # Modify the FROM clause
+    
     def replace_from_clause(match):
         table_ref = match.group(1)
         print(f"Original table reference in FROM clause: {table_ref}")
-        if '_rep.' in table_ref or 'eda.' in table_ref:
+        if '_rep.' in table_ref or 'eda.' in table_ref or source_schema in table_ref:
             print("No schema prefix needed for this table reference.")
             return f'FROM {table_ref}'
         else:
             print("Adding source schema prefix: eda.")
             return f'FROM eda.{table_ref}'
+           
 
     ddl = re.sub(r'FROM\s+([a-zA-Z0-9_\.]+)', replace_from_clause, ddl, flags=re.IGNORECASE)
+
+    # Add GRANT commands
+    grant_commands = f"\nGRANT ALL ON TABLE {target_schema}.{view_name} TO role ds_mods_writer;\n"
+    grant_commands += f"GRANT SELECT ON TABLE {target_schema}.{view_name} TO role ds_mods_reader_vt;\n"
+    ddl += grant_commands
+
     return ddl
 
 def create_view_in_target(conn, ddl):
@@ -103,27 +151,33 @@ def create_view_in_target(conn, ddl):
 
 def main():
     # Load parameters from YAML file
+    config = load_config()
     # with open('fetch_and_create_ufds_vws/input_parameter_file.yaml', 'r') as file:
     #     params = yaml.safe_load(file)
 
     # source_conn_params = params['source_db']
     # target_conn_params = params['target_db']
-    control_table = 'mktg_ops_tbls.extvws_create_ctl_tbl'
-    output_dir = 'C:\\Users\\Exavalu\\OneDrive - exavalu\\ARC\\ddl\\ufds_vws'
-    modified_ddl_dir = 'C:\\Users\\Exavalu\\OneDrive - exavalu\\ARC\\ddl\\ufds_vws\\modified_ddls'
+    base_path = PROJECT_ROOT / "ext_vws_ddl" 
+    base_path.mkdir(parents=True, exist_ok=True)
+    modified_ddl_path = base_path / "modified_ddls"
+    modified_ddl_path.mkdir(parents=True, exist_ok=True)
+
+    print("Loaded configuration:", config)
+    control_table = config['control_table']
+    
 
     # Connect to source and target databases
     target_conn = psycopg2.connect(
-            host= 'redshift.test.datahub.redcross.net',
-            port=5439,
-            dbname='mods_bi',
+            host=config['tgt_redshift']['host'],
+            port=config['tgt_redshift']['port'],
+            dbname=config['tgt_redshift']['dbname'],
             user='adarsh_ram',
             password='3c7liI8myEkEKJUZe4JB'
             )
     source_conn = psycopg2.connect(
-            host='redshift.test.datahub.redcross.net',
-            port=5439,
-            dbname='eda',
+            host=config['src_redshift']['host'],
+            port=config['src_redshift']['port'],
+            dbname=config['src_redshift']['dbname'],
             user='adarsh_ram',
             password='3c7liI8myEkEKJUZe4JB'
             )
@@ -133,27 +187,30 @@ def main():
         control_data = read_control_table(target_conn, control_table)
 
         for row in control_data:
-            print(f"Processing view: {row}")
-            src_view = row['view_name']
-            tgt_schema = row['tgt_db_schema']
-            src_schema = row['src_db_schema']
+            if row['need_to_create_ind'] == 1:
+                print(f"Processing view: {row}")
+                view_name = row['view_name']
+                src_db = row['src_db']
+                src_schema = row['src_schema']
+                tgt_db = row['tgt_db']
+                tgt_schema = row['tgt_schema']
 
-            src_view_name = f"{src_schema}.{src_view}"
-            # Step 2: Fetch view DDL from source
-            ddl = fetch_view_ddl(source_conn, src_view_name)
+                src_view_name = f"{src_schema}.{view_name}"
+                # Step 2: Fetch view DDL from source
+                ddl = fetch_view_ddl(source_conn, src_view_name)
 
-            save_ddl_to_file(ddl, output_dir, src_view_name)
+                save_ddl_to_file1(base_path, src_schema, view_name, ddl)
 
-            # Step 3: Modify the DDL
-            modified_ddl = modify_ddl(ddl, tgt_schema, src_schema)
+                # Step 3: Modify the DDL
+                modified_ddl = modify_ddl(ddl, f"{tgt_db}.{tgt_schema}", src_schema,view_name)
 
-            print(f"Modified DDL for view {src_view}:\n{modified_ddl}\n")
+                print(f"Modified DDL for view {view_name}:\n{modified_ddl}\n")
 
-            # Step 4: Save the modified DDL to a file
-            save_ddl_to_file(modified_ddl, modified_ddl_dir, src_view)
+                # Step 4: Save the modified DDL to a file
+                save_ddl_to_file1(modified_ddl_path, src_schema, view_name, modified_ddl)
 
-            # Step 5: Create the view in the target database
-            #create_view_in_target(target_conn, modified_ddl)
+                # Step 5: Create the view in the target database
+                #create_view_in_target(target_conn, modified_ddl)
 
     finally:
         source_conn.close()
