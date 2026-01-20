@@ -123,12 +123,17 @@ def modify_ddl(ddl, target_schema, source_schema,view_name):
         if '_rep.' in table_ref or 'eda.' in table_ref or source_schema in table_ref:
             print("No schema prefix needed for this table reference.")
             return f'FROM {table_ref}'
+        elif '_tbls.' in table_ref:
+            return f'FROM eda.{source_schema}.{view_name}'
         else:
             print("Adding source schema prefix: eda.")
             return f'FROM eda.{table_ref}'
            
 
     ddl = re.sub(r'FROM\s+([a-zA-Z0-9_\.]+)', replace_from_clause, ddl, flags=re.IGNORECASE)
+
+
+
 
     # Add GRANT commands
     grant_commands = f"\nGRANT ALL ON TABLE {target_schema}.{view_name} TO role ds_mods_writer;\n"
