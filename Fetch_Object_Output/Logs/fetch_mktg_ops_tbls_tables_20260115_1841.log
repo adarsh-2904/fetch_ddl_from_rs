@@ -1,9 +1,0 @@
-2026-01-15 18:41:53,901 - INFO - User selected environment: TEST
-2026-01-15 18:41:53,901 - INFO - User selected object type: TABLE
-2026-01-15 18:41:53,901 - INFO - User selected schema: mktg_ops_tbls
-2026-01-15 18:41:53,901 - INFO - User selected mode: SELECTED
-2026-01-15 18:42:05,475 - INFO - Successfully connected to Redshift TEST: redshift.test.datahub.redcross.net
-2026-01-15 18:42:06,576 - ERROR - Error fetching object lists from control table: permission denied for relation fetch_selected_objects_ctl
-
-2026-01-15 18:42:06,576 - WARNING - No tables found in selected objects control table
-2026-01-15 18:42:06,576 - INFO - DDL fetch completed successfully

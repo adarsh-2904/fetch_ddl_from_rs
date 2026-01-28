@@ -1,2 +1,0 @@
-CREATE OR REPLACE VIEW mktg_ops_vws.bz_adb_arcgms_broadlog AS 
-SELECT adb_arcgms_broadlog.ibroadlogid, adb_arcgms_broadlog.igmsackid, adb_arcgms_broadlog.dw_trans_ts, adb_arcgms_broadlog.appl_src_cd, adb_arcgms_broadlog.load_id FROM mktg_ops_tbls.adb_arcgms_broadlog_b401072026 adb_arcgms_broadlog WITH NO SCHEMA BINDING;

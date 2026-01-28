@@ -33,25 +33,22 @@ def prompt_environment_selection():
     max_attempts = 2
     attempt = 0
     
+    valid_environments = ['test', 'dev', 'prod']
+    env_label = "TARGET"
     while attempt < max_attempts:
         print("\n" + "=" * 80)
-        print("SELECT ENVIRONMENT")
+        print(f"SELECT {env_label} ENVIRONMENT")
         print("=" * 80)
-        print("1. Test")
-        print("2. Development")
-        print("3. Production")
+        print("Available environments: test, dev, prod")
         print("=" * 80)
-        
-        choice = input("Enter your choice (1-3): ").strip()
-        
-        if choice in ENVIRONMENT_MAP:
-            environment = ENVIRONMENT_MAP[choice]
-            print(f"✓ Selected Environment: {environment.upper()}")
-            return environment
+        choice = input(f"Enter environment ({', '.join(valid_environments)}): ").strip().lower()
+        if choice in valid_environments:
+            print(f"✓ Selected {env_label} Environment: {choice.upper()}")
+            return choice
         else:
             attempt += 1
             if attempt < max_attempts:
-                print(f"✗ Invalid choice. Please enter 1, 2, or 3. (Attempt {attempt}/{max_attempts})")
+                print(f"✗ Invalid choice. Please enter test, dev, or prod. (Attempt {attempt}/{max_attempts})")
             else:
                 print(f"✗ Invalid choice. Maximum attempts exceeded. Exiting.")
                 sys.exit(1)
@@ -100,13 +97,11 @@ def prompt_schema_name():
     
     while attempt < max_attempts:
         print("\n" + "=" * 80)
-        print("ENTER SCHEMA NAME")
+        print("ENTER TARGET SCHEMA NAME")
         print("=" * 80)
         print("Examples: mktg_ops_tbls, mktg_ops_vws")
         print("=" * 80)
-        
-        schema_name = input("Enter schema name: ").strip()
-        
+        schema_name = input("Enter target schema name: ").strip()
         if schema_name:
             print(f"✓ Selected Schema: {schema_name}")
             return schema_name
@@ -281,9 +276,9 @@ def drop_object(connection, schema_name, object_name, object_type):
 
         # Build appropriate DROP statement based on object type
         if object_type.lower() == 'view':
-            drop_sql = f"DROP VIEW IF EXISTS {schema_name}.{object_name} CASCADE;"
+            drop_sql = f"DROP VIEW IF EXISTS {schema_name}.{object_name};"
         elif object_type.lower() == 'table':
-            drop_sql = f"DROP TABLE IF EXISTS {schema_name}.{object_name} CASCADE;"
+            drop_sql = f"DROP TABLE IF EXISTS {schema_name}.{object_name};"
         elif object_type.lower() == 'procedure':
             drop_sql = f"DROP PROCEDURE {schema_name}.{object_name}();"
         else:
@@ -411,12 +406,10 @@ def main():
     environment = prompt_environment_selection()
     object_type = prompt_object_type_selection()
     schema_name = prompt_schema_name()
-    
     # Update config with user selections
     config['object_config']['environment'] = environment
     config['object_config']['object_type'] = object_type
     config['object_config']['schema_name'] = schema_name
-    
     run_identifier = f"{schema_name}_{object_type}s"
     output_base_directory = config['paths']['output_directory']
 

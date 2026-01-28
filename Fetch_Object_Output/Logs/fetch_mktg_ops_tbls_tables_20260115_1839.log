@@ -1,9 +1,0 @@
-2026-01-15 18:39:56,568 - INFO - User selected environment: TEST
-2026-01-15 18:39:56,568 - INFO - User selected object type: TABLE
-2026-01-15 18:39:56,568 - INFO - User selected schema: mktg_ops_tbls
-2026-01-15 18:39:56,568 - INFO - User selected mode: SELECTED
-2026-01-15 18:40:10,974 - INFO - Successfully connected to Redshift TEST: redshift.test.datahub.redcross.net
-2026-01-15 18:40:11,770 - ERROR - Error fetching object lists from control table: column "is_selected" does not exist in fetch_selected_objects_ctl
-
-2026-01-15 18:40:11,770 - WARNING - No tables found in selected objects control table
-2026-01-15 18:40:11,773 - INFO - DDL fetch completed successfully
