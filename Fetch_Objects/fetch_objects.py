@@ -40,10 +40,7 @@ Script Behavior Summary: FETCH_OBJECTS.PY
    
    Procedures:
    - Extracted via: pg_proc system catalog + pg_get_functiondef
-   - Tracks OID (Object ID) for each procedure
-   - Handles overloaded procedures uniquely
-   - Filename format: {procedure_name}_{oid}.sql
-   - Each overloaded version saved separately
+   - Filename format: {procedure_name}.sql
 
 5. DDL Script Generation & Storage:
    - Output folder: {output}/{objecttype}/{schema}_{environment}_{mode}_{YYYYMMDD_HHMM}/
@@ -51,7 +48,7 @@ Script Behavior Summary: FETCH_OBJECTS.PY
      • Fetch_Object_Output/Table/mktg_ops_tbls_dev_all_20260128_1430/
      • Fetch_Object_Output/View/mktg_ops_vws_test_selected_20260128_1430/
      • Fetch_Object_Output/Procedure/saba_tbls_procedures_prod_all_20260128_1430/
-   - Filenames: {object_name}.sql or {procedure_name}_{oid}.sql (OID for uniqueness)
+   - Filenames: {object_name}.sql for all object types
    - Generated scripts immediately ready for create_objects.py
 
 6. Logging:
@@ -69,8 +66,7 @@ Script Behavior Summary: FETCH_OBJECTS.PY
 8. Critical Notes:
    - FETCH does NOT apply exclusion table filtering (filtering happens in CREATE phase on target DB)
    - Folder naming includes mode ('all' vs 'selected') for clarity
-   - OID prevents overloaded procedures from overwriting each other
-   - Exclusion filtering (fetch_all_objects_exclude_ctl) is applied only in create_objects.py
+   - Single procedure per name guaranteed; no overloaded procedures supported
 
 """
 
@@ -383,22 +379,21 @@ def fetch_table_ddl(connection, schema_name, table_name, relation_type):
 def fetch_stored_procedure_names(connection, schema_name):
     try:
         cursor = connection.cursor()
-        # Use pg_proc to get all procedures with OID for uniqueness
-        # OID ensures overloaded procedures have unique identifiers
+        # Fetch procedure names from pg_proc
+        # No OID tracking needed since no overloaded procedures per requirements
         query = """
-            SELECT 
-                p.proname,
-                p.oid
+            SELECT DISTINCT
+                p.proname
             FROM pg_proc p
             JOIN pg_namespace n ON p.pronamespace = n.oid
             WHERE n.nspname = %s
-            ORDER BY p.proname, p.oid;
+            ORDER BY p.proname;
         """
         cursor.execute(query, (schema_name,))
         procedures = cursor.fetchall()
         logging.info(f"Fetched {len(procedures)} stored procedures from schema {schema_name}")
-        # Return list of tuples: (procedure_name, oid)
-        return procedures
+        # Return list of procedure names (extract from tuples)
+        return [proc[0] for proc in procedures]
     except Exception as e:
         print(f"Error fetching stored procedure names: {e}")
         logging.error(f"Error fetching stored procedure names: {e}")
@@ -406,30 +401,18 @@ def fetch_stored_procedure_names(connection, schema_name):
 
 
 # Function to fetch DDL for a specific stored procedure
-def fetch_stored_procedure_ddl(connection, schema_name, procedure_name, procedure_oid=None):
+def fetch_stored_procedure_ddl(connection, schema_name, procedure_name):
     try:
         cursor = connection.cursor()
-        # If OID is provided, use it to fetch the specific overloaded procedure
-        # If not, fetch using name only (for backward compatibility)
-        if procedure_oid:
-            query = """
-                SELECT pg_get_functiondef(p.oid)
-                FROM pg_proc p
-                JOIN pg_namespace n ON p.pronamespace = n.oid
-                WHERE n.nspname = %s
-                AND p.proname = %s
-                AND p.oid = %s;
-            """
-            cursor.execute(query, (schema_name, procedure_name, procedure_oid))
-        else:
-            query = """
-                SELECT pg_get_functiondef(p.oid)
-                FROM pg_proc p
-                JOIN pg_namespace n ON p.pronamespace = n.oid
-                WHERE n.nspname = %s
-                AND p.proname = %s;
-            """
-            cursor.execute(query, (schema_name, procedure_name))
+        # Fetch procedure DDL by name only (no OID tracking needed)
+        query = """
+            SELECT pg_get_functiondef(p.oid)
+            FROM pg_proc p
+            JOIN pg_namespace n ON p.pronamespace = n.oid
+            WHERE n.nspname = %s
+            AND p.proname = %s;
+        """
+        cursor.execute(query, (schema_name, procedure_name))
         ddl = cursor.fetchone()
         return ddl[0] if ddl else None
     except Exception as e:
@@ -531,14 +514,13 @@ def fetch_all_objects(conn, schema_name, relation_type, base_path, source_enviro
             print(f"No {relation_type}s found in the schema.")
             logging.warning(f"No {relation_type}s found in schema {schema_name}")
             return
-        for idx, (procedure_name, procedure_oid) in enumerate(objects, 1):
+        for idx, procedure_name in enumerate(objects, 1):
             print(f"Processing {idx}/{len(objects)}: {procedure_name}")
-            # Pass OID to fetch the correct overloaded procedure DDL
-            ddl = fetch_stored_procedure_ddl(conn, schema_name, procedure_name, procedure_oid)
+            # Fetch procedure DDL
+            ddl = fetch_stored_procedure_ddl(conn, schema_name, procedure_name)
             if ddl:
-                # Create unique filename with OID to handle overloaded procedures
-                unique_name = f"{procedure_name}_{procedure_oid}"
-                save_ddl_to_file(base_path, schema_name, unique_name, ddl, source_environment, mode)
+                # Save DDL file with procedure name (no OID suffix)
+                save_ddl_to_file(base_path, schema_name, procedure_name, ddl, source_environment, mode)
             else:
                 print(f"No DDL found for {relation_type} {procedure_name}.")
                 logging.warning(f"No DDL found for {relation_type} {procedure_name}")
@@ -589,26 +571,11 @@ def selected_objects(conn, schema_name, relation_type, base_path, source_environ
             print(f"Processing {idx}/{len(objects)}: {procedure}")
             schema, object_name = procedure.split('.')
             
-            # Get OID for this procedure
-            cursor = conn.cursor()
-            oid_query = """
-                SELECT p.oid
-                FROM pg_proc p
-                JOIN pg_namespace n ON p.pronamespace = n.oid
-                WHERE n.nspname = %s AND p.proname = %s
-                LIMIT 1;
-            """
-            cursor.execute(oid_query, (schema, object_name))
-            result = cursor.fetchone()
-            procedure_oid = result[0] if result else ""
-            cursor.close()
-            
-            # Pass OID to fetch the correct overloaded procedure DDL
-            ddl = fetch_stored_procedure_ddl(conn, schema, object_name, procedure_oid)
+            # Fetch procedure DDL
+            ddl = fetch_stored_procedure_ddl(conn, schema, object_name)
             if ddl:
-                # Create unique filename with OID to handle overloaded procedures
-                unique_name = f"{object_name}_{procedure_oid}" if procedure_oid else object_name
-                save_ddl_to_file(base_path, schema, unique_name, ddl, source_environment, mode)
+                # Save DDL file with procedure name (no OID suffix)
+                save_ddl_to_file(base_path, schema, object_name, ddl, source_environment, mode)
             else:
                 print(f"No DDL found for {relation_type} {object_name}.")
                 logging.warning(f"No DDL found for {relation_type} {object_name}")

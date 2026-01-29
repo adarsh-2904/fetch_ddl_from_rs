@@ -14,12 +14,12 @@ Script Behavior Summary: CREATE_OBJECTS.PY
    - Grant Preference (OBJECT TYPE SPECIFIC):
      
      TABLES/VIEWS (3 options):
-     1. Both grants: GRANT ALL to ds_mods_writer + GRANT SELECT to ds_mods_reader_vt
-     2. Just one: User selects ds_mods_writer OR ds_mods_reader_vt
+     1. Both grants: GRANT ALL to mods_bi_writer + GRANT SELECT to mods_bi_reader_vt
+     2. Just one: User selects mods_bi_writer OR mods_bi_reader_vt
      3. Skip grants: No permissions granted
      
      PROCEDURES (2 options only, simplified):
-     1. Grant EXECUTE to ds_mods_writer
+     1. Grant EXECUTE to mods_bi_writer
      2. Skip grants: No permissions
    
    - Source environment: Auto-extracted from fetched folder name
@@ -56,12 +56,12 @@ Script Behavior Summary: CREATE_OBJECTS.PY
    
    TABLES/VIEWS:
    - 'both': GRANT ALL + GRANT SELECT to two roles
-   - 'writer': GRANT ALL to ds_mods_writer
-   - 'reader': GRANT SELECT to ds_mods_reader_vt
+   - 'writer': GRANT ALL to mods_bi_writer
+   - 'reader': GRANT SELECT to mods_bi_reader_vt
    - 'none': No grants executed
    
    PROCEDURES:
-   - 'both' (yes): GRANT EXECUTE to ds_mods_writer
+   - 'both' (yes): GRANT EXECUTE to mods_bi_writer
    - 'none' (no): No grants executed
    
    - Executed immediately after object creation
@@ -284,11 +284,11 @@ def prompt_grant_preference():
         print("\n" + "=" * 80)
         print("SELECT GRANT PREFERENCE FOR TABLES/VIEWS")
         print("=" * 80)
-        print("1. Both grants (GRANT ALL to ds_mods_writer + GRANT SELECT to ds_mods_reader_vt)")
+        print("1. Both grants (GRANT ALL to mods_bi_writer + GRANT SELECT to mods_bi_reader_vt)")
         print("2. Just one grant (you will select which role)")
         print("3. SKIP GRANTS (no permissions granted)")
         print("=" * 80)
-        print("Note: Stored procedures will always receive GRANT EXECUTE TO ROLE ds_mods_writer")
+        print("Note: Stored procedures will always receive GRANT EXECUTE TO ROLE mods_bi_writer")
         print("=" * 80)
         
         choice = input("Enter your choice (1-3): ").strip()
@@ -323,17 +323,17 @@ def prompt_single_grant_role():
         print("\n" + "=" * 80)
         print("SELECT SINGLE GRANT ROLE")
         print("=" * 80)
-        print("1. ds_mods_writer (GRANT ALL)")
-        print("2. ds_mods_reader_vt (GRANT SELECT)")
+        print("1. mods_bi_writer (GRANT ALL)")
+        print("2. mods_bi_reader_vt (GRANT SELECT)")
         print("=" * 80)
         
         choice = input("Enter your choice (1-2): ").strip()
         
         if choice == '1':
-            print(f"✓ Selected: ds_mods_writer (GRANT ALL)")
+            print(f"✓ Selected: mods_bi_writer (GRANT ALL)")
             return 'writer'
         elif choice == '2':
-            print(f"✓ Selected: ds_mods_reader_vt (GRANT SELECT)")
+            print(f"✓ Selected: mods_bi_reader_vt (GRANT SELECT)")
             return 'reader'
         else:
             attempt += 1
@@ -348,7 +348,7 @@ def prompt_grant_preference_for_procedure():
     """
     Prompt user for grant preference for procedures.
     Procedures only have GRANT EXECUTE option, so only 2 choices:
-    - Grant EXECUTE to ds_mods_writer
+    - Grant EXECUTE to mods_bi_writer
     - Skip grants
     Returns 'both' (for writer only) or 'none' (for no grants)
     """
@@ -359,14 +359,14 @@ def prompt_grant_preference_for_procedure():
         print("\n" + "=" * 80)
         print("SELECT GRANT PREFERENCE FOR PROCEDURES")
         print("=" * 80)
-        print("1. Grant EXECUTE to ds_mods_writer")
+        print("1. Grant EXECUTE to mods_bi_writer")
         print("2. SKIP GRANTS (no permissions granted)")
         print("=" * 80)
         
         choice = input("Enter your choice (1-2): ").strip()
         
         if choice == '1':
-            print(f"✓ Selected: GRANT EXECUTE to ds_mods_writer")
+            print(f"✓ Selected: GRANT EXECUTE to mods_bi_writer")
             return 'both'  # Return 'both' to maintain compatibility with existing code
         elif choice == '2':
             print(f"✓ Selected: SKIP GRANTS")
@@ -632,11 +632,11 @@ def apply_grants(connection, schema_name, object_name, object_type, grant_prefer
         if object_type.lower() == 'procedure':
             # Check grant_preference for procedures
             if grant_preference == 'both':
-                # Grant EXECUTE to ds_mods_writer
-                grant_sql = f"GRANT EXECUTE ON PROCEDURE {schema_name}.{object_name}() TO ROLE ds_mods_writer;"
+                # Grant EXECUTE to mods_bi_writer
+                grant_sql = f"GRANT EXECUTE ON PROCEDURE {schema_name}.{object_name}() TO ROLE mods_bi_writer;"
                 cursor.execute(grant_sql)
                 connection.commit()
-                grant_status = "GRANT EXECUTE (ds_mods_writer)"
+                grant_status = "GRANT EXECUTE (mods_bi_writer)"
                 logging.info(f"✓ Granted EXECUTE on procedure: {object_name}")
             elif grant_preference == 'none':
                 # Skip grants for procedure
@@ -648,34 +648,34 @@ def apply_grants(connection, schema_name, object_name, object_type, grant_prefer
         
         elif object_type.lower() in ('table', 'view'):
             if grant_preference == 'both':
-                # Grant ALL to ds_mods_writer and SELECT to ds_mods_reader_vt
-                grant_all_sql = f"GRANT ALL ON TABLE {schema_name}.{object_name} TO ROLE ds_mods_writer;"
-                grant_select_sql = f"GRANT SELECT ON TABLE {schema_name}.{object_name} TO ROLE ds_mods_reader_vt;"
+                # Grant ALL to mods_bi_writer and SELECT to mods_bi_reader_vt
+                grant_all_sql = f"GRANT ALL ON TABLE {schema_name}.{object_name} TO ROLE mods_bi_writer;"
+                grant_select_sql = f"GRANT SELECT ON TABLE {schema_name}.{object_name} TO ROLE mods_bi_reader_vt;"
                 
                 cursor.execute(grant_all_sql)
                 connection.commit()
-                logging.info(f"✓ Granted ALL on {object_type}: {object_name} to ds_mods_writer")
+                logging.info(f"✓ Granted ALL on {object_type}: {object_name} to mods_bi_writer")
                 
                 cursor.execute(grant_select_sql)
                 connection.commit()
-                logging.info(f"✓ Granted SELECT on {object_type}: {object_name} to ds_mods_reader_vt")
-                grant_status = "GRANT ALL (ds_mods_writer), SELECT (ds_mods_reader_vt)"
+                logging.info(f"✓ Granted SELECT on {object_type}: {object_name} to mods_bi_reader_vt")
+                grant_status = "GRANT ALL (mods_bi_writer), SELECT (mods_bi_reader_vt)"
                 
             elif grant_preference == 'writer':
-                # Grant ALL only to ds_mods_writer
-                grant_all_sql = f"GRANT ALL ON TABLE {schema_name}.{object_name} TO ROLE ds_mods_writer;"
+                # Grant ALL only to mods_bi_writer
+                grant_all_sql = f"GRANT ALL ON TABLE {schema_name}.{object_name} TO ROLE mods_bi_writer;"
                 cursor.execute(grant_all_sql)
                 connection.commit()
-                logging.info(f"✓ Granted ALL on {object_type}: {object_name} to ds_mods_writer")
-                grant_status = "GRANT ALL (ds_mods_writer)"
+                logging.info(f"✓ Granted ALL on {object_type}: {object_name} to mods_bi_writer")
+                grant_status = "GRANT ALL (mods_bi_writer)"
             
             elif grant_preference == 'reader':
-                # Grant SELECT only to ds_mods_reader_vt
-                grant_select_sql = f"GRANT SELECT ON TABLE {schema_name}.{object_name} TO ROLE ds_mods_reader_vt;"
+                # Grant SELECT only to mods_bi_reader_vt
+                grant_select_sql = f"GRANT SELECT ON TABLE {schema_name}.{object_name} TO ROLE mods_bi_reader_vt;"
                 cursor.execute(grant_select_sql)
                 connection.commit()
-                logging.info(f"✓ Granted SELECT on {object_type}: {object_name} to ds_mods_reader_vt")
-                grant_status = "SELECT (ds_mods_reader_vt)"
+                logging.info(f"✓ Granted SELECT on {object_type}: {object_name} to mods_bi_reader_vt")
+                grant_status = "SELECT (mods_bi_reader_vt)"
             
             elif grant_preference == 'none':
                 logging.info(f"⊘ Skipped grants for {object_type}: {object_name}")
@@ -1332,12 +1332,7 @@ def process_ddl_files(connection, config, grant_preference, db_username):
 
     # First pass: Try to create all objects
     for idx, file_name in enumerate(ddl_files, 1):
-        # Extract object name (handles OID removal for procedures)
-        object_name_clean, object_name_with_oid = extract_object_name_without_oid(file_name, object_type)
-        is_overloaded = is_overloaded_procedure(object_type, object_name_clean, object_name_with_oid)
-        
-        # Use clean name for all operations, but store full name with OID in audit
-        object_name = object_name_clean
+        object_name = file_name.replace('.sql', '')
 
         # Log progress every batch_size objects
         if idx % batch_size == 0:
@@ -1346,15 +1341,15 @@ def process_ddl_files(connection, config, grant_preference, db_username):
         # Read DDL content
         ddl_content = read_ddl_file(schema_folder_path, file_name)
         if not ddl_content:
-            logging.error(f"Skipping {object_name_with_oid} - Could not read SQL file")
-            write_to_errored_csv(errored_file, object_name_with_oid, schema_name, object_type,
+            logging.error(f"Skipping {object_name} - Could not read SQL file")
+            write_to_errored_csv(errored_file, object_name, schema_name, object_type,
                                  "FILE_READ_ERROR", "Could not read SQL file")
             errored_count += 1
             continue
 
         # Check if object is in exclusion list (skip if excluded)
         if (schema_name, object_name) in exclusion_list:
-            write_to_skipped_csv(skipped_file, object_name_with_oid, schema_name, object_type,
+            write_to_skipped_csv(skipped_file, object_name, schema_name, object_type,
                                 "Excluded via target DB exclusion table")
             skipped_count += 1
             continue
@@ -1399,10 +1394,9 @@ def process_ddl_files(connection, config, grant_preference, db_username):
         success, error_type, error_message, drop_status, row_count_before_drop = execute_ddl(connection, ddl_content, schema_name, object_name, object_type)
 
         if success:
-            logging.info(f"✓ Successfully created {object_type}: {object_name_with_oid}")
+            logging.info(f"✓ Successfully created {object_type}: {object_name}")
             # Apply grants after successful creation (returns detailed grant_status)
-            # Pass is_overloaded flag for procedure overload detection
-            grant_success, grant_error, grant_status = apply_grants(connection, schema_name, object_name, object_type, grant_preference, is_overloaded)
+            grant_success, grant_error, grant_status = apply_grants(connection, schema_name, object_name, object_type, grant_preference)
             if not grant_success and grant_error:
                 logging.warning(f"  Grant error: {grant_error}")
             
@@ -1412,13 +1406,12 @@ def process_ddl_files(connection, config, grant_preference, db_username):
             else:
                 row_count_for_csv = None
             
-            # Write to CSV with full name (including OID for procedures)
-            write_to_created_csv(created_file, object_name_with_oid, schema_name, object_type, 
+            write_to_created_csv(created_file, object_name, schema_name, object_type, 
                                drop_status, row_count_for_csv, grant_status)
             created_count += 1
         else:
-            logging.warning(f"✗ Failed to create {object_type}: {object_name_with_oid} - Error Type: {error_type}")
-            write_to_errored_csv(errored_file, object_name_with_oid, schema_name, object_type, error_type, error_message)
+            logging.warning(f"✗ Failed to create {object_type}: {object_name} - Error Type: {error_type}")
+            write_to_errored_csv(errored_file, object_name, schema_name, object_type, error_type, error_message)
             errored_count += 1
 
             # Track dependency errors for retry
