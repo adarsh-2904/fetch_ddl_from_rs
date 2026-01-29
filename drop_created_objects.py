@@ -3,10 +3,115 @@ import psycopg2
 import logging
 import yaml
 import csv
+import sys
 from datetime import datetime
 from pathlib import Path
 import glob
 import pwinput
+
+
+# Environment and Object Type Mappings (Hardcoded - 3 options each)
+ENVIRONMENT_MAP = {
+    "1": "test",
+    "2": "dev",
+    "3": "prod"
+}
+
+OBJECT_TYPE_MAP = {
+    "1": "table",
+    "2": "view",
+    "3": "procedure"
+}
+
+
+def prompt_environment_selection():
+    """
+    Prompt user to select the environment.
+    Returns the environment name (test, dev, prod)
+    Exits on 2 invalid attempts.
+    """
+    max_attempts = 2
+    attempt = 0
+    
+    valid_environments = ['test', 'dev', 'prod']
+    env_label = "TARGET"
+    while attempt < max_attempts:
+        print("\n" + "=" * 80)
+        print(f"SELECT {env_label} ENVIRONMENT")
+        print("=" * 80)
+        print("Available environments: test, dev, prod")
+        print("=" * 80)
+        choice = input(f"Enter environment ({', '.join(valid_environments)}): ").strip().lower()
+        if choice in valid_environments:
+            print(f"✓ Selected {env_label} Environment: {choice.upper()}")
+            return choice
+        else:
+            attempt += 1
+            if attempt < max_attempts:
+                print(f"✗ Invalid choice. Please enter test, dev, or prod. (Attempt {attempt}/{max_attempts})")
+            else:
+                print(f"✗ Invalid choice. Maximum attempts exceeded. Exiting.")
+                sys.exit(1)
+
+
+def prompt_object_type_selection():
+    """
+    Prompt user to select the object type.
+    Returns the object type (table, view, procedure)
+    Exits on 2 invalid attempts.
+    """
+    max_attempts = 2
+    attempt = 0
+    
+    while attempt < max_attempts:
+        print("\n" + "=" * 80)
+        print("SELECT OBJECT TYPE")
+        print("=" * 80)
+        print("1. Table")
+        print("2. View")
+        print("3. Procedure")
+        print("=" * 80)
+        
+        choice = input("Enter your choice (1-3): ").strip()
+        
+        if choice in OBJECT_TYPE_MAP:
+            object_type = OBJECT_TYPE_MAP[choice]
+            print(f"✓ Selected Object Type: {object_type.upper()}")
+            return object_type
+        else:
+            attempt += 1
+            if attempt < max_attempts:
+                print(f"✗ Invalid choice. Please enter 1, 2, or 3. (Attempt {attempt}/{max_attempts})")
+            else:
+                print(f"✗ Invalid choice. Maximum attempts exceeded. Exiting.")
+                sys.exit(1)
+
+
+def prompt_schema_name():
+    """
+    Prompt user to enter the schema name.
+    Exits on 2 empty input attempts.
+    """
+    max_attempts = 2
+    attempt = 0
+    
+    while attempt < max_attempts:
+        print("\n" + "=" * 80)
+        print("ENTER TARGET SCHEMA NAME")
+        print("=" * 80)
+        print("Examples: mktg_ops_tbls, mktg_ops_vws")
+        print("=" * 80)
+        schema_name = input("Enter target schema name: ").strip()
+        if schema_name:
+            print(f"✓ Selected Schema: {schema_name}")
+            return schema_name
+        else:
+            attempt += 1
+            if attempt < max_attempts:
+                print(f"✗ Schema name cannot be empty. Please try again. (Attempt {attempt}/{max_attempts})")
+            else:
+                print(f"✗ Schema name cannot be empty. Maximum attempts exceeded. Exiting.")
+                sys.exit(1)
 
 
 # Load configuration from YAML
@@ -104,20 +209,31 @@ def setup_logging(log_directory, run_identifier):
         return None
 
 
-# Connect to Redshift
+# Connect to Redshift - Updated for new YAML structure with environments
 def connect_to_redshift(config):
     try:
+        # Get environment from config, default to 'dev' if not set
+        environment = config['object_config'].get('environment', 'dev')
+        
+        # Get the environment config
+        if environment not in config['environments']:
+            print(f"Error: Environment '{environment}' not found in configuration")
+            print(f"Available environments: {list(config['environments'].keys())}")
+            return None
+        
+        env_config = config['environments'][environment]
+        
         username = input("Enter Redshift username: ")
         password = pwinput.pwinput(prompt="Enter Redshift password: ", mask="*")
         connection = psycopg2.connect(
-            host=config['redshift']['host'],
-            port=config['redshift']['port'],
-            dbname=config['redshift']['dbname'],
+            host=env_config['host'],
+            port=env_config['port'],
+            dbname=env_config['dbname'],
             user=username,
             password=password
         )
-        logging.info(f"Successfully connected to Redshift DEV: {config['redshift']['host']}")
-        logging.info(f"Database: {config['redshift']['dbname']}, User: {username}")
+        logging.info(f"Successfully connected to Redshift {environment.upper()}: {env_config['host']}")
+        logging.info(f"Database: {env_config['dbname']}, User: {username}")
         del password  # Remove password from memory
         return connection
     except Exception as e:
@@ -160,9 +276,9 @@ def drop_object(connection, schema_name, object_name, object_type):
 
         # Build appropriate DROP statement based on object type
         if object_type.lower() == 'view':
-            drop_sql = f"DROP VIEW IF EXISTS {schema_name}.{object_name} CASCADE;"
+            drop_sql = f"DROP VIEW IF EXISTS {schema_name}.{object_name};"
         elif object_type.lower() == 'table':
-            drop_sql = f"DROP TABLE IF EXISTS {schema_name}.{object_name} CASCADE;"
+            drop_sql = f"DROP TABLE IF EXISTS {schema_name}.{object_name};"
         elif object_type.lower() == 'procedure':
             drop_sql = f"DROP PROCEDURE {schema_name}.{object_name}();"
         else:
@@ -286,13 +402,22 @@ def main():
         print("Failed to load configuration. Exiting.")
         return
 
-    run_identifier = config['object_config']['run_identifier']
-    object_type = config['object_config']['object_type']
+    # Get user selections via interactive prompts
+    environment = prompt_environment_selection()
+    object_type = prompt_object_type_selection()
+    schema_name = prompt_schema_name()
+    # Update config with user selections
+    config['object_config']['environment'] = environment
+    config['object_config']['object_type'] = object_type
+    config['object_config']['schema_name'] = schema_name
+    run_identifier = f"{schema_name}_{object_type}s"
     output_base_directory = config['paths']['output_directory']
 
     print(f"\nConfiguration:")
+    print(f"  Environment: {environment.upper()}")
     print(f"  Run Identifier: {run_identifier}")
     print(f"  Object Type: {object_type.upper()}")
+    print(f"  Schema Name: {schema_name}")
 
     # Find the latest created CSV file (now looks in object-type specific directory)
     created_file = find_latest_created_csv(output_base_directory, object_type, run_identifier)
@@ -327,6 +452,9 @@ def main():
     logging.info(f"Configuration loaded successfully")
     logging.info(f"Log file: {log_file}")
     logging.info(f"Source file: {created_file}")
+    logging.info(f"Environment: {environment.upper()}")
+    logging.info(f"Object Type: {object_type.upper()}")
+    logging.info(f"Schema Name: {schema_name}")
 
     # Connect to Redshift
     connection = connect_to_redshift(config)
