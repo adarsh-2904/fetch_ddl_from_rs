@@ -1,0 +1,6 @@
+View Name,Status,Message
+mods_bi.ufds_vws.gmpbza_dim_src,Error,"relation ""ufds_vws.gmpbza_dim_src"" does not exist "
+mods_bi.ufds_vws.gmpbza_gift_addr,Error,"relation ""ufds_vws.gmpbza_gift_addr"" does not exist "
+mods_bi.ufds_vws.gmpbzal_dim_fund,Error,"relation ""ufds_vws.gmpbzal_dim_fund"" does not exist "
+mods_bi.ufds_vws.bzfc_dim_unf_fr_cnst,Success,Query executed successfully
+mods_bi.arc_goats_subscr_vws.bzfc_taxo_humanitarian_full,Error,"relation ""arc_goats_subscr_vws.bzfc_taxo_humanitarian_full"" does not exist "

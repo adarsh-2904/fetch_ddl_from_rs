@@ -1,0 +1,52 @@
+View Name,Status,Message
+mods_bi.ufds_vws.gmpbzal_dim_src,Success,Query executed successfully
+mods_bi.ufds_vws.bzfc_dim_unf_fr_cnst,Success,Query executed successfully
+mods_bi.ufds_vws.gmpbz_cnst_comnictn_email,Success,Query executed successfully
+mods_bi.ufds_vws.gmpbz_dim_arcpg_amt_typ,Success,Query executed successfully
+mods_bi.ufds_vws.gmpbz_dim_arcpg_chan_typ,Success,Query executed successfully
+mods_bi.ufds_vws.gmpbz_dim_arcpg_comnictn_typ,Success,Query executed successfully
+mods_bi.ufds_vws.gmpbz_dim_arcpg_response_typ,Success,Query executed successfully
+mods_bi.ufds_vws.gmpbz_dim_arcpg_src,Success,Query executed successfully
+mods_bi.ufds_vws.gmpbz_dim_comnictn,Success,Query executed successfully
+mods_bi.ufds_vws.gmpbz_dim_dntn_chan,Success,Query executed successfully
+mods_bi.ufds_vws.gmpbz_dim_dollar_tier,Success,Query executed successfully
+mods_bi.ufds_vws.gmpbza_dim_fund,Success,Query executed successfully
+mods_bi.ufds_vws.gmpbz_dim_gift_stg,Success,Query executed successfully
+mods_bi.ufds_vws.gmpbz_dim_giftran,Success,Query executed successfully
+mods_bi.ufds_vws.gmpbz_dim_giftran_typ,Success,Query executed successfully
+mods_bi.ufds_vws.gmpbz_dim_gl_fcc,Success,Query executed successfully
+mods_bi.ufds_vws.gmpbz_dim_intrctn_typ,Success,Query executed successfully
+mods_bi.ufds_vws.gmpbz_dim_pmt_mthd,Success,Query executed successfully
+mods_bi.ufds_vws.gmpbz_dim_prog,Success,Query executed successfully
+mods_bi.ufds_vws.gmpbz_dim_rgnrt_reason,Success,Query executed successfully
+mods_bi.ufds_vws.gmpbz_dim_src,Error,"relation ""ufds_vws.gmpbza_dim_src"" does not exist "
+mods_bi.ufds_vws.gmpbz_dim_sustnr_typ,Success,Query executed successfully
+mods_bi.ufds_vws.gmpbz_dim_vendor,Success,Query executed successfully
+mods_bi.ufds_vws.gmpbz_fact_arcpg_cnst_comnictn,Success,Query executed successfully
+mods_bi.ufds_vws.gmpbz_gift_addr,Error,"relation ""ufds_vws.gmpbza_gift_addr"" does not exist "
+mods_bi.ufds_vws.gmpbz_gift_premium,Success,Query executed successfully
+mods_bi.ufds_vws.gmpbz_gift_sku,Success,Query executed successfully
+mods_bi.ufds_vws.bzfc_dim_unf_fr_cnst,Success,Query executed successfully
+mods_bi.ufds_vws.frfbz_dim_gift_source,Error,Relation dim_gift_source does not exist in the database. 
+mods_bi.ufds_vws.bzfc_fact_cnst_comnictn,Success,Query executed successfully
+mods_bi.ufds_vws.bzfc_fact_giftran,Error,"relation ""ufds_vws.gmpbzal_dim_fund"" does not exist "
+mods_bi.ufds_vws.frfbz_dim_tag,Error,Relation dim_tag does not exist in the database. 
+mods_bi.ufds_vws.bzl_cnst_mstr_fsa,Success,Query executed successfully
+mods_bi.ufds_vws.bzfc_dim_unf_fr_cnst,Success,Query executed successfully
+mods_bi.ufds_vws.bzfc_dim_unf_fr_indv,Error,cross-database reference to cdigms_rep.ufds_tbls.bzfc_dim_unf_fr_cnst found while analyzing an LBV on producer. 
+mods_bi.ufds_vws.bzfc_fact_ask,Success,Query executed successfully
+mods_bi.ufds_vws.bzl_cnst_mstr_fsa_acct,Success,Query executed successfully
+mods_bi.ufds_vws.bzfc_dim_unf_fr_acct,Success,Query executed successfully
+mods_bi.ufds_vws.frfbz_dim_ask,Error,Relation dim_ask does not exist in the database. 
+mods_bi.ufds_vws.frfbza_dim_ask,Error,Relation dim_ask does not exist in the database. 
+mods_bi.ufds_vws.bzl_cnst_mstr_fsa,Success,Query executed successfully
+mods_bi.ufds_vws.bzfc_dim_unf_fr_cnst,Success,Query executed successfully
+mods_bi.arc_goats_subscr_vws.bzfc_taxo_humanitarian_curr,Error,"relation ""arc_goats_subscr_vws.bzfc_taxo_humanitarian_full"" does not exist "
+mods_bi.arc_goats_subscr_vws.bzfc_taxo_bio_collection_curr,Success,Query executed successfully
+mods_bi.arc_goats_subscr_vws.bzfc_taxo_subscr_gplg,Error,Remote object depends on external shared object. 
+mods_bi.ufds_vws.gmpbz_dim_fund,Success,Query executed successfully
+mods_bi.ufds_vws.bzfc_cnst_fr_prfl,Success,Query executed successfully
+mods_bi.ufds_vws.gmpbz_dim_fund,Success,Query executed successfully
+mods_bi.ufds_vws.bzfc_cnst_fr_prfl,Success,Query executed successfully
+mods_bi.ufds_vws.bzf_cnst_cnstcy,Success,Query executed successfully
+mods_bi.ufds_vws.gmpbz_dim_fund,Success,Query executed successfully

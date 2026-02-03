@@ -1,0 +1,45 @@
+CREATE OR REPLACE VIEW mods_bi.ufds_vws.frfbza_dim_ask AS
+SELECT
+dim_ask_key,
+row_eff_from_ts,
+row_eff_to_ts ,
+nk_sf_ask_guid,
+ask_id,
+prnt_nk_sf_ask_guid,
+prnt_ask_id,
+ask_rec_typ,
+ask_acct_ctg,
+ask_gift_typ,
+ask_gift_vehicle,
+ask_gift_src,
+ask_strat_nm,
+ask_stg,
+ask_solicitn_typ,
+ask_solicitn_strat,
+ask_strat_typ,
+ask_fr_pckge,
+ask_fr_prog,
+dsgntn_nm,
+gift_honor_roll,
+anm_dcln_reason,
+recognition_prog,
+bdgt_rlvng,
+ldrshp,
+val_in_kind_gift,
+next_step,
+third_prty,
+rm_referral,
+srcsys_create_ts ,
+srcsys_update_ts ,
+srcsys_created_by,
+srcsys_modified_by,
+row_status_cd,
+dw_trans_ts,
+load_id,
+appl_src_cd,
+CASE WHEN row_eff_to_ts = TIMESTAMP '9999-12-31 00:00:00' OR row_eff_to_ts = TIMESTAMP '9999-12-31 00:00:00' THEN 1 ELSE 0 END AS bzd_curr_ind
+FROM cdigms_rep.frf_sf_tbls.dim_ask
+WHERE row_status_cd != 'L'
+WITH NO SCHEMA BINDING;
+GRANT ALL ON TABLE mods_bi.ufds_vws.frfbza_dim_ask TO role ds_mods_writer;
+GRANT SELECT ON TABLE mods_bi.ufds_vws.frfbza_dim_ask TO role ds_mods_reader_vt;

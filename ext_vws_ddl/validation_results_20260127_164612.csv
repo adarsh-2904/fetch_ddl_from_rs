@@ -1,0 +1,5 @@
+View Name,Status,Message,Execution Time (seconds)
+mods_bi.arc_goats_subscr_vws.bzfc_taxo_humanitarian_curr,Success,Query executed successfully,2 minutes and 11 seconds
+mods_bi.arc_goats_subscr_vws.bzfc_taxo_bio_collection_curr,Success,Query executed successfully,1 minutes and 53 seconds
+mods_bi.arc_goats_subscr_vws.bzfc_taxo_subscr_gplg,Error,Remote object depends on external shared object. ,N/A
+mods_bi.arc_goats_subscr_vws.bzfc_taxo_humanitarian_full,Success,Query executed successfully,4 minutes and 30 seconds

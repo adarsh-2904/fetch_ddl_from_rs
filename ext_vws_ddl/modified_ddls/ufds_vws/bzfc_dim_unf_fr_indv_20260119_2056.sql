@@ -128,7 +128,7 @@ related_org_2_key,
 related_org_3_key,
 appl_src_cd,
 buyerattributes
-FROM eda.ufds_vws.bzfc_dim_unf_fr_cnst
+FROM mods_bi.ufds_vws.bzfc_dim_unf_fr_cnst
 WHERE cnst_typ_cd IN ('IN', 'DW Unknown')
 WITH NO SCHEMA BINDING;
 GRANT ALL ON TABLE mods_bi.ufds_vws.bzfc_dim_unf_fr_indv TO role ds_mods_writer;

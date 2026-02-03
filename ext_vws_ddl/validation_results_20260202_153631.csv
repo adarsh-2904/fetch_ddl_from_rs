@@ -1,0 +1,41 @@
+View Name,Status,Message,Execution Time (seconds)
+mods_bi.mktg_ops_vws.bz_dim_fund_cd,Success,Query executed successfully,0 minutes and 8 seconds
+mods_bi.mktg_ops_vws.bzfc_fact_email_interaction,Success,Query executed successfully,0 minutes and 32 seconds
+mods_bi.mktg_ops_vws.bzfc_fact_interaction_all,Success,Query executed successfully,0 minutes and 58 seconds
+mods_bi.mktg_ops_vws.gmpbz_chpt_cnst_cnstcy,Success,Query executed successfully,0 minutes and 24 seconds
+mods_bi.mktg_ops_vws.gmpbz_cnst_comnictn_email,Success,Query executed successfully,1 minutes and 2 seconds
+mods_bi.mktg_ops_vws.gmpbz_dim_arcpg_amt_typ,Success,Query executed successfully,0 minutes and 9 seconds
+mods_bi.mktg_ops_vws.gmpbz_dim_arcpg_chan_typ,Success,Query executed successfully,0 minutes and 5 seconds
+mods_bi.mktg_ops_vws.gmpbz_dim_arcpg_comnictn_typ,Success,Query executed successfully,0 minutes and 12 seconds
+mods_bi.mktg_ops_vws.gmpbz_dim_arcpg_response_typ,Success,Query executed successfully,0 minutes and 4 seconds
+mods_bi.mktg_ops_vws.gmpbz_dim_arcpg_src,Success,Query executed successfully,0 minutes and 12 seconds
+mods_bi.mktg_ops_vws.gmpbz_dim_comnictn,Success,Query executed successfully,0 minutes and 3 seconds
+mods_bi.mktg_ops_vws.gmpbz_dim_dntn_chan,Success,Query executed successfully,0 minutes and 5 seconds
+mods_bi.mktg_ops_vws.gmpbz_dim_dollar_tier,Success,Query executed successfully,0 minutes and 1 seconds
+mods_bi.mktg_ops_vws.gmpbz_dim_fund,Success,Query executed successfully,0 minutes and 9 seconds
+mods_bi.mktg_ops_vws.gmpbz_dim_gift_stg,Success,Query executed successfully,0 minutes and 4 seconds
+mods_bi.mktg_ops_vws.gmpbz_dim_giftran,Success,Query executed successfully,0 minutes and 3 seconds
+mods_bi.mktg_ops_vws.gmpbz_dim_giftran_typ,Success,Query executed successfully,0 minutes and 3 seconds
+mods_bi.mktg_ops_vws.gmpbz_dim_gl_fcc,Success,Query executed successfully,0 minutes and 7 seconds
+mods_bi.mktg_ops_vws.gmpbz_dim_intrctn_typ,Error,cross-database reference to cdigms_rep.gms_tbls.dim_intrctn_typ found while analyzing an LBV on producer. ,N/A
+mods_bi.mktg_ops_vws.gmpbz_dim_merchant,Error,Relation gms_tbls does not exist in the database. ,N/A
+mods_bi.mktg_ops_vws.gmpbz_dim_pmt_mthd,Success,Query executed successfully,0 minutes and 4 seconds
+mods_bi.mktg_ops_vws.gmpbz_dim_prog,Success,Query executed successfully,0 minutes and 14 seconds
+mods_bi.mktg_ops_vws.gmpbz_dim_rgnrt_reason,Success,Query executed successfully,0 minutes and 7 seconds
+mods_bi.mktg_ops_vws.gmpbz_dim_src,Success,Query executed successfully,0 minutes and 9 seconds
+mods_bi.mktg_ops_vws.gmpbz_dim_sustnr_typ,Success,Query executed successfully,0 minutes and 2 seconds
+mods_bi.mktg_ops_vws.gmpbz_dim_vendor,Success,Query executed successfully,0 minutes and 3 seconds
+mods_bi.mktg_ops_vws.gmpbz_fact_arcpg_cnst_comnictn,Success,Query executed successfully,0 minutes and 9 seconds
+mods_bi.mktg_ops_vws.gmpbz_gift_addr,Success,Query executed successfully,0 minutes and 7 seconds
+mods_bi.mktg_ops_vws.gmpbz_gift_premium,Success,Query executed successfully,0 minutes and 9 seconds
+mods_bi.mktg_ops_vws.gmpbz_gift_sku,Success,Query executed successfully,0 minutes and 12 seconds
+mods_bi.mktg_ops_vws.gmpbzal_dim_fund,Success,Query executed successfully,0 minutes and 4 seconds
+mods_bi.mktg_ops_vws.gmpbzal_dim_src,Success,Query executed successfully,0 minutes and 8 seconds
+mods_bi.mktg_ops_vws.gms_bzfc_dim_unf_fr_cnst,Success,Query executed successfully,0 minutes and 44 seconds
+mods_bi.mktg_ops_vws.gms_bzfc_fact_ask,Success,Query executed successfully,1 minutes and 24 seconds
+mods_bi.mktg_ops_vws.gms_bzfc_fact_cnst_comnictn,Success,Query executed successfully,1 minutes and 18 seconds
+mods_bi.mktg_ops_vws.gms_bzfc_fact_giftran,Success,Query executed successfully,1 minutes and 10 seconds
+mods_bi.mktg_ops_vws.gms_cnst_cdi_smry_fr_pa_dm,Success,Query executed successfully,3 minutes and 2 seconds
+mods_bi.mktg_ops_vws.gms_frfbz_dim_tag,Success,Query executed successfully,0 minutes and 14 seconds
+mods_bi.mktg_ops_vws.gms_pg_group_membrshp_src,Error,"column ""date"" does not exist in a, b, unnamed_join, bd, unnamed_join ",N/A
+mods_bi.mktg_ops_vws.gms_sf_acct_contct_brdg,Success,Query executed successfully,0 minutes and 7 seconds

@@ -1,9 +1,12 @@
+import uuid
 import psycopg2
 import os
 import re
 from datetime import datetime
 import yaml
 from pathlib import Path
+import csv
+import time
 
 SCRIPT_DIR = Path(__file__).parent
 
@@ -116,15 +119,16 @@ def modify_ddl(ddl, target_schema, source_schema,view_name):
                  ddl)
 
     # Modify the FROM clause
-    
     def replace_from_clause(match):
         table_ref = match.group(1)
         print(f"Original table reference in FROM clause: {table_ref}")
-        if '_rep.' in table_ref or 'eda.' in table_ref or source_schema in table_ref:
+        if '_rep.' in table_ref or 'eda.' in table_ref:
             print("No schema prefix needed for this table reference.")
             return f'FROM {table_ref}'
         elif '_tbls.' in table_ref:
             return f'FROM eda.{source_schema}.{view_name}'
+        elif source_schema in table_ref:
+            return f'FROM mods_bi.{table_ref}'
         else:
             print("Adding source schema prefix: eda.")
             return f'FROM eda.{table_ref}'
@@ -136,8 +140,8 @@ def modify_ddl(ddl, target_schema, source_schema,view_name):
 
 
     # Add GRANT commands
-    grant_commands = f"\nGRANT ALL ON TABLE {target_schema}.{view_name} TO role ds_mods_writer;\n"
-    grant_commands += f"GRANT SELECT ON TABLE {target_schema}.{view_name} TO role ds_mods_reader_vt;\n"
+    grant_commands = f"\nGRANT ALL ON {target_schema}.{view_name} TO role mods_bi_writer;\n"
+    grant_commands += f"GRANT SELECT ON {target_schema}.{view_name} TO role mods_bi_reader_vt;\n"
     ddl += grant_commands
 
     return ddl
@@ -153,6 +157,46 @@ def create_view_in_target(conn, ddl):
     with conn.cursor() as cursor:
         cursor.execute(ddl)
         conn.commit()
+
+def validate_views(conn, views, output_csv):
+    """
+    Validates the created views by executing SELECT * queries and logs the results/errors to a CSV file.
+
+    Args:
+        conn: Connection object to the target database.
+        views: List of views to validate. Each view is a dictionary with keys 'db_name', 'schema_name', and 'view_name'.
+        output_csv: Path to the CSV file where results/errors will be logged.
+    """
+    with open(output_csv, mode='w', newline='') as csvfile:
+        csv_writer = csv.writer(csvfile)
+        csv_writer.writerow(["View Name", "Status", "Message", "Execution Time (seconds)"])  # Added column for execution time
+
+        for view in views:
+            view_name = f"{view['db_name']}.{view['schema_name']}.{view['view_name']}"
+            query = f"SELECT * FROM {view_name} LIMIT 200;"
+            
+            try:
+                with conn.cursor() as cursor:
+                    
+                    cursor.execute("BEGIN;")  # Start a new transaction
+                    start_time = time.time()  # Start the timer
+                    cursor.execute(query)
+                    cursor.fetchall()  # Fetch results to ensure the query runs successfully
+                    end_time = time.time()  # End the timer
+                    conn.commit()  # Commit the transaction if successful
+                    
+                    execution_time = end_time - start_time  # Calculate the duration
+                    #convert execution_time to min and seconds
+                    minutes = int(execution_time // 60)
+                    seconds = int(execution_time % 60)  
+                    
+                    csv_writer.writerow([view_name, "Success", "Query executed successfully", f"{minutes} minutes and {seconds} seconds"])
+                    print(f"Validation successful for view: {view_name}. Execution time: {minutes} minutes and {seconds} seconds")
+            except Exception as e:
+                conn.rollback()  # Rollback the transaction in case of an error
+                error_message = str(e).replace("\n", " ")  # Replace newlines in error message
+                csv_writer.writerow([view_name, "Error", error_message, "N/A"])  # Log "N/A" for execution time in case of error
+                print(f"Validation failed for view: {view_name}. Error: {error_message}")
 
 def main():
     # Load parameters from YAML file
@@ -177,45 +221,60 @@ def main():
             port=config['tgt_redshift']['port'],
             dbname=config['tgt_redshift']['dbname'],
             user='adarsh_ram',
-            password='3c7liI8myEkEKJUZe4JB'
+            password='3c7liI8myEkEKJUZe4JB',
+            connect_timeout=600
             )
     source_conn = psycopg2.connect(
             host=config['src_redshift']['host'],
             port=config['src_redshift']['port'],
             dbname=config['src_redshift']['dbname'],
             user='adarsh_ram',
-            password='3c7liI8myEkEKJUZe4JB'
+            password='3c7liI8myEkEKJUZe4JB',
+            connect_timeout=600
             )
 
     try:
         # Step 1: Read control table
         control_data = read_control_table(target_conn, control_table)
 
-        for row in control_data:
-            if row['need_to_create_ind'] == 1:
-                print(f"Processing view: {row}")
-                view_name = row['view_name']
-                src_db = row['src_db']
-                src_schema = row['src_schema']
-                tgt_db = row['tgt_db']
-                tgt_schema = row['tgt_schema']
+        # for row in control_data:
+        #     if row['need_to_create_ind'] == 1:
+        #         print(f"Processing view: {row}")
+        #         view_name = row['view_name']
+        #         src_db = row['src_db']
+        #         src_schema = row['src_schema']
+        #         tgt_db = row['tgt_db']
+        #         tgt_schema = row['tgt_schema']
 
-                src_view_name = f"{src_schema}.{view_name}"
-                # Step 2: Fetch view DDL from source
-                ddl = fetch_view_ddl(source_conn, src_view_name)
+        #         src_view_name = f"{src_schema}.{view_name}"
+        #         # Step 2: Fetch view DDL from source
+        #         ddl = fetch_view_ddl(source_conn, src_view_name)
 
-                save_ddl_to_file1(base_path, src_schema, view_name, ddl)
+        #         save_ddl_to_file1(base_path, src_schema, view_name, ddl)
 
-                # Step 3: Modify the DDL
-                modified_ddl = modify_ddl(ddl, f"{tgt_db}.{tgt_schema}", src_schema,view_name)
+        #         # Step 3: Modify the DDL
+        #         modified_ddl = modify_ddl(ddl, f"{tgt_db}.{tgt_schema}", src_schema,view_name)
 
-                print(f"Modified DDL for view {view_name}:\n{modified_ddl}\n")
+        #         print(f"Modified DDL for view {view_name}:\n{modified_ddl}\n")
 
-                # Step 4: Save the modified DDL to a file
-                save_ddl_to_file1(modified_ddl_path, src_schema, view_name, modified_ddl)
+        #         # Step 4: Save the modified DDL to a file
+        #         save_ddl_to_file1(modified_ddl_path, src_schema, view_name, modified_ddl)
 
                 # Step 5: Create the view in the target database
                 #create_view_in_target(target_conn, modified_ddl)
+
+       # Step 6: Validate the created views and log results/errors to a CSV file
+        output_csv = f"{base_path}\\validation_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+        views_to_validate = [
+            {
+                "db_name": row['tgt_db'],
+                "schema_name": row['tgt_schema'],
+                "view_name": row['view_name']
+            }
+            for row in control_data if row['need_to_create_ind'] == 1
+        ]
+        validate_views(target_conn, views_to_validate, output_csv)
+        print(f"Validation results saved to {output_csv}")
 
     finally:
         source_conn.close()
